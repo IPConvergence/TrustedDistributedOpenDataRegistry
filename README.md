@@ -1,2 +1,2 @@
-# TrustedDistributedOpenDataRegistry
+# Trusted Distributed Open Data Registry
 The Trusted Distributed Open Data Registry is a project that focus on sharing on a Trustworthy, distributed way open Data (in JSON-LD signed format) used by domains like health research, Academical research, Climate monitoring, Green Energy Adoption...
