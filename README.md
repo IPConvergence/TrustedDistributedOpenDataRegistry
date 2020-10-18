@@ -8,4 +8,3 @@ Trustworthy Open Data coming from the Health Sector for disease research (like c
 Trustworthy Open Data coming from the world climate parameter (CO2 level, Temperature...)
 Trustworthy Open Data coming from green energy (to monitor the growing adoption of green energy on the different region of the world and show compliancy with
 Trustworthy Open Data coming from academical research.
-Test
