@@ -7,4 +7,4 @@ Consumer Business Cases would be:
 Trustworthy Open Data coming from the Health Sector for disease research (like cancer, Covid19 Analytics...)
 Trustworthy Open Data coming from the world climate parameter (CO2 level, Temperature...)
 Trustworthy Open Data coming from green energy (to monitor the growing adoption of green energy on the different region of the world and show compliancy with
-Trustworthy Open Data coming from academical research .
+Trustworthy Open Data coming from academical research.
