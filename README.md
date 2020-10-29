@@ -33,7 +33,7 @@ Story 2: In order to deliver a Proof of Integrity on a Data Asset I have produce
 
 Story 3: In order to publish Use and Processing Terms and conditions on Data Asset I have produced, as a Data Producer Entity, I publish on the ODTA Registry the Proof of the Integrity of the terms a conditions contract.
 
-Story 4: In order
+Story 4: In order to access an Open Data Asset (Semantic Web Envelop Received), as a Data Consumer, I query the ODTA Registry to validate the integrity of the 
 
 Concept used to make the SC Design and Data Model
 
@@ -46,3 +46,5 @@ SC Design:
 - Proxy ODTA SC
 - ODTA SC
 - Access ODTA SC
+
+For more information regarding the detail the Data Model, SC design, method signature, please refer to the https://marcantoine-lemaire.gitbook.io/solidity/open-data-trusted-anchors-project 
