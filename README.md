@@ -27,24 +27,33 @@ Trustworthy Open Data coming from academical research.
 
 User Stories:
 
-Story 1: In order to deliver a Proof of Source Authenticity on a Data Asset I have produced, as a Data Producer Entity, I publish on the ODTA Registry the Proof of Source Authenticity of the Data Asset
+Story 1: In order to deliver a "Proof of Source Authenticity" on a Data Asset I have produced, as a <Data Producer Entity>, I publish on the ODTA Registry the Proof of Source Authenticity of the Data Asset.
 
-Story 2: In order to deliver a Proof of Integrity on a Data Asset I have produced, as a Data Producer entity, I publish on the ODTA Registry the Proof of Integrity of the Data Asset
+Story 2: In order to deliver a "Proof of Integrity" on a Data Asset I have produced, as a <Data Producer entity>, I publish on the ODTA Registry the Proof of Integrity of the Data Asset.
 
-Story 3: In order to publish Use and Processing Terms and conditions on Data Asset I have produced, as a Data Producer Entity, I publish on the ODTA Registry the Proof of the Integrity of the terms a conditions contract.
+Story 3: In order to publish "Use and Processing Terms and conditions" on a Data Asset I have produced, as a <Data Producer> Entity, I publish on the ODTA Registry the Proof of the Integrity of the "Use and Processing" Terms and conditions contract.
 
-Story 4: In order to access an Open Data Asset (Semantic Web Envelop Received), as a Data Consumer, I query the ODTA Registry to validate the integrity of the 
+Story 4: In order to setup the "Data Access Conditions" on a Data Asset I have produced, as a <Data Producer>, I publish on the ODTA Registry the "Data Access Conditions" to setup the access control on the published Data
 
-Concept used to make the SC Design and Data Model
+Story 5: In order to validate the "authenticity of the source" that produce the Data Asset I receive, as a <Data Consumer> Entity, I query the ODTA Registry to validate the authenticity of the Data Asset source.
 
-- Proof of Authenticity: Signature done by Data Publisher + Public key to verify it
+Story 6: In order to validate the "integrity of the Data Asset" I receive, as a <Data Consumer> Entity, I query the ODTA Registry to validate the authenticity of the Data Asset.
+
+Story 7: In order to validate the "Use and Processing Terms and conditions" to the Open Data Asset (present in the Semantic Web Envelop Received), as a <Data Consumer> Entity, I query the ODTA Registry to validate the Integrity of the "Use and Processing Terms and conditions" to the Data Asset (Free or specific Access Cost conditions, intellectual property rights...)
+
+Story 8: In order to "get access to a paid-access Data Asset" I received, as a <Data Consumer> Entity, I paid the fee to get access to the Data
+
+Key Concept Definition:
+
+- Proof of Authenticity: Signature done by a Data Publisher + Public key to verify it
 - Proof of Integrity: Hash of the Data (including the Semantic web envelop)
-- Use Terms and conditions: describe the exploitation of the data authorised, the intellectual property conditions on it, free or need to pay for access...
+- Use Terms and conditions: describe the authorized exploitation of the produced Data Asset, the intellectual property conditions on it, free or need to pay for access...
 - Processing Terms and conditions: what a consumer can do with it: read only (not copy authorized), copy, free or pay before access
+- Data Access Conditions: mechanisms put in place to protect special access to Data Asset, like paid-access.
 
-SC Design:
-- Proxy ODTA SC
-- ODTA SC
-- Access ODTA SC
+The ODTA Registry will be composed of 3 Smart Contracts:
+- ODTA Proxy Smart Contract
+- ODTA Validator Smart Contract
+- ODTA Access Control Smart Contract
 
-For more information regarding the detail the Data Model, SC design, method signature, please refer to the https://marcantoine-lemaire.gitbook.io/solidity/open-data-trusted-anchors-project 
+For more information regarding the detail of the Data Model, Smart Contract design, Smart Contract Method signature, please refer to the https://marcantoine-lemaire.gitbook.io/solidity/open-data-trusted-anchors-project 
