@@ -27,4 +27,22 @@ Trustworthy Open Data coming from academical research.
 
 User Stories:
 
-As a Data Producer, I publish on the ODTA Registry
+Story 1: In order to deliver a Proof of Source Authenticity on a Data Asset I have produced, as a Data Producer Entity, I publish on the ODTA Registry the Proof of Source Authenticity of the Data Asset
+
+Story 2: In order to deliver a Proof of Integrity on a Data Asset I have produced, as a Data Producer entity, I publish on the ODTA Registry the Proof of Integrity of the Data Asset
+
+Story 3: In order to publish Use and Processing Terms and conditions on Data Asset I have produced, as a Data Producer Entity, I publish on the ODTA Registry the Proof of the Integrity of the terms a conditions contract.
+
+Story 4: In order
+
+Concept used to make the SC Design and Data Model
+
+- Proof of Authenticity: Signature done by Data Publisher + Public key to verify it
+- Proof of Integrity: Hash of the Data (including the Semantic web envelop)
+- Use Terms and conditions: describe the exploitation of the data authorised, the intellectual property conditions on it, free or need to pay for access...
+- Processing Terms and conditions: what a consumer can do with it: read only (not copy authorized), copy, free or pay before access
+
+SC Design:
+- Proxy ODTA SC
+- ODTA SC
+- Access ODTA SC
