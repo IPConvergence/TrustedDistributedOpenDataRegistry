@@ -1,0 +1,104 @@
+{
+  "contractName": "ODTAProxy",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/lemaima/Documents/devTest/TrustedDistributedOpenDataRegistry/contracts/ODTAProxy.sol\":\"ODTAProxy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/lemaima/Documents/devTest/TrustedDistributedOpenDataRegistry/contracts/ODTAProxy.sol\":{\"keccak256\":\"0xb935266b1745c4ee7944735043ff0a126ae655e2815c41b98bf6ab4ef5a73dfd\",\"urls\":[\"bzz-raw://56d2cafd1a39fe5d1206a1328742c1dc406a8e821112641596ec4904f085debe\",\"dweb:/ipfs/QmQSDJgyXFVHKgTBxL7GMfhpfeU1EJpKnHKVAU2DyEfzmd\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a72315820ad359f2cd51a01d449ba695077959ed5933ca7e50b1f66c84c024d983d8ce98364736f6c63430005100032",
+  "deployedBytecode": "0x6080604052600080fdfea265627a7a72315820ad359f2cd51a01d449ba695077959ed5933ca7e50b1f66c84c024d983d8ce98364736f6c63430005100032",
+  "sourceMap": "64:23:2:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;64:23:2;;;;;;;",
+  "deployedSourceMap": "64:23:2:-;;;;;",
+  "source": "// SPDX-License-Identifier: EUPL V1.2\npragma solidity <=0.8.0;\n\ncontract ODTAProxy{\n\n\n}",
+  "sourcePath": "/Users/lemaima/Documents/devTest/TrustedDistributedOpenDataRegistry/contracts/ODTAProxy.sol",
+  "ast": {
+    "absolutePath": "/Users/lemaima/Documents/devTest/TrustedDistributedOpenDataRegistry/contracts/ODTAProxy.sol",
+    "exportedSymbols": {
+      "ODTAProxy": [
+        38
+      ]
+    },
+    "id": 39,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 37,
+        "literals": [
+          "solidity",
+          "<=",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:24:2"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 38,
+        "linearizedBaseContracts": [
+          38
+        ],
+        "name": "ODTAProxy",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 39,
+        "src": "64:23:2"
+      }
+    ],
+    "src": "38:49:2"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/lemaima/Documents/devTest/TrustedDistributedOpenDataRegistry/contracts/ODTAProxy.sol",
+    "exportedSymbols": {
+      "ODTAProxy": [
+        38
+      ]
+    },
+    "id": 39,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 37,
+        "literals": [
+          "solidity",
+          "<=",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:24:2"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 38,
+        "linearizedBaseContracts": [
+          38
+        ],
+        "name": "ODTAProxy",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 39,
+        "src": "64:23:2"
+      }
+    ],
+    "src": "38:49:2"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.1",
+  "updatedAt": "2020-11-01T14:42:03.196Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "contractName": "ODTAAccessControl",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/lemaima/Documents/devTest/TrustedDistributedOpenDataRegistry/contracts/ODTAAccessControl.sol\":\"ODTAAccessControl\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/lemaima/Documents/devTest/TrustedDistributedOpenDataRegistry/contracts/ODTAAccessControl.sol\":{\"keccak256\":\"0xcc3fd8b284922e9a58973320c63431def6f3512fe6d00bd4a28b7a16a99a1c14\",\"urls\":[\"bzz-raw://5af44d3a15b5baa636495635e109e345e5338473104e6956bbbd1b2cfb9baae3\",\"dweb:/ipfs/QmUp3kHRt65eseRxsVa9P2LJbAqc7CR7eMPDEzaw7L3ugu\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a7231582083a0620d363dcbb24d667271857565f1d105b46b69c1c1709e2c1026a6788a2264736f6c63430005100032",
+  "deployedBytecode": "0x6080604052600080fdfea265627a7a7231582083a0620d363dcbb24d667271857565f1d105b46b69c1c1709e2c1026a6788a2264736f6c63430005100032",
+  "sourceMap": "64:31:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;64:31:1;;;;;;;",
+  "deployedSourceMap": "64:31:1:-;;;;;",
+  "source": "// SPDX-License-Identifier: EUPL V1.2\npragma solidity <=0.8.0;\n\ncontract ODTAAccessControl{\n\n\n}",
+  "sourcePath": "/Users/lemaima/Documents/devTest/TrustedDistributedOpenDataRegistry/contracts/ODTAAccessControl.sol",
+  "ast": {
+    "absolutePath": "/Users/lemaima/Documents/devTest/TrustedDistributedOpenDataRegistry/contracts/ODTAAccessControl.sol",
+    "exportedSymbols": {
+      "ODTAAccessControl": [
+        35
+      ]
+    },
+    "id": 36,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 34,
+        "literals": [
+          "solidity",
+          "<=",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:24:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 35,
+        "linearizedBaseContracts": [
+          35
+        ],
+        "name": "ODTAAccessControl",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 36,
+        "src": "64:31:1"
+      }
+    ],
+    "src": "38:57:1"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/lemaima/Documents/devTest/TrustedDistributedOpenDataRegistry/contracts/ODTAAccessControl.sol",
+    "exportedSymbols": {
+      "ODTAAccessControl": [
+        35
+      ]
+    },
+    "id": 36,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 34,
+        "literals": [
+          "solidity",
+          "<=",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:24:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 35,
+        "linearizedBaseContracts": [
+          35
+        ],
+        "name": "ODTAAccessControl",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 36,
+        "src": "64:31:1"
+      }
+    ],
+    "src": "38:57:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.1",
+  "updatedAt": "2020-11-01T14:42:03.195Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

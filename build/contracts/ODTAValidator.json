@@ -1,0 +1,3657 @@
+{
+  "contractName": "ODTAValidator",
+  "abi": [
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "_dataAssetProducerID",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "_dataAssetConsumerID",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "_dataAssetID",
+          "type": "bytes32"
+        }
+      ],
+      "name": "eventGetDataAccess",
+      "type": "event"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "dataAssetAccessStore",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "dataAssetAccessStatus",
+          "type": "bool"
+        },
+        {
+          "internalType": "string",
+          "name": "dataAssetAccessStartDate",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "dataAssetAccessEndDate",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "dataAssetIDList",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "name": "dataAssetStore",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "dataAssetProducerID",
+          "type": "address"
+        },
+        {
+          "internalType": "enum ODTAValidator.accessType",
+          "name": "dataAssetAccessType",
+          "type": "uint8"
+        },
+        {
+          "internalType": "string",
+          "name": "dataAssetAccessPrice",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "dataAssetAccessDuration",
+          "type": "string"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "proofOfIntegrigyDataAsset",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "proofOfSourceAuthenticity",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "proofOfIntegrityUseProcessingConditions",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "dataProducerDataAssetList",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "dataProducerStore",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_dataAssetProducerID",
+          "type": "address"
+        },
+        {
+          "internalType": "enum ODTAValidator.accessType",
+          "name": "_dataAssetAccessType",
+          "type": "uint8"
+        },
+        {
+          "internalType": "string",
+          "name": "_dataAssetAccessPrice",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_dataAssetAccessDuration",
+          "type": "string"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "_proofOfIntegrigyDataAsset",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "_proofOfSourceAuthenticity",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "_proofOfIntegrityUseProcessingConditions",
+          "type": "bytes32"
+        }
+      ],
+      "name": "insertDataAsset",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_dataAssetID",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getDataAsset",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "_dataAssetProducerID",
+          "type": "address"
+        },
+        {
+          "internalType": "enum ODTAValidator.accessType",
+          "name": "_dataAssetAccessType",
+          "type": "uint8"
+        },
+        {
+          "internalType": "string",
+          "name": "_dataAssetAccessPrice",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_dataAssetAccessDuration",
+          "type": "string"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "_proofOfIntegrigyDataAsset",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "_proofOfSourceAuthenticity",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "_proofOfIntegrityUseProcessingCondictions",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_dataAssetID",
+          "type": "bytes32"
+        }
+      ],
+      "name": "getDataAssetAccessType",
+      "outputs": [
+        {
+          "internalType": "enum ODTAValidator.accessType",
+          "name": "_dataAssetAccessType",
+          "type": "uint8"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_dataAssetID",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "address",
+          "name": "_dataAssetConsumerID",
+          "type": "address"
+        }
+      ],
+      "name": "insertDataAssetAccess",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_dataAssetID",
+          "type": "bytes32"
+        }
+      ],
+      "name": "payToAccessDataAsset",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"_dataAssetProducerID\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"_dataAssetConsumerID\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"_dataAssetID\",\"type\":\"bytes32\"}],\"name\":\"eventGetDataAccess\",\"type\":\"event\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"dataAssetAccessStore\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"dataAssetAccessStatus\",\"type\":\"bool\"},{\"internalType\":\"string\",\"name\":\"dataAssetAccessStartDate\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"dataAssetAccessEndDate\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"dataAssetIDList\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"dataAssetStore\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"dataAssetProducerID\",\"type\":\"address\"},{\"internalType\":\"enum ODTAValidator.accessType\",\"name\":\"dataAssetAccessType\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"dataAssetAccessPrice\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"dataAssetAccessDuration\",\"type\":\"string\"},{\"internalType\":\"bytes32\",\"name\":\"proofOfIntegrigyDataAsset\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"proofOfSourceAuthenticity\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"proofOfIntegrityUseProcessingConditions\",\"type\":\"bytes32\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"dataProducerDataAssetList\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"dataProducerStore\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_dataAssetID\",\"type\":\"bytes32\"}],\"name\":\"getDataAsset\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"_dataAssetProducerID\",\"type\":\"address\"},{\"internalType\":\"enum ODTAValidator.accessType\",\"name\":\"_dataAssetAccessType\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"_dataAssetAccessPrice\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_dataAssetAccessDuration\",\"type\":\"string\"},{\"internalType\":\"bytes32\",\"name\":\"_proofOfIntegrigyDataAsset\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_proofOfSourceAuthenticity\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_proofOfIntegrityUseProcessingCondictions\",\"type\":\"bytes32\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_dataAssetID\",\"type\":\"bytes32\"}],\"name\":\"getDataAssetAccessType\",\"outputs\":[{\"internalType\":\"enum ODTAValidator.accessType\",\"name\":\"_dataAssetAccessType\",\"type\":\"uint8\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"_dataAssetProducerID\",\"type\":\"address\"},{\"internalType\":\"enum ODTAValidator.accessType\",\"name\":\"_dataAssetAccessType\",\"type\":\"uint8\"},{\"internalType\":\"string\",\"name\":\"_dataAssetAccessPrice\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_dataAssetAccessDuration\",\"type\":\"string\"},{\"internalType\":\"bytes32\",\"name\":\"_proofOfIntegrigyDataAsset\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_proofOfSourceAuthenticity\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"_proofOfIntegrityUseProcessingConditions\",\"type\":\"bytes32\"}],\"name\":\"insertDataAsset\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_dataAssetID\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"_dataAssetConsumerID\",\"type\":\"address\"}],\"name\":\"insertDataAssetAccess\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_dataAssetID\",\"type\":\"bytes32\"}],\"name\":\"payToAccessDataAsset\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Marc-Antoine Lemaire from Company IP Convergence\",\"methods\":{\"constructor\":{\"details\":\"Constructor of the ODTAValidator SmartContract\"},\"getDataAsset(bytes32)\":{\"details\":\"Function in charge of inserting a Data Asset on SC\",\"params\":{\"_dataAssetID\":\"Hash od the dataAssetValue\"},\"return\":\"_dataAssetProducerID Address of the Data Producer_dataAssetAccessType :Type of access {free, paying}_dataAssetAccessPrice :Price in Ether set by the Data Producer to access the Data Asset, if paying one_dataAssetAccessDuration :Duration of the access in number of days_proofOfIntegrigyDataAsset :Hash of the DataAssetValue_proofOfSourceAuthenticity :Address of the dataAssetProducerID, Etherum address_proofOfIntegrityUseProcessingCondictions :Hash of Use and Processing Conditions of the data Asset\"},\"insertDataAsset(address,uint8,string,string,bytes32,bytes32,bytes32)\":{\"details\":\"Function in charge of inserting a Data Asset on SC\",\"params\":{\"_dataAssetAccessDuration\":\"Duration of the access in number of days\",\"_dataAssetAccessPrice\":\"Price in Ether set by the Data Producer to access the Data Asset, if paying one\",\"_dataAssetAccessType\":\"Type of access {free, paying}\",\"_dataAssetProducerID\":\"Address of the dataAsset\",\"_proofOfIntegrigyDataAsset\":\"Hash of the DataAssetValue\",\"_proofOfIntegrityUseProcessingConditions\":\"Hash of Use and Processing Conditions of the data Asset\",\"_proofOfSourceAuthenticity\":\"Address of the dataAssetProducerID, Etherum address\"}}},\"title\":\"ODTAValidator SC is in charge of managing DataAsset Trust Anchors\"},\"userdoc\":{\"methods\":{},\"notice\":\"version 0.1, on 1 november 2020\"}},\"settings\":{\"compilationTarget\":{\"/Users/lemaima/Documents/devTest/TrustedDistributedOpenDataRegistry/contracts/ODTAValidator.sol\":\"ODTAValidator\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/lemaima/Documents/devTest/TrustedDistributedOpenDataRegistry/contracts/ODTAValidator.sol\":{\"keccak256\":\"0x15917e49c8387ad898f03ed65d46422c0e920194003b2abc4abdb7baca0ffb16\",\"urls\":[\"bzz-raw://5c295d2dcc3d4f3da369e95e95c8401c67e989d0d3918427ad2e5f9fb16adff8\",\"dweb:/ipfs/QmWW85PnKRVsxvZpXP19kY72Gsqnv3pNiGNFd8ahWeUgnN\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550610bf5806100606000396000f3fe608060405234801561001057600080fd5b506004361061009e5760003560e01c8063942001fc11610066578063942001fc14610450578063a052353f146105c0578063a709703d1461060e578063fc7e1e041461077e578063fd84acd6146107ce5761009e565b8063076c8212146100a35780636f2184ad146101e15780637a00430f146102235780638662b202146102515780639148a4ef146103ee575b600080fd5b6100ef600480360360408110156100b957600080fd5b8101908080359060200190929190803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610810565b60405180841515151581526020018060200180602001838103835285818151815260200191508051906020019080838360005b8381101561013d578082015181840152602081019050610122565b50505050905090810190601f16801561016a5780820380516001836020036101000a031916815260200191505b50838103825284818151815260200191508051906020019080838360005b838110156101a3578082015181840152602081019050610188565b50505050905090810190601f1680156101d05780820380516001836020036101000a031916815260200191505b509550505050505060405180910390f35b61020d600480360360208110156101f757600080fd5b8101908080359060200190929190505050610984565b6040518082815260200191505060405180910390f35b61024f6004803603602081101561023957600080fd5b81019080803590602001909291905050506109a5565b005b6103ec600480360360e081101561026757600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803560ff169060200190929190803590602001906401000000008111156102b157600080fd5b8201836020820111156102c357600080fd5b803590602001918460018302840111640100000000831117156102e557600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019064010000000081111561034857600080fd5b82018360208201111561035a57600080fd5b8035906020019184600183028401116401000000008311171561037c57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019092919080359060200190929190803590602001909291905050506109a8565b005b61043a6004803603604081101561040457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001909291905050506109b1565b6040518082815260200191505060405180910390f35b61047c6004803603602081101561046657600080fd5b81019080803590602001909291905050506109df565b604051808873ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018760018111156104be57fe5b60ff1681526020018060200180602001868152602001858152602001848152602001838103835288818151815260200191508051906020019080838360005b838110156105185780820151818401526020810190506104fd565b50505050905090810190601f1680156105455780820380516001836020036101000a031916815260200191505b50838103825287818151815260200191508051906020019080838360005b8381101561057e578082015181840152602081019050610563565b50505050905090810190601f1680156105ab5780820380516001836020036101000a031916815260200191505b50995050505050505050505060405180910390f35b61060c600480360360408110156105d657600080fd5b8101908080359060200190929190803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506109f5565b005b61063a6004803603602081101561062457600080fd5b81019080803590602001909291905050506109f9565b604051808873ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200187600181111561067c57fe5b60ff1681526020018060200180602001868152602001858152602001848152602001838103835288818151815260200191508051906020019080838360005b838110156106d65780820151818401526020810190506106bb565b50505050905090810190601f1680156107035780820380516001836020036101000a031916815260200191505b50838103825287818151815260200191508051906020019080838360005b8381101561073c578082015181840152602081019050610721565b50505050905090810190601f1680156107695780820380516001836020036101000a031916815260200191505b50995050505050505050505060405180910390f35b6107aa6004803603602081101561079457600080fd5b8101908080359060200190929190505050610b98565b604051808260018111156107ba57fe5b60ff16815260200191505060405180910390f35b6107fa600480360360208110156107e457600080fd5b8101908080359060200190929190505050610b9f565b6040518082815260200191505060405180910390f35b6005602052816000526040600020602052806000526040600020600091509150508060000160009054906101000a900460ff1690806001018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156108dc5780601f106108b1576101008083540402835291602001916108dc565b820191906000526020600020905b8154815290600101906020018083116108bf57829003601f168201915b505050505090806002018054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561097a5780601f1061094f5761010080835404028352916020019161097a565b820191906000526020600020905b81548152906001019060200180831161095d57829003601f168201915b5050505050905083565b6003818154811061099157fe5b906000526020600020016000915090505481565b50565b50505050505050565b600160205281600052604060002081815481106109ca57fe5b90600052602060002001600091509150505481565b6000806060806000806000919395979092949650565b5050565b60046020528060005260406000206000915090508060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060000160149054906101000a900460ff1690806001018054600181600116156101000203166002900480601f016020809104026020016040519081016040528092919081815260200182805460018160011615610100020316600290048015610ade5780601f10610ab357610100808354040283529160200191610ade565b820191906000526020600020905b815481529060010190602001808311610ac157829003601f168201915b505050505090806002018054600181600116156101000203166002900480601f016020809104026020016040519081016040528092919081815260200182805460018160011615610100020316600290048015610b7c5780601f10610b5157610100808354040283529160200191610b7c565b820191906000526020600020905b815481529060010190602001808311610b5f57829003601f168201915b5050505050908060030154908060040154908060050154905087565b6000919050565b60028181548110610bac57fe5b90600052602060002001600091509050548156fea265627a7a7231582058a38ec691baf0462fe82b62062cb040f204e3923287c35a2519592c6645200564736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061009e5760003560e01c8063942001fc11610066578063942001fc14610450578063a052353f146105c0578063a709703d1461060e578063fc7e1e041461077e578063fd84acd6146107ce5761009e565b8063076c8212146100a35780636f2184ad146101e15780637a00430f146102235780638662b202146102515780639148a4ef146103ee575b600080fd5b6100ef600480360360408110156100b957600080fd5b8101908080359060200190929190803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610810565b60405180841515151581526020018060200180602001838103835285818151815260200191508051906020019080838360005b8381101561013d578082015181840152602081019050610122565b50505050905090810190601f16801561016a5780820380516001836020036101000a031916815260200191505b50838103825284818151815260200191508051906020019080838360005b838110156101a3578082015181840152602081019050610188565b50505050905090810190601f1680156101d05780820380516001836020036101000a031916815260200191505b509550505050505060405180910390f35b61020d600480360360208110156101f757600080fd5b8101908080359060200190929190505050610984565b6040518082815260200191505060405180910390f35b61024f6004803603602081101561023957600080fd5b81019080803590602001909291905050506109a5565b005b6103ec600480360360e081101561026757600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803560ff169060200190929190803590602001906401000000008111156102b157600080fd5b8201836020820111156102c357600080fd5b803590602001918460018302840111640100000000831117156102e557600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019064010000000081111561034857600080fd5b82018360208201111561035a57600080fd5b8035906020019184600183028401116401000000008311171561037c57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019092919080359060200190929190803590602001909291905050506109a8565b005b61043a6004803603604081101561040457600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803590602001909291905050506109b1565b6040518082815260200191505060405180910390f35b61047c6004803603602081101561046657600080fd5b81019080803590602001909291905050506109df565b604051808873ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020018760018111156104be57fe5b60ff1681526020018060200180602001868152602001858152602001848152602001838103835288818151815260200191508051906020019080838360005b838110156105185780820151818401526020810190506104fd565b50505050905090810190601f1680156105455780820380516001836020036101000a031916815260200191505b50838103825287818151815260200191508051906020019080838360005b8381101561057e578082015181840152602081019050610563565b50505050905090810190601f1680156105ab5780820380516001836020036101000a031916815260200191505b50995050505050505050505060405180910390f35b61060c600480360360408110156105d657600080fd5b8101908080359060200190929190803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506109f5565b005b61063a6004803603602081101561062457600080fd5b81019080803590602001909291905050506109f9565b604051808873ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200187600181111561067c57fe5b60ff1681526020018060200180602001868152602001858152602001848152602001838103835288818151815260200191508051906020019080838360005b838110156106d65780820151818401526020810190506106bb565b50505050905090810190601f1680156107035780820380516001836020036101000a031916815260200191505b50838103825287818151815260200191508051906020019080838360005b8381101561073c578082015181840152602081019050610721565b50505050905090810190601f1680156107695780820380516001836020036101000a031916815260200191505b50995050505050505050505060405180910390f35b6107aa6004803603602081101561079457600080fd5b8101908080359060200190929190505050610b98565b604051808260018111156107ba57fe5b60ff16815260200191505060405180910390f35b6107fa600480360360208110156107e457600080fd5b8101908080359060200190929190505050610b9f565b6040518082815260200191505060405180910390f35b6005602052816000526040600020602052806000526040600020600091509150508060000160009054906101000a900460ff1690806001018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156108dc5780601f106108b1576101008083540402835291602001916108dc565b820191906000526020600020905b8154815290600101906020018083116108bf57829003601f168201915b505050505090806002018054600181600116156101000203166002900480601f01602080910402602001604051908101604052809291908181526020018280546001816001161561010002031660029004801561097a5780601f1061094f5761010080835404028352916020019161097a565b820191906000526020600020905b81548152906001019060200180831161095d57829003601f168201915b5050505050905083565b6003818154811061099157fe5b906000526020600020016000915090505481565b50565b50505050505050565b600160205281600052604060002081815481106109ca57fe5b90600052602060002001600091509150505481565b6000806060806000806000919395979092949650565b5050565b60046020528060005260406000206000915090508060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16908060000160149054906101000a900460ff1690806001018054600181600116156101000203166002900480601f016020809104026020016040519081016040528092919081815260200182805460018160011615610100020316600290048015610ade5780601f10610ab357610100808354040283529160200191610ade565b820191906000526020600020905b815481529060010190602001808311610ac157829003601f168201915b505050505090806002018054600181600116156101000203166002900480601f016020809104026020016040519081016040528092919081815260200182805460018160011615610100020316600290048015610b7c5780601f10610b5157610100808354040283529160200191610b7c565b820191906000526020600020905b815481529060010190602001808311610b5f57829003601f168201915b5050505050908060030154908060040154908060050154905087565b6000919050565b60028181548110610bac57fe5b90600052602060002001600091509050548156fea265627a7a7231582058a38ec691baf0462fe82b62062cb040f204e3923287c35a2519592c6645200564736f6c63430005100032",
+  "sourceMap": "250:6045:3:-;;;2849:128;8:9:-1;5:2;;;30:1;27;20:12;5:2;2849:128:3;2960:10;2952:5;;:18;;;;;;;;;;;;;;;;;;250:6045;;;;;;",
+  "deployedSourceMap": "250:6045:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;250:6045:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2094:90;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;2094:90:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;2094:90:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;2094:90:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;832:32;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;832:32:3;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;6218:74;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;6218:74:3;;;;;;;;;;;;;;;;;:::i;:::-;;3656:562;;;;;;13:3:-1;8;5:12;2:2;;;30:1;27;20:12;2:2;3656:562:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;3656:562:3;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;3656:562:3;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;3656:562:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;3656:562:3;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;3656:562:3;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;3656:562:3;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;3656:562:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;3656:562:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;513:55;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;513:55:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;4969:1020;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;4969:1020:3;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;4969:1020:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;4969:1020:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;6115:98;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;6115:98:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;1473:58;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1473:58:3;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;1473:58:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;1473:58:3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;5999:110;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;5999:110:3;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;664:42;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;664:42:3;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;2094:90;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;832:32::-;;;;;;;;;;;;;;;;;;;;;;;;;:::o;6218:74::-;;:::o;3656:562::-;;;;;;;;:::o;513:55::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;4969:1020::-;5029:28;5123:31;5220:35;5321:38;5425:34;5525;5625:49;4969:1020;;;;;;;;;:::o;6115:98::-;;;:::o;1473:58::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;5999:110::-;6069:31;5999:110;;;:::o;664:42::-;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "// SPDX-License-Identifier: EUPL V1.2\npragma solidity <=0.8.0;\n\n/** @title ODTAValidator SC is in charge of managing DataAsset Trust Anchors\n    @author Marc-Antoine Lemaire from Company IP Convergence\n    @notice version 0.1, on 1 november 2020\n */\ncontract ODTAValidator{\n// ------------ Define the States Variables of the SC ----------------\n\n// -- Objects used by Data Producer --\n    address owner;\n    /// dataProducerStore = mapping of dataProducerID Address to the list of dataAssetID produced by him\n    mapping (address => bytes32[]) public dataProducerStore;\n    /// dataProdudcerDataAssetList = An array of dataAssetID produced by a dataProducerID\n    bytes32[] public dataProducerDataAssetList;\n\n// -- Objects used for managing Data Asset --\n    /// dataAssetIDList = array of all the dataAssetID managed by the SC\n    bytes32[] public dataAssetIDList;\n    /// dataAssetObject = structure that containes all required Data Asset Information to manage Trust and access control from SC\n    struct dataAssetObject{\n        address dataAssetProducerID;\n        accessType dataAssetAccessType;\n        string dataAssetAccessPrice; // in Ether\n        string dataAssetAccessDuration; // in Number of days\n        bytes32 proofOfIntegrigyDataAsset;\n        bytes32 proofOfSourceAuthenticity;\n        bytes32 proofOfIntegrityUseProcessingConditions;\n    }\n    /// dataAssetStore = mapping of all the dataAssetID (Hash of DataAsset) and their linked dataAssetObject\n    mapping (bytes32 => dataAssetObject) public dataAssetStore;\n\n// -- Objects used for managing Access to the Data Asset --\n    /// accessType : enum saying if the access is free or you must pay\n    enum accessType {free, paying}\n    /// dataAssetAccessObject = structure that contains the access parameter for a Data Asset\n    struct dataAssetAccessObject{\n        bool dataAssetAccessStatus;\n        string dataAssetAccessStartDate;\n        string dataAssetAccessEndDate;\n    }\n    /// dataAssetAccessStore = mapping of all the dataAssetID to the mapping of their dataConsumerID address to their dataAssetAccessObject\n    mapping (bytes32 => mapping(address => dataAssetAccessObject)) public dataAssetAccessStore;\n\n// -- Events needed to manage notification on operation on DataAsset --\n    /// eventGetDataAccess = event to be generated every time a DataAssetConsumerID getAccess to a Data Asset\n    event eventGetDataAccess(address _dataAssetProducerID, address _dataAssetConsumerID, bytes32 _dataAssetID);\n\n// -- Modifier needed to perfom different control on some SC Data Asset --\n    /// isOwner modifer: checks if the msg.sender is the owner of the contract\n    modifier isOwner() {\n        require(msg.sender == owner);\n        _;\n    }\n\n// ------------ Define functions of the SC ----------------\n\n    /** @dev Constructor of the ODTAValidator SmartContract\n    */\n    constructor() public{\n        /* set the owner as the person who instantiated the contract. */\n        owner = msg.sender;\n    }\n\n    /** @dev Function in charge of inserting a Data Asset on SC\n        @param _dataAssetProducerID Address of the dataAsset\n        @param _dataAssetAccessType Type of access {free, paying}\n        @param _dataAssetAccessPrice Price in Ether set by the Data Producer to access the Data Asset, if paying one\n        @param _dataAssetAccessDuration Duration of the access in number of days\n        @param _proofOfIntegrigyDataAsset Hash of the DataAssetValue\n        @param _proofOfSourceAuthenticity Address of the dataAssetProducerID, Etherum address\n        @param _proofOfIntegrityUseProcessingConditions Hash of Use and Processing Conditions of the data Asset\n     */\n     function insertDataAsset(\n                                address _dataAssetProducerID,\n                                accessType _dataAssetAccessType,\n                                string memory _dataAssetAccessPrice,\n                                string memory _dataAssetAccessDuration,\n                                bytes32 _proofOfIntegrigyDataAsset,\n                                bytes32 _proofOfSourceAuthenticity,\n                                bytes32 _proofOfIntegrityUseProcessingConditions) public{\n            \n                            }\n\n    /** @dev Function in charge of inserting a Data Asset on SC\n        @param _dataAssetID Hash od the dataAssetValue\n        @return _dataAssetProducerID Address of the Data Producer\n        @return _dataAssetAccessType :Type of access {free, paying}\n        @return _dataAssetAccessPrice :Price in Ether set by the Data Producer to access the Data Asset, if paying one\n        @return _dataAssetAccessDuration :Duration of the access in number of days\n        @return _proofOfIntegrigyDataAsset :Hash of the DataAssetValue\n        @return _proofOfSourceAuthenticity :Address of the dataAssetProducerID, Etherum address\n        @return _proofOfIntegrityUseProcessingCondictions :Hash of Use and Processing Conditions of the data Asset\n     */\n    function getDataAsset(bytes32 _dataAssetID) public returns (address _dataAssetProducerID,\n                                                                accessType _dataAssetAccessType,\n                                                                string memory _dataAssetAccessPrice,\n                                                                string memory _dataAssetAccessDuration,\n                                                                bytes32 _proofOfIntegrigyDataAsset,\n                                                                bytes32 _proofOfSourceAuthenticity,\n                                                                bytes32 _proofOfIntegrityUseProcessingCondictions){\n     /// generate eventGetDataAccess (address _dataAssetProducerID, address _dataAssetConsumerID, bytes32 _dataAssetID)                                                              \n                                                                \n                                                                }\n    \n    function getDataAssetAccessType(bytes32 _dataAssetID) public returns (accessType _dataAssetAccessType){\n\n    }\n\n    function insertDataAssetAccess(bytes32 _dataAssetID, address _dataAssetConsumerID) public {\n\n    }\n    function payToAccessDataAsset(bytes32 _dataAssetID) public{\n        \n    }\n\n}",
+  "sourcePath": "/Users/lemaima/Documents/devTest/TrustedDistributedOpenDataRegistry/contracts/ODTAValidator.sol",
+  "ast": {
+    "absolutePath": "/Users/lemaima/Documents/devTest/TrustedDistributedOpenDataRegistry/contracts/ODTAValidator.sol",
+    "exportedSymbols": {
+      "ODTAValidator": [
+        177
+      ]
+    },
+    "id": 178,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 40,
+        "literals": [
+          "solidity",
+          "<=",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:24:3"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title ODTAValidator SC is in charge of managing DataAsset Trust Anchors\n@author Marc-Antoine Lemaire from Company IP Convergence\n@notice version 0.1, on 1 november 2020",
+        "fullyImplemented": true,
+        "id": 177,
+        "linearizedBaseContracts": [
+          177
+        ],
+        "name": "ODTAValidator",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 42,
+            "name": "owner",
+            "nodeType": "VariableDeclaration",
+            "scope": 177,
+            "src": "389:13:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 41,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "389:7:3",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 47,
+            "name": "dataProducerStore",
+            "nodeType": "VariableDeclaration",
+            "scope": 177,
+            "src": "513:55:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_bytes32_$dyn_storage_$",
+              "typeString": "mapping(address => bytes32[])"
+            },
+            "typeName": {
+              "id": 46,
+              "keyType": {
+                "id": 43,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "522:7:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "513:30:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_bytes32_$dyn_storage_$",
+                "typeString": "mapping(address => bytes32[])"
+              },
+              "valueType": {
+                "baseType": {
+                  "id": 44,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "533:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "id": 45,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "533:9:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                  "typeString": "bytes32[]"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 50,
+            "name": "dataProducerDataAssetList",
+            "nodeType": "VariableDeclaration",
+            "scope": 177,
+            "src": "664:42:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_bytes32_$dyn_storage",
+              "typeString": "bytes32[]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 48,
+                "name": "bytes32",
+                "nodeType": "ElementaryTypeName",
+                "src": "664:7:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                }
+              },
+              "id": 49,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "664:9:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                "typeString": "bytes32[]"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 53,
+            "name": "dataAssetIDList",
+            "nodeType": "VariableDeclaration",
+            "scope": 177,
+            "src": "832:32:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_bytes32_$dyn_storage",
+              "typeString": "bytes32[]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 51,
+                "name": "bytes32",
+                "nodeType": "ElementaryTypeName",
+                "src": "832:7:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                }
+              },
+              "id": 52,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "832:9:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                "typeString": "bytes32[]"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "ODTAValidator.dataAssetObject",
+            "id": 68,
+            "members": [
+              {
+                "constant": false,
+                "id": 55,
+                "name": "dataAssetProducerID",
+                "nodeType": "VariableDeclaration",
+                "scope": 68,
+                "src": "1032:27:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 54,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1032:7:3",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 57,
+                "name": "dataAssetAccessType",
+                "nodeType": "VariableDeclaration",
+                "scope": 68,
+                "src": "1069:30:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_accessType_$75",
+                  "typeString": "enum ODTAValidator.accessType"
+                },
+                "typeName": {
+                  "contractScope": null,
+                  "id": 56,
+                  "name": "accessType",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 75,
+                  "src": "1069:10:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_accessType_$75",
+                    "typeString": "enum ODTAValidator.accessType"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 59,
+                "name": "dataAssetAccessPrice",
+                "nodeType": "VariableDeclaration",
+                "scope": 68,
+                "src": "1109:27:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 58,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1109:6:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 61,
+                "name": "dataAssetAccessDuration",
+                "nodeType": "VariableDeclaration",
+                "scope": 68,
+                "src": "1158:30:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 60,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1158:6:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 63,
+                "name": "proofOfIntegrigyDataAsset",
+                "nodeType": "VariableDeclaration",
+                "scope": 68,
+                "src": "1219:33:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 62,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1219:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 65,
+                "name": "proofOfSourceAuthenticity",
+                "nodeType": "VariableDeclaration",
+                "scope": 68,
+                "src": "1262:33:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 64,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1262:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 67,
+                "name": "proofOfIntegrityUseProcessingConditions",
+                "nodeType": "VariableDeclaration",
+                "scope": 68,
+                "src": "1305:47:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 66,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1305:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "dataAssetObject",
+            "nodeType": "StructDefinition",
+            "scope": 177,
+            "src": "1000:359:3",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 72,
+            "name": "dataAssetStore",
+            "nodeType": "VariableDeclaration",
+            "scope": 177,
+            "src": "1473:58:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_bytes32_$_t_struct$_dataAssetObject_$68_storage_$",
+              "typeString": "mapping(bytes32 => struct ODTAValidator.dataAssetObject)"
+            },
+            "typeName": {
+              "id": 71,
+              "keyType": {
+                "id": 69,
+                "name": "bytes32",
+                "nodeType": "ElementaryTypeName",
+                "src": "1482:7:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "1473:36:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_bytes32_$_t_struct$_dataAssetObject_$68_storage_$",
+                "typeString": "mapping(bytes32 => struct ODTAValidator.dataAssetObject)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 70,
+                "name": "dataAssetObject",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 68,
+                "src": "1493:15:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_dataAssetObject_$68_storage_ptr",
+                  "typeString": "struct ODTAValidator.dataAssetObject"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "ODTAValidator.accessType",
+            "id": 75,
+            "members": [
+              {
+                "id": 73,
+                "name": "free",
+                "nodeType": "EnumValue",
+                "src": "1686:4:3"
+              },
+              {
+                "id": 74,
+                "name": "paying",
+                "nodeType": "EnumValue",
+                "src": "1692:6:3"
+              }
+            ],
+            "name": "accessType",
+            "nodeType": "EnumDefinition",
+            "src": "1669:30:3"
+          },
+          {
+            "canonicalName": "ODTAValidator.dataAssetAccessObject",
+            "id": 82,
+            "members": [
+              {
+                "constant": false,
+                "id": 77,
+                "name": "dataAssetAccessStatus",
+                "nodeType": "VariableDeclaration",
+                "scope": 82,
+                "src": "1836:26:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 76,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1836:4:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 79,
+                "name": "dataAssetAccessStartDate",
+                "nodeType": "VariableDeclaration",
+                "scope": 82,
+                "src": "1872:31:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 78,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1872:6:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 81,
+                "name": "dataAssetAccessEndDate",
+                "nodeType": "VariableDeclaration",
+                "scope": 82,
+                "src": "1913:29:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 80,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1913:6:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "dataAssetAccessObject",
+            "nodeType": "StructDefinition",
+            "scope": 177,
+            "src": "1798:151:3",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 88,
+            "name": "dataAssetAccessStore",
+            "nodeType": "VariableDeclaration",
+            "scope": 177,
+            "src": "2094:90:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_bytes32_$_t_mapping$_t_address_$_t_struct$_dataAssetAccessObject_$82_storage_$_$",
+              "typeString": "mapping(bytes32 => mapping(address => struct ODTAValidator.dataAssetAccessObject))"
+            },
+            "typeName": {
+              "id": 87,
+              "keyType": {
+                "id": 83,
+                "name": "bytes32",
+                "nodeType": "ElementaryTypeName",
+                "src": "2103:7:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "2094:62:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_bytes32_$_t_mapping$_t_address_$_t_struct$_dataAssetAccessObject_$82_storage_$_$",
+                "typeString": "mapping(bytes32 => mapping(address => struct ODTAValidator.dataAssetAccessObject))"
+              },
+              "valueType": {
+                "id": 86,
+                "keyType": {
+                  "id": 84,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2122:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "nodeType": "Mapping",
+                "src": "2114:41:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_struct$_dataAssetAccessObject_$82_storage_$",
+                  "typeString": "mapping(address => struct ODTAValidator.dataAssetAccessObject)"
+                },
+                "valueType": {
+                  "contractScope": null,
+                  "id": 85,
+                  "name": "dataAssetAccessObject",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 82,
+                  "src": "2133:21:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_dataAssetAccessObject_$82_storage_ptr",
+                    "typeString": "struct ODTAValidator.dataAssetAccessObject"
+                  }
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "documentation": "eventGetDataAccess = event to be generated every time a DataAssetConsumerID getAccess to a Data Asset",
+            "id": 96,
+            "name": "eventGetDataAccess",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 95,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 90,
+                  "indexed": false,
+                  "name": "_dataAssetProducerID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 96,
+                  "src": "2398:28:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 89,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2398:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 92,
+                  "indexed": false,
+                  "name": "_dataAssetConsumerID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 96,
+                  "src": "2428:28:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 91,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2428:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 94,
+                  "indexed": false,
+                  "name": "_dataAssetID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 96,
+                  "src": "2458:20:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 93,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2458:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2397:82:3"
+            },
+            "src": "2373:107:3"
+          },
+          {
+            "body": {
+              "id": 106,
+              "nodeType": "Block",
+              "src": "2659:56:3",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 102,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 99,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 192,
+                            "src": "2677:3:3",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 100,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "2677:10:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "id": 101,
+                          "name": "owner",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 42,
+                          "src": "2691:5:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "2677:19:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 98,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        195,
+                        196
+                      ],
+                      "referencedDeclaration": 195,
+                      "src": "2669:7:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 103,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2669:28:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 104,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2669:28:3"
+                },
+                {
+                  "id": 105,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "2707:1:3"
+                }
+              ]
+            },
+            "documentation": "isOwner modifer: checks if the msg.sender is the owner of the contract",
+            "id": 107,
+            "name": "isOwner",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 97,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2656:2:3"
+            },
+            "src": "2640:75:3",
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 115,
+              "nodeType": "Block",
+              "src": "2869:108:3",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 113,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 110,
+                      "name": "owner",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 42,
+                      "src": "2952:5:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 111,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 192,
+                        "src": "2960:3:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 112,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "2960:10:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
+                      }
+                    },
+                    "src": "2952:18:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 114,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2952:18:3"
+                }
+              ]
+            },
+            "documentation": "@dev Constructor of the ODTAValidator SmartContract",
+            "id": 116,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 108,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2860:2:3"
+            },
+            "returnParameters": {
+              "id": 109,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2869:0:3"
+            },
+            "scope": 177,
+            "src": "2849:128:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 133,
+              "nodeType": "Block",
+              "src": "4174:44:3",
+              "statements": []
+            },
+            "documentation": "@dev Function in charge of inserting a Data Asset on SC\n@param _dataAssetProducerID Address of the dataAsset\n@param _dataAssetAccessType Type of access {free, paying}\n@param _dataAssetAccessPrice Price in Ether set by the Data Producer to access the Data Asset, if paying one\n@param _dataAssetAccessDuration Duration of the access in number of days\n@param _proofOfIntegrigyDataAsset Hash of the DataAssetValue\n@param _proofOfSourceAuthenticity Address of the dataAssetProducerID, Etherum address\n@param _proofOfIntegrityUseProcessingConditions Hash of Use and Processing Conditions of the data Asset",
+            "id": 134,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "insertDataAsset",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 131,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 118,
+                  "name": "_dataAssetProducerID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 134,
+                  "src": "3714:28:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 117,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3714:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120,
+                  "name": "_dataAssetAccessType",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 134,
+                  "src": "3776:31:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_accessType_$75",
+                    "typeString": "enum ODTAValidator.accessType"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 119,
+                    "name": "accessType",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 75,
+                    "src": "3776:10:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_accessType_$75",
+                      "typeString": "enum ODTAValidator.accessType"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 122,
+                  "name": "_dataAssetAccessPrice",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 134,
+                  "src": "3841:35:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 121,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3841:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 124,
+                  "name": "_dataAssetAccessDuration",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 134,
+                  "src": "3910:38:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 123,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3910:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 126,
+                  "name": "_proofOfIntegrigyDataAsset",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 134,
+                  "src": "3982:34:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 125,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3982:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 128,
+                  "name": "_proofOfSourceAuthenticity",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 134,
+                  "src": "4050:34:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 127,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4050:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 130,
+                  "name": "_proofOfIntegrityUseProcessingConditions",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 134,
+                  "src": "4118:48:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 129,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4118:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3680:487:3"
+            },
+            "returnParameters": {
+              "id": 132,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "4174:0:3"
+            },
+            "scope": 177,
+            "src": "3656:562:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 153,
+              "nodeType": "Block",
+              "src": "5675:314:3",
+              "statements": []
+            },
+            "documentation": "@dev Function in charge of inserting a Data Asset on SC\n@param _dataAssetID Hash od the dataAssetValue\n@return _dataAssetProducerID Address of the Data Producer\n@return _dataAssetAccessType :Type of access {free, paying}\n@return _dataAssetAccessPrice :Price in Ether set by the Data Producer to access the Data Asset, if paying one\n@return _dataAssetAccessDuration :Duration of the access in number of days\n@return _proofOfIntegrigyDataAsset :Hash of the DataAssetValue\n@return _proofOfSourceAuthenticity :Address of the dataAssetProducerID, Etherum address\n@return _proofOfIntegrityUseProcessingCondictions :Hash of Use and Processing Conditions of the data Asset",
+            "id": 154,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getDataAsset",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 137,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 136,
+                  "name": "_dataAssetID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 154,
+                  "src": "4991:20:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 135,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4991:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4990:22:3"
+            },
+            "returnParameters": {
+              "id": 152,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 139,
+                  "name": "_dataAssetProducerID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 154,
+                  "src": "5029:28:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 138,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "5029:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 141,
+                  "name": "_dataAssetAccessType",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 154,
+                  "src": "5123:31:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_accessType_$75",
+                    "typeString": "enum ODTAValidator.accessType"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 140,
+                    "name": "accessType",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 75,
+                    "src": "5123:10:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_accessType_$75",
+                      "typeString": "enum ODTAValidator.accessType"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 143,
+                  "name": "_dataAssetAccessPrice",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 154,
+                  "src": "5220:35:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 142,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "5220:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 145,
+                  "name": "_dataAssetAccessDuration",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 154,
+                  "src": "5321:38:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 144,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "5321:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 147,
+                  "name": "_proofOfIntegrigyDataAsset",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 154,
+                  "src": "5425:34:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 146,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "5425:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 149,
+                  "name": "_proofOfSourceAuthenticity",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 154,
+                  "src": "5525:34:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 148,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "5525:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 151,
+                  "name": "_proofOfIntegrityUseProcessingCondictions",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 154,
+                  "src": "5625:49:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 150,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "5625:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "5028:647:3"
+            },
+            "scope": 177,
+            "src": "4969:1020:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 161,
+              "nodeType": "Block",
+              "src": "6101:8:3",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 162,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getDataAssetAccessType",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 157,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 156,
+                  "name": "_dataAssetID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 162,
+                  "src": "6031:20:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 155,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "6031:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "6030:22:3"
+            },
+            "returnParameters": {
+              "id": 160,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 159,
+                  "name": "_dataAssetAccessType",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 162,
+                  "src": "6069:31:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_accessType_$75",
+                    "typeString": "enum ODTAValidator.accessType"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 158,
+                    "name": "accessType",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 75,
+                    "src": "6069:10:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_accessType_$75",
+                      "typeString": "enum ODTAValidator.accessType"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "6068:33:3"
+            },
+            "scope": 177,
+            "src": "5999:110:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 169,
+              "nodeType": "Block",
+              "src": "6205:8:3",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 170,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "insertDataAssetAccess",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 167,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 164,
+                  "name": "_dataAssetID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 170,
+                  "src": "6146:20:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 163,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "6146:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 166,
+                  "name": "_dataAssetConsumerID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 170,
+                  "src": "6168:28:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 165,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "6168:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "6145:52:3"
+            },
+            "returnParameters": {
+              "id": 168,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "6205:0:3"
+            },
+            "scope": 177,
+            "src": "6115:98:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 175,
+              "nodeType": "Block",
+              "src": "6276:16:3",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 176,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "payToAccessDataAsset",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 173,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 172,
+                  "name": "_dataAssetID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 176,
+                  "src": "6248:20:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 171,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "6248:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "6247:22:3"
+            },
+            "returnParameters": {
+              "id": 174,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "6276:0:3"
+            },
+            "scope": 177,
+            "src": "6218:74:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 178,
+        "src": "250:6045:3"
+      }
+    ],
+    "src": "38:6257:3"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/lemaima/Documents/devTest/TrustedDistributedOpenDataRegistry/contracts/ODTAValidator.sol",
+    "exportedSymbols": {
+      "ODTAValidator": [
+        177
+      ]
+    },
+    "id": 178,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 40,
+        "literals": [
+          "solidity",
+          "<=",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "38:24:3"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title ODTAValidator SC is in charge of managing DataAsset Trust Anchors\n@author Marc-Antoine Lemaire from Company IP Convergence\n@notice version 0.1, on 1 november 2020",
+        "fullyImplemented": true,
+        "id": 177,
+        "linearizedBaseContracts": [
+          177
+        ],
+        "name": "ODTAValidator",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 42,
+            "name": "owner",
+            "nodeType": "VariableDeclaration",
+            "scope": 177,
+            "src": "389:13:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 41,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "389:7:3",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 47,
+            "name": "dataProducerStore",
+            "nodeType": "VariableDeclaration",
+            "scope": 177,
+            "src": "513:55:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_bytes32_$dyn_storage_$",
+              "typeString": "mapping(address => bytes32[])"
+            },
+            "typeName": {
+              "id": 46,
+              "keyType": {
+                "id": 43,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "522:7:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "513:30:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_bytes32_$dyn_storage_$",
+                "typeString": "mapping(address => bytes32[])"
+              },
+              "valueType": {
+                "baseType": {
+                  "id": 44,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "533:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "id": 45,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "533:9:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                  "typeString": "bytes32[]"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 50,
+            "name": "dataProducerDataAssetList",
+            "nodeType": "VariableDeclaration",
+            "scope": 177,
+            "src": "664:42:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_bytes32_$dyn_storage",
+              "typeString": "bytes32[]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 48,
+                "name": "bytes32",
+                "nodeType": "ElementaryTypeName",
+                "src": "664:7:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                }
+              },
+              "id": 49,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "664:9:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                "typeString": "bytes32[]"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 53,
+            "name": "dataAssetIDList",
+            "nodeType": "VariableDeclaration",
+            "scope": 177,
+            "src": "832:32:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_array$_t_bytes32_$dyn_storage",
+              "typeString": "bytes32[]"
+            },
+            "typeName": {
+              "baseType": {
+                "id": 51,
+                "name": "bytes32",
+                "nodeType": "ElementaryTypeName",
+                "src": "832:7:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                }
+              },
+              "id": 52,
+              "length": null,
+              "nodeType": "ArrayTypeName",
+              "src": "832:9:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_array$_t_bytes32_$dyn_storage_ptr",
+                "typeString": "bytes32[]"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "ODTAValidator.dataAssetObject",
+            "id": 68,
+            "members": [
+              {
+                "constant": false,
+                "id": 55,
+                "name": "dataAssetProducerID",
+                "nodeType": "VariableDeclaration",
+                "scope": 68,
+                "src": "1032:27:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                },
+                "typeName": {
+                  "id": 54,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1032:7:3",
+                  "stateMutability": "nonpayable",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 57,
+                "name": "dataAssetAccessType",
+                "nodeType": "VariableDeclaration",
+                "scope": 68,
+                "src": "1069:30:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_enum$_accessType_$75",
+                  "typeString": "enum ODTAValidator.accessType"
+                },
+                "typeName": {
+                  "contractScope": null,
+                  "id": 56,
+                  "name": "accessType",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 75,
+                  "src": "1069:10:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_accessType_$75",
+                    "typeString": "enum ODTAValidator.accessType"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 59,
+                "name": "dataAssetAccessPrice",
+                "nodeType": "VariableDeclaration",
+                "scope": 68,
+                "src": "1109:27:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 58,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1109:6:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 61,
+                "name": "dataAssetAccessDuration",
+                "nodeType": "VariableDeclaration",
+                "scope": 68,
+                "src": "1158:30:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 60,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1158:6:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 63,
+                "name": "proofOfIntegrigyDataAsset",
+                "nodeType": "VariableDeclaration",
+                "scope": 68,
+                "src": "1219:33:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 62,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1219:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 65,
+                "name": "proofOfSourceAuthenticity",
+                "nodeType": "VariableDeclaration",
+                "scope": 68,
+                "src": "1262:33:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 64,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1262:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 67,
+                "name": "proofOfIntegrityUseProcessingConditions",
+                "nodeType": "VariableDeclaration",
+                "scope": 68,
+                "src": "1305:47:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                },
+                "typeName": {
+                  "id": 66,
+                  "name": "bytes32",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1305:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "dataAssetObject",
+            "nodeType": "StructDefinition",
+            "scope": 177,
+            "src": "1000:359:3",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 72,
+            "name": "dataAssetStore",
+            "nodeType": "VariableDeclaration",
+            "scope": 177,
+            "src": "1473:58:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_bytes32_$_t_struct$_dataAssetObject_$68_storage_$",
+              "typeString": "mapping(bytes32 => struct ODTAValidator.dataAssetObject)"
+            },
+            "typeName": {
+              "id": 71,
+              "keyType": {
+                "id": 69,
+                "name": "bytes32",
+                "nodeType": "ElementaryTypeName",
+                "src": "1482:7:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "1473:36:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_bytes32_$_t_struct$_dataAssetObject_$68_storage_$",
+                "typeString": "mapping(bytes32 => struct ODTAValidator.dataAssetObject)"
+              },
+              "valueType": {
+                "contractScope": null,
+                "id": 70,
+                "name": "dataAssetObject",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 68,
+                "src": "1493:15:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_dataAssetObject_$68_storage_ptr",
+                  "typeString": "struct ODTAValidator.dataAssetObject"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "ODTAValidator.accessType",
+            "id": 75,
+            "members": [
+              {
+                "id": 73,
+                "name": "free",
+                "nodeType": "EnumValue",
+                "src": "1686:4:3"
+              },
+              {
+                "id": 74,
+                "name": "paying",
+                "nodeType": "EnumValue",
+                "src": "1692:6:3"
+              }
+            ],
+            "name": "accessType",
+            "nodeType": "EnumDefinition",
+            "src": "1669:30:3"
+          },
+          {
+            "canonicalName": "ODTAValidator.dataAssetAccessObject",
+            "id": 82,
+            "members": [
+              {
+                "constant": false,
+                "id": 77,
+                "name": "dataAssetAccessStatus",
+                "nodeType": "VariableDeclaration",
+                "scope": 82,
+                "src": "1836:26:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 76,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1836:4:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 79,
+                "name": "dataAssetAccessStartDate",
+                "nodeType": "VariableDeclaration",
+                "scope": 82,
+                "src": "1872:31:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 78,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1872:6:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 81,
+                "name": "dataAssetAccessEndDate",
+                "nodeType": "VariableDeclaration",
+                "scope": 82,
+                "src": "1913:29:3",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 80,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "1913:6:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "dataAssetAccessObject",
+            "nodeType": "StructDefinition",
+            "scope": 177,
+            "src": "1798:151:3",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 88,
+            "name": "dataAssetAccessStore",
+            "nodeType": "VariableDeclaration",
+            "scope": 177,
+            "src": "2094:90:3",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_bytes32_$_t_mapping$_t_address_$_t_struct$_dataAssetAccessObject_$82_storage_$_$",
+              "typeString": "mapping(bytes32 => mapping(address => struct ODTAValidator.dataAssetAccessObject))"
+            },
+            "typeName": {
+              "id": 87,
+              "keyType": {
+                "id": 83,
+                "name": "bytes32",
+                "nodeType": "ElementaryTypeName",
+                "src": "2103:7:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bytes32",
+                  "typeString": "bytes32"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "2094:62:3",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_bytes32_$_t_mapping$_t_address_$_t_struct$_dataAssetAccessObject_$82_storage_$_$",
+                "typeString": "mapping(bytes32 => mapping(address => struct ODTAValidator.dataAssetAccessObject))"
+              },
+              "valueType": {
+                "id": 86,
+                "keyType": {
+                  "id": 84,
+                  "name": "address",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "2122:7:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  }
+                },
+                "nodeType": "Mapping",
+                "src": "2114:41:3",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_mapping$_t_address_$_t_struct$_dataAssetAccessObject_$82_storage_$",
+                  "typeString": "mapping(address => struct ODTAValidator.dataAssetAccessObject)"
+                },
+                "valueType": {
+                  "contractScope": null,
+                  "id": 85,
+                  "name": "dataAssetAccessObject",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 82,
+                  "src": "2133:21:3",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_dataAssetAccessObject_$82_storage_ptr",
+                    "typeString": "struct ODTAValidator.dataAssetAccessObject"
+                  }
+                }
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "anonymous": false,
+            "documentation": "eventGetDataAccess = event to be generated every time a DataAssetConsumerID getAccess to a Data Asset",
+            "id": 96,
+            "name": "eventGetDataAccess",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 95,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 90,
+                  "indexed": false,
+                  "name": "_dataAssetProducerID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 96,
+                  "src": "2398:28:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 89,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2398:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 92,
+                  "indexed": false,
+                  "name": "_dataAssetConsumerID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 96,
+                  "src": "2428:28:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 91,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2428:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 94,
+                  "indexed": false,
+                  "name": "_dataAssetID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 96,
+                  "src": "2458:20:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 93,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2458:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2397:82:3"
+            },
+            "src": "2373:107:3"
+          },
+          {
+            "body": {
+              "id": 106,
+              "nodeType": "Block",
+              "src": "2659:56:3",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        "id": 102,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 99,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 192,
+                            "src": "2677:3:3",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 100,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "2677:10:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "==",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "id": 101,
+                          "name": "owner",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 42,
+                          "src": "2691:5:3",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "src": "2677:19:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 98,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        195,
+                        196
+                      ],
+                      "referencedDeclaration": 195,
+                      "src": "2669:7:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 103,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "2669:28:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 104,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2669:28:3"
+                },
+                {
+                  "id": 105,
+                  "nodeType": "PlaceholderStatement",
+                  "src": "2707:1:3"
+                }
+              ]
+            },
+            "documentation": "isOwner modifer: checks if the msg.sender is the owner of the contract",
+            "id": 107,
+            "name": "isOwner",
+            "nodeType": "ModifierDefinition",
+            "parameters": {
+              "id": 97,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2656:2:3"
+            },
+            "src": "2640:75:3",
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 115,
+              "nodeType": "Block",
+              "src": "2869:108:3",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 113,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 110,
+                      "name": "owner",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 42,
+                      "src": "2952:5:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 111,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 192,
+                        "src": "2960:3:3",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 112,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "sender",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "2960:10:3",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address_payable",
+                        "typeString": "address payable"
+                      }
+                    },
+                    "src": "2952:18:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 114,
+                  "nodeType": "ExpressionStatement",
+                  "src": "2952:18:3"
+                }
+              ]
+            },
+            "documentation": "@dev Constructor of the ODTAValidator SmartContract",
+            "id": 116,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 108,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2860:2:3"
+            },
+            "returnParameters": {
+              "id": 109,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2869:0:3"
+            },
+            "scope": 177,
+            "src": "2849:128:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 133,
+              "nodeType": "Block",
+              "src": "4174:44:3",
+              "statements": []
+            },
+            "documentation": "@dev Function in charge of inserting a Data Asset on SC\n@param _dataAssetProducerID Address of the dataAsset\n@param _dataAssetAccessType Type of access {free, paying}\n@param _dataAssetAccessPrice Price in Ether set by the Data Producer to access the Data Asset, if paying one\n@param _dataAssetAccessDuration Duration of the access in number of days\n@param _proofOfIntegrigyDataAsset Hash of the DataAssetValue\n@param _proofOfSourceAuthenticity Address of the dataAssetProducerID, Etherum address\n@param _proofOfIntegrityUseProcessingConditions Hash of Use and Processing Conditions of the data Asset",
+            "id": 134,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "insertDataAsset",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 131,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 118,
+                  "name": "_dataAssetProducerID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 134,
+                  "src": "3714:28:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 117,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3714:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 120,
+                  "name": "_dataAssetAccessType",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 134,
+                  "src": "3776:31:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_accessType_$75",
+                    "typeString": "enum ODTAValidator.accessType"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 119,
+                    "name": "accessType",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 75,
+                    "src": "3776:10:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_accessType_$75",
+                      "typeString": "enum ODTAValidator.accessType"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 122,
+                  "name": "_dataAssetAccessPrice",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 134,
+                  "src": "3841:35:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 121,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3841:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 124,
+                  "name": "_dataAssetAccessDuration",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 134,
+                  "src": "3910:38:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 123,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3910:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 126,
+                  "name": "_proofOfIntegrigyDataAsset",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 134,
+                  "src": "3982:34:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 125,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3982:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 128,
+                  "name": "_proofOfSourceAuthenticity",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 134,
+                  "src": "4050:34:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 127,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4050:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 130,
+                  "name": "_proofOfIntegrityUseProcessingConditions",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 134,
+                  "src": "4118:48:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 129,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4118:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3680:487:3"
+            },
+            "returnParameters": {
+              "id": 132,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "4174:0:3"
+            },
+            "scope": 177,
+            "src": "3656:562:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 153,
+              "nodeType": "Block",
+              "src": "5675:314:3",
+              "statements": []
+            },
+            "documentation": "@dev Function in charge of inserting a Data Asset on SC\n@param _dataAssetID Hash od the dataAssetValue\n@return _dataAssetProducerID Address of the Data Producer\n@return _dataAssetAccessType :Type of access {free, paying}\n@return _dataAssetAccessPrice :Price in Ether set by the Data Producer to access the Data Asset, if paying one\n@return _dataAssetAccessDuration :Duration of the access in number of days\n@return _proofOfIntegrigyDataAsset :Hash of the DataAssetValue\n@return _proofOfSourceAuthenticity :Address of the dataAssetProducerID, Etherum address\n@return _proofOfIntegrityUseProcessingCondictions :Hash of Use and Processing Conditions of the data Asset",
+            "id": 154,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getDataAsset",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 137,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 136,
+                  "name": "_dataAssetID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 154,
+                  "src": "4991:20:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 135,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4991:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4990:22:3"
+            },
+            "returnParameters": {
+              "id": 152,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 139,
+                  "name": "_dataAssetProducerID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 154,
+                  "src": "5029:28:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 138,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "5029:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 141,
+                  "name": "_dataAssetAccessType",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 154,
+                  "src": "5123:31:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_accessType_$75",
+                    "typeString": "enum ODTAValidator.accessType"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 140,
+                    "name": "accessType",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 75,
+                    "src": "5123:10:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_accessType_$75",
+                      "typeString": "enum ODTAValidator.accessType"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 143,
+                  "name": "_dataAssetAccessPrice",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 154,
+                  "src": "5220:35:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 142,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "5220:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 145,
+                  "name": "_dataAssetAccessDuration",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 154,
+                  "src": "5321:38:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 144,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "5321:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 147,
+                  "name": "_proofOfIntegrigyDataAsset",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 154,
+                  "src": "5425:34:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 146,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "5425:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 149,
+                  "name": "_proofOfSourceAuthenticity",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 154,
+                  "src": "5525:34:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 148,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "5525:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 151,
+                  "name": "_proofOfIntegrityUseProcessingCondictions",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 154,
+                  "src": "5625:49:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 150,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "5625:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "5028:647:3"
+            },
+            "scope": 177,
+            "src": "4969:1020:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 161,
+              "nodeType": "Block",
+              "src": "6101:8:3",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 162,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getDataAssetAccessType",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 157,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 156,
+                  "name": "_dataAssetID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 162,
+                  "src": "6031:20:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 155,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "6031:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "6030:22:3"
+            },
+            "returnParameters": {
+              "id": 160,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 159,
+                  "name": "_dataAssetAccessType",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 162,
+                  "src": "6069:31:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_enum$_accessType_$75",
+                    "typeString": "enum ODTAValidator.accessType"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 158,
+                    "name": "accessType",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 75,
+                    "src": "6069:10:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_enum$_accessType_$75",
+                      "typeString": "enum ODTAValidator.accessType"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "6068:33:3"
+            },
+            "scope": 177,
+            "src": "5999:110:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 169,
+              "nodeType": "Block",
+              "src": "6205:8:3",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 170,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "insertDataAssetAccess",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 167,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 164,
+                  "name": "_dataAssetID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 170,
+                  "src": "6146:20:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 163,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "6146:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 166,
+                  "name": "_dataAssetConsumerID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 170,
+                  "src": "6168:28:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 165,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "6168:7:3",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "6145:52:3"
+            },
+            "returnParameters": {
+              "id": 168,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "6205:0:3"
+            },
+            "scope": 177,
+            "src": "6115:98:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 175,
+              "nodeType": "Block",
+              "src": "6276:16:3",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 176,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "payToAccessDataAsset",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 173,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 172,
+                  "name": "_dataAssetID",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 176,
+                  "src": "6248:20:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 171,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "6248:7:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "6247:22:3"
+            },
+            "returnParameters": {
+              "id": 174,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "6276:0:3"
+            },
+            "scope": 177,
+            "src": "6218:74:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 178,
+        "src": "250:6045:3"
+      }
+    ],
+    "src": "38:6257:3"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.1",
+  "updatedAt": "2020-11-01T16:07:26.048Z",
+  "devdoc": {
+    "author": "Marc-Antoine Lemaire from Company IP Convergence",
+    "methods": {
+      "constructor": {
+        "details": "Constructor of the ODTAValidator SmartContract"
+      },
+      "getDataAsset(bytes32)": {
+        "details": "Function in charge of inserting a Data Asset on SC",
+        "params": {
+          "_dataAssetID": "Hash od the dataAssetValue"
+        },
+        "return": "_dataAssetProducerID Address of the Data Producer_dataAssetAccessType :Type of access {free, paying}_dataAssetAccessPrice :Price in Ether set by the Data Producer to access the Data Asset, if paying one_dataAssetAccessDuration :Duration of the access in number of days_proofOfIntegrigyDataAsset :Hash of the DataAssetValue_proofOfSourceAuthenticity :Address of the dataAssetProducerID, Etherum address_proofOfIntegrityUseProcessingCondictions :Hash of Use and Processing Conditions of the data Asset"
+      },
+      "insertDataAsset(address,uint8,string,string,bytes32,bytes32,bytes32)": {
+        "details": "Function in charge of inserting a Data Asset on SC",
+        "params": {
+          "_dataAssetAccessDuration": "Duration of the access in number of days",
+          "_dataAssetAccessPrice": "Price in Ether set by the Data Producer to access the Data Asset, if paying one",
+          "_dataAssetAccessType": "Type of access {free, paying}",
+          "_dataAssetProducerID": "Address of the dataAsset",
+          "_proofOfIntegrigyDataAsset": "Hash of the DataAssetValue",
+          "_proofOfIntegrityUseProcessingConditions": "Hash of Use and Processing Conditions of the data Asset",
+          "_proofOfSourceAuthenticity": "Address of the dataAssetProducerID, Etherum address"
+        }
+      }
+    },
+    "title": "ODTAValidator SC is in charge of managing DataAsset Trust Anchors"
+  },
+  "userdoc": {
+    "methods": {},
+    "notice": "version 0.1, on 1 november 2020"
+  }
+}
