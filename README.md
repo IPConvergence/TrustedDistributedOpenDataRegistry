@@ -41,7 +41,10 @@ Story 6: In order to validate the "integrity of the Data Asset" I receive, as a 
 
 Story 7: In order to validate the "Use and Processing Terms and conditions" to the Open Data Asset (present in the Semantic Web Envelop Received), as a <Data Consumer> Entity, I query the ODTA Registry to validate the Integrity of the "Use and Processing Terms and conditions" to the Data Asset (Free or specific Access Cost conditions, intellectual property rights...)
 
-Story 8: In order to "get access to a paid-access Data Asset" I received, as a <Data Consumer> Entity, I paid the fee to get access to the Data
+Story 8: In order to "give access to a paid-access Data Asset" I produce to a specific <Data Consumer>, as a <Data Producer Entity>, I give the access to the Data Asset to the <Data Consumer>
+
+Story 9: In order to "get access to a paid-access Data Asset" I received, as a <Data Consumer> Entity, I paid the fee to get access to the Data
+
 
 Key Concept Definition:
 
