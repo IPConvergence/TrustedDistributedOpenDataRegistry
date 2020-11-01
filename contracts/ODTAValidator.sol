@@ -5,19 +5,22 @@ pragma solidity <=0.8.0;
     @author Marc-Antoine Lemaire from Company IP Convergence
     @notice version 0.1, on 1 november 2020
  */
-contract ODTAValidator{
+contract ODTAValidator { 
 // ------------ Define the States Variables of the SC ----------------
 
 // -- Objects used by Data Producer --
     address owner;
-    /// dataProducerStore = mapping of dataProducerID Address to the list of dataAssetID produced by him
-    mapping (address => bytes32[]) public dataProducerStore;
+    /// dataProducerStore = mapping of dataProducerID Address to mapping of Hash Data Asset produced by him set to true to indicate produced
+    mapping (address => mapping(bytes32 => bool)) public dataProducerStore;
     /// dataProdudcerDataAssetList = An array of dataAssetID produced by a dataProducerID
-    bytes32[] public dataProducerDataAssetList;
+    /// !!! To Be Potentially suppress   bytes32[] public dataProducerDataAssetList;
 
 // -- Objects used for managing Data Asset --
-    /// dataAssetIDList = array of all the dataAssetID managed by the SC
-    bytes32[] public dataAssetIDList;
+    /// dataAssetIDList = mapping of all the dataAssetID managed by the SC. It has value true if present
+    /// !!! to check if needed because overlap with dataProducerStore[dataAssetProducerID][dataAsset]
+    mapping (bytes32 => bool) public dataAssetIDList;
+    /// accessType : enum saying if the access is free or you must pay
+    enum accessType {free, paying}
     /// dataAssetObject = structure that containes all required Data Asset Information to manage Trust and access control from SC
     struct dataAssetObject{
         address dataAssetProducerID;
@@ -31,19 +34,20 @@ contract ODTAValidator{
     /// dataAssetStore = mapping of all the dataAssetID (Hash of DataAsset) and their linked dataAssetObject
     mapping (bytes32 => dataAssetObject) public dataAssetStore;
 
-// -- Objects used for managing Access to the Data Asset --
-    /// accessType : enum saying if the access is free or you must pay
-    enum accessType {free, paying}
-    /// dataAssetAccessObject = structure that contains the access parameter for a Data Asset
+// -- Objects used for managing Access to the Data Asset (only records for dataAssetAccessType = paying) --
+    /// dataAssetAccessObject = structure that contains the access parameter for a Data Asset, only if paying resource
     struct dataAssetAccessObject{
         bool dataAssetAccessStatus;
         string dataAssetAccessStartDate;
         string dataAssetAccessEndDate;
     }
     /// dataAssetAccessStore = mapping of all the dataAssetID to the mapping of their dataConsumerID address to their dataAssetAccessObject
+    /// ! if the dataAssetAccessType = Free, we don't created any entry on DataAssetAccessStore for the Data Asset
     mapping (bytes32 => mapping(address => dataAssetAccessObject)) public dataAssetAccessStore;
 
 // -- Events needed to manage notification on operation on DataAsset --
+    /// eventSetDataAccess = event to be generated every time a DataAssetConsumerID give Access to a Data Asset to a Data Consumer
+    event eventSetDataAccess(address _dataAssetProducerID, address _dataAssetConsumerID, bytes32 _dataAssetID);
     /// eventGetDataAccess = event to be generated every time a DataAssetConsumerID getAccess to a Data Asset
     event eventGetDataAccess(address _dataAssetProducerID, address _dataAssetConsumerID, bytes32 _dataAssetID);
 
@@ -51,6 +55,16 @@ contract ODTAValidator{
     /// isOwner modifer: checks if the msg.sender is the owner of the contract
     modifier isOwner() {
         require(msg.sender == owner);
+        _;
+    }
+    /// isProducerOfExistingDataAsset: check if the msg.send is well the DataProducer of an existing DataAsset well present in dataProducerStore
+    modifier isProducerOfExistingDataAsset(bytes32 _dataAssetID){
+        require(dataProducerStore[msg.sender][_dataAssetID] = true);
+        _;
+    }
+    /// isDataProducer: check if the msg.send is the same as Data Asset requested producer
+    modifier isDataProducer(address _dataAssetProducerID){
+        require(_dataAssetProducerID ==msg.sender);
         _;
     }
 
@@ -64,6 +78,7 @@ contract ODTAValidator{
     }
 
     /** @dev Function in charge of inserting a Data Asset on SC
+        @param _dataAssetID Hash of the Data Asset 
         @param _dataAssetProducerID Address of the dataAsset
         @param _dataAssetAccessType Type of access {free, paying}
         @param _dataAssetAccessPrice Price in Ether set by the Data Producer to access the Data Asset, if paying one
@@ -73,15 +88,32 @@ contract ODTAValidator{
         @param _proofOfIntegrityUseProcessingConditions Hash of Use and Processing Conditions of the data Asset
      */
      function insertDataAsset(
+                                bytes32 _dataAssetID,
                                 address _dataAssetProducerID,
-                                accessType _dataAssetAccessType,
+                                string memory _dataAssetAccessType,
                                 string memory _dataAssetAccessPrice,
                                 string memory _dataAssetAccessDuration,
                                 bytes32 _proofOfIntegrigyDataAsset,
                                 bytes32 _proofOfSourceAuthenticity,
-                                bytes32 _proofOfIntegrityUseProcessingConditions) public{
-            
-                            }
+                                bytes32 _proofOfIntegrityUseProcessingConditions) public isDataProducer(_dataAssetProducerID){
+        if(dataProducerStore[_dataAssetProducerID][_dataAssetID] != true){
+            dataAssetIDList[_dataAssetID]=true;
+            /// !!! could be overlap with dataAssetIDList (see what I choose)
+            dataProducerStore[_dataAssetProducerID][_dataAssetID]=true;
+            dataAssetStore[_dataAssetID].dataAssetProducerID=_dataAssetProducerID;
+            if(keccak256(abi.encodePacked(_dataAssetAccessType)) == keccak256(abi.encodePacked("free"))){
+                dataAssetStore[_dataAssetID].dataAssetAccessType=accessType.free;
+            }
+            if(keccak256(abi.encodePacked(_dataAssetAccessType)) == keccak256(abi.encodePacked("paying"))){
+                dataAssetStore[_dataAssetID].dataAssetAccessType=accessType.paying;
+            }
+            dataAssetStore[_dataAssetID].dataAssetAccessPrice=_dataAssetAccessPrice;
+            dataAssetStore[_dataAssetID].dataAssetAccessDuration=_dataAssetAccessDuration;
+            dataAssetStore[_dataAssetID].proofOfIntegrigyDataAsset=_proofOfIntegrigyDataAsset;
+            dataAssetStore[_dataAssetID].proofOfSourceAuthenticity=_proofOfSourceAuthenticity;
+            dataAssetStore[_dataAssetID].proofOfIntegrityUseProcessingConditions=_proofOfIntegrityUseProcessingConditions;
+        } /// !!! Add later on a try catch to give message is already in SC data
+    }
 
     /** @dev Function in charge of inserting a Data Asset on SC
         @param _dataAssetID Hash of the dataAssetValue
@@ -91,37 +123,61 @@ contract ODTAValidator{
         @return _dataAssetAccessDuration :Duration of the access in number of days
         @return _proofOfIntegrigyDataAsset :Hash of the DataAssetValue
         @return _proofOfSourceAuthenticity :Address of the dataAssetProducerID, Etherum address
-        @return _proofOfIntegrityUseProcessingCondictions :Hash of Use and Processing Conditions of the data Asset
+        @return _proofOfIntegrityUseProcessingConditions :Hash of Use and Processing Conditions of the data Asset
      */
     function getDataAsset(bytes32 _dataAssetID) public returns (address _dataAssetProducerID,
-                                                                accessType _dataAssetAccessType,
+                                                                string memory _dataAssetAccessType,
                                                                 string memory _dataAssetAccessPrice,
                                                                 string memory _dataAssetAccessDuration,
                                                                 bytes32 _proofOfIntegrigyDataAsset,
                                                                 bytes32 _proofOfSourceAuthenticity,
-                                                                bytes32 _proofOfIntegrityUseProcessingCondictions){
-     /// generate eventGetDataAccess (address _dataAssetProducerID, address _dataAssetConsumerID, bytes32 _dataAssetID)                                                              
-                                                                
-                                                                }
+                                                                bytes32 _proofOfIntegrityUseProcessingConditions){
+      if(dataAssetIDList[_dataAssetID]==true){
+            if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.free){
+                _dataAssetAccessType="free";
+            }
+            if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.paying){
+               _dataAssetAccessType="paying";
+            }
+            _dataAssetProducerID=dataAssetStore[_dataAssetID].dataAssetProducerID;
+            _dataAssetAccessPrice=dataAssetStore[_dataAssetID].dataAssetAccessPrice;
+            _dataAssetAccessDuration=dataAssetStore[_dataAssetID].dataAssetAccessDuration;
+            _proofOfIntegrigyDataAsset=dataAssetStore[_dataAssetID].proofOfIntegrigyDataAsset;
+            _proofOfSourceAuthenticity=dataAssetStore[_dataAssetID].proofOfSourceAuthenticity;
+            _proofOfIntegrityUseProcessingConditions=dataAssetStore[_dataAssetID].proofOfIntegrityUseProcessingConditions;
+            emit eventGetDataAccess(_dataAssetProducerID,msg.sender,_dataAssetID);
+      }                                                           
+    }
     /** @dev Function in charge of geting the access type for a dataAssetID, so knowing if {free, paying}
         @param _dataAssetID Hash of the dataAssetValue a DataConsumer is trying to Access
         @return _dataAssetAccessType the type of access {free, paying} to access the Data Asset
     */
-    function getDataAssetAccessType(bytes32 _dataAssetID) public returns (accessType _dataAssetAccessType){
-
+    function getDataAssetAccessType(bytes32 _dataAssetID) public returns (string memory _dataAssetAccessType){
+        if(dataAssetIDList[_dataAssetID]==true){
+            if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.free){
+                _dataAssetAccessType="free";
+            }
+            if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.paying){
+               _dataAssetAccessType="paying";
+            }
+        } /// Add trow error is dataAssetID is not in dataAssetStore
     }
     /** @dev Function to give access to a Data Asset Consumer to a Data Asset. This function is called by the Data Asset Producer
         @param _dataAssetID Hash of the dataAssetValue for which the Data Producer wants to give an authorization
         @param _dataAssetConsumerID Address of the Dat Asset Consumer that could have the access (if free no access needed to be setup)
     */
-    function insertDataAssetAccess(bytes32 _dataAssetID, address _dataAssetConsumerID) public {
-
+    function insertDataAssetAccess(bytes32 _dataAssetID, address _dataAssetConsumerID) public isProducerOfExistingDataAsset(_dataAssetID){
+        dataAssetAccessStore[_dataAssetID][_dataAssetConsumerID].dataAssetAccessStatus=true;
+        dataAssetAccessStore[_dataAssetID][_dataAssetConsumerID].dataAssetAccessStartDate="ComingFeature";
+        dataAssetAccessStore[_dataAssetID][_dataAssetConsumerID].dataAssetAccessEndDate="ComingFeature";
+        /// event emitted to notify the _dataAssetConsumerID he has well received access to the Data Asset, following his succefull money transaction
+        emit eventSetDataAccess(msg.sender, _dataAssetConsumerID, _dataAssetID);
     }
     /** @dev Function to be called by the Data Consumer, to pay for accessing the Data Asset if the Data Producer has specify paying access conditions
         @param _dataAssetID Hash of the dataAssetValue for which a user is going to pay for accessing it
     */
     function payToAccessDataAsset(bytes32 _dataAssetID) payable public{
-
+        
     }
 
 }
