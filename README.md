@@ -27,23 +27,23 @@ Trustworthy Open Data coming from academical research.
 
 User Stories:
 
-Story 1: In order to deliver a "Proof of Source Authenticity" on a Data Asset I have produced, as a <Data Producer Entity>, I publish on the ODTA Registry the Proof of Source Authenticity of the Data Asset.
+Story 1: In order to deliver a "Proof of Source Authenticity" on a Data Asset I have produced, as a Data Producer Entity, I publish on the ODTA Registry the Proof of Source Authenticity of the Data Asset.
 
-Story 2: In order to deliver a "Proof of Integrity" on a Data Asset I have produced, as a <Data Producer entity>, I publish on the ODTA Registry the Proof of Integrity of the Data Asset.
+Story 2: In order to deliver a "Proof of Integrity" on a Data Asset I have produced, as a Data Producer entity, I publish on the ODTA Registry the Proof of Integrity of the Data Asset.
 
-Story 3: In order to publish "Use and Processing Terms and conditions" on a Data Asset I have produced, as a <Data Producer> Entity, I publish on the ODTA Registry the Proof of the Integrity of the "Use and Processing" Terms and conditions contract.
+Story 3: In order to publish "Use and Processing Terms and conditions" on a Data Asset I have produced, as a Data Producer Entity, I publish on the ODTA Registry the Proof of the Integrity of the "Use and Processing" Terms and conditions contract.
 
-Story 4: In order to setup the "Data Access Conditions" on a Data Asset I have produced, as a <Data Producer>, I publish on the ODTA Registry the "Data Access Conditions" to setup the access control on the published Data
+Story 4: In order to setup the "Data Access Conditions" on a Data Asset I have produced, as a Data Producer, I publish on the ODTA Registry the "Data Access Conditions" to setup the access control on the published Data
 
-Story 5: In order to validate the "authenticity of the source" that produce the Data Asset I receive, as a <Data Consumer> Entity, I query the ODTA Registry to validate the authenticity of the Data Asset source.
+Story 5: In order to validate the "authenticity of the source" that produce the Data Asset I receive, as a Data Consumer Entity, I query the ODTA Registry to validate the authenticity of the Data Asset source.
 
-Story 6: In order to validate the "integrity of the Data Asset" I receive, as a <Data Consumer> Entity, I query the ODTA Registry to validate the authenticity of the Data Asset.
+Story 6: In order to validate the "integrity of the Data Asset" I receive, as a Data Consumer Entity, I query the ODTA Registry to validate the authenticity of the Data Asset.
 
-Story 7: In order to validate the "Use and Processing Terms and conditions" to the Open Data Asset (present in the Semantic Web Envelop Received), as a <Data Consumer> Entity, I query the ODTA Registry to validate the Integrity of the "Use and Processing Terms and conditions" to the Data Asset (Free or specific Access Cost conditions, intellectual property rights...)
+Story 7: In order to validate the "Use and Processing Terms and conditions" to the Open Data Asset (present in the Semantic Web Envelop Received), as a Data Consumer Entity, I query the ODTA Registry to validate the Integrity of the "Use and Processing Terms and conditions" to the Data Asset (Free or specific Access Cost conditions, intellectual property rights...)
 
-Story 8: In order to "give access to a paid-access Data Asset" I produce to a specific <Data Consumer>, as a <Data Producer Entity>, I give the access to the Data Asset to the <Data Consumer>
+Story 8: In order to "give access to a paid-access Data Asset" I produce to a specific Data Consumer, as a Data Producer Entity, I give the access to the Data Asset to the Data Consumer
 
-Story 9: In order to "get access to a paid-access Data Asset" I received, as a <Data Consumer> Entity, I paid the fee to get access to the Data
+Story 9: In order to "get access to a paid-access Data Asset" I received, as a Data Consumer Entity, I paid the fee to get access to the Data
 
 
 Key Concept Definition:
