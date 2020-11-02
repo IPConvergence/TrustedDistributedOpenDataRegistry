@@ -50,6 +50,8 @@ contract ODTAValidator {
     event eventSetDataAccess(address _dataAssetProducerID, address _dataAssetConsumerID, bytes32 _dataAssetID);
     /// eventGetDataAccess = event to be generated every time a DataAssetConsumerID getAccess to a Data Asset
     event eventGetDataAccess(address _dataAssetProducerID, address _dataAssetConsumerID, bytes32 _dataAssetID);
+    /// eventRefuseDataAccess = event to be generated every time a DataAssetConsumerID has not yet access to a Data Asset because he has not yet paid the fee
+    event eventRefuseDataAccess(address _dataAssetProducerID, address _dataAssetConsumerID, bytes32 _dataAssetID);
     /// eventDataAccessPaidSuccessfull = event to be generated every time a a Data Consumer paid successfully for the access to a paying Data Asset
     event eventDataAccessPaidSuccessfull(address _dataAssetProducerID, address _dataAssetConsumerID, bytes32 _dataAssetID, uint256 value);
     /// eventDataAccessPaidFailure = event to be generated every time a a Data Consumer payment failed for the access to a paying Data Asset
@@ -147,18 +149,35 @@ contract ODTAValidator {
       if(dataAssetIDList[_dataAssetID]==true){
             if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.free){
                 _dataAssetAccessType="free";
+                _dataAssetProducerID=dataAssetStore[_dataAssetID].dataAssetProducerID;
+                _dataAssetAccessPrice=dataAssetStore[_dataAssetID].dataAssetAccessPrice;
+                _dataAssetAccessDuration=dataAssetStore[_dataAssetID].dataAssetAccessDuration;
+                _proofOfIntegrigyDataAsset=dataAssetStore[_dataAssetID].proofOfIntegrigyDataAsset;
+                _proofOfSourceAuthenticity=dataAssetStore[_dataAssetID].proofOfSourceAuthenticity;
+                _proofOfIntegrityUseProcessingConditions=dataAssetStore[_dataAssetID].proofOfIntegrityUseProcessingConditions;
+                emit eventGetDataAccess(_dataAssetProducerID,msg.sender,_dataAssetID);
             }
-            if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.paying){
-               _dataAssetAccessType="paying";
+            if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.paying && dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessStatus==true){
+                _dataAssetAccessType="paying";
+                _dataAssetProducerID=dataAssetStore[_dataAssetID].dataAssetProducerID;
+                _dataAssetAccessPrice=dataAssetStore[_dataAssetID].dataAssetAccessPrice;
+                _dataAssetAccessDuration=dataAssetStore[_dataAssetID].dataAssetAccessDuration;
+                _proofOfIntegrigyDataAsset=dataAssetStore[_dataAssetID].proofOfIntegrigyDataAsset;
+                _proofOfSourceAuthenticity=dataAssetStore[_dataAssetID].proofOfSourceAuthenticity;
+                _proofOfIntegrityUseProcessingConditions=dataAssetStore[_dataAssetID].proofOfIntegrityUseProcessingConditions;
+                emit eventGetDataAccess(_dataAssetProducerID,msg.sender,_dataAssetID);
             }
-            _dataAssetProducerID=dataAssetStore[_dataAssetID].dataAssetProducerID;
-            _dataAssetAccessPrice=dataAssetStore[_dataAssetID].dataAssetAccessPrice;
-            _dataAssetAccessDuration=dataAssetStore[_dataAssetID].dataAssetAccessDuration;
-            _proofOfIntegrigyDataAsset=dataAssetStore[_dataAssetID].proofOfIntegrigyDataAsset;
-            _proofOfSourceAuthenticity=dataAssetStore[_dataAssetID].proofOfSourceAuthenticity;
-            _proofOfIntegrityUseProcessingConditions=dataAssetStore[_dataAssetID].proofOfIntegrityUseProcessingConditions;
-            emit eventGetDataAccess(_dataAssetProducerID,msg.sender,_dataAssetID);
-      }                                                           
+            if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.paying && dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessStatus!=true){
+                _dataAssetAccessType="refused";
+                _dataAssetProducerID=dataAssetStore[_dataAssetID].dataAssetProducerID;
+                _dataAssetAccessPrice=dataAssetStore[_dataAssetID].dataAssetAccessPrice;
+                _dataAssetAccessDuration=dataAssetStore[_dataAssetID].dataAssetAccessDuration;
+                _proofOfIntegrigyDataAsset="refused";
+                _proofOfSourceAuthenticity="refused";
+                _proofOfIntegrityUseProcessingConditions="refused";
+                emit eventRefuseDataAccess(_dataAssetProducerID,msg.sender,_dataAssetID);
+            }                                                           
+        }
     }
     /** @dev Function in charge of geting the access type for a dataAssetID, so knowing if {free, paying}
         @param _dataAssetID Hash of the dataAssetValue a DataConsumer is trying to Access
@@ -178,6 +197,7 @@ contract ODTAValidator {
         @param _dataAssetID Hash of the dataAssetValue for which the Data Producer wants to give an authorization
         @param _dataAssetConsumerID Address of the Dat Asset Consumer that could have the access (if free no access needed to be setup)
     */
+    /// !!! Not sure I need this because it is automatically authorized inside the function payToAccessDataAsset
     function insertDataAssetAccess(bytes32 _dataAssetID, address _dataAssetConsumerID) public isProducerOfExistingDataAsset(_dataAssetID){
         dataAssetAccessStore[_dataAssetID][_dataAssetConsumerID].dataAssetAccessStatus=true;
         dataAssetAccessStore[_dataAssetID][_dataAssetConsumerID].dataAssetAccessStartDate="ComingFeature";
@@ -194,12 +214,17 @@ contract ODTAValidator {
             bool sent = _toDestination.send(msg.value);
             require(sent, "Failed to send Ether");
             if(sent==true){
+                /// Autorization is set ot the msg.sender for the Data Asset
+                dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessStatus=true;
+                dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessStartDate="ComingFeature";
+                dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessEndDate="ComingFeature";
+                emit eventSetDataAccess(_toDestination, msg.sender, _dataAssetID);
                 emit eventDataAccessPaidSuccessfull(dataAssetStore[_dataAssetID].dataAssetProducerID, msg.sender, _dataAssetID, dataAssetStore[_dataAssetID].dataAssetAccessPrice);
             }
-            if(sent == true){
+            if(sent == false){
                 emit eventDataAccessPaidFailure(dataAssetStore[_dataAssetID].dataAssetProducerID, msg.sender, _dataAssetID, dataAssetStore[_dataAssetID].dataAssetAccessPrice);
             }
-        } /// To be optimized later on because not secure for money transert
+        } /// !!! To be optimized later on because not secure for money transert
     }
 
 }
