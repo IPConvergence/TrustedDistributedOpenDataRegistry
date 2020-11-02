@@ -23,7 +23,7 @@ contract ODTAValidator {
     enum accessType {free, paying}
     /// dataAssetObject = structure that containes all required Data Asset Information to manage Trust and access control from SC
     struct dataAssetObject{
-        address payable dataAssetProducerID;
+        address dataAssetProducerID;
         accessType dataAssetAccessType;
         uint256 dataAssetAccessPrice; // in Ether
         string dataAssetAccessDuration; // in Number of days
@@ -103,7 +103,7 @@ contract ODTAValidator {
      */
      function insertDataAsset(
                                 bytes32 _dataAssetID,
-                                address payable _dataAssetProducerID,
+                                address _dataAssetProducerID,
                                 string memory _dataAssetAccessType,
                                 uint256 _dataAssetAccessPrice,
                                 string memory _dataAssetAccessDuration,

@@ -19560,9 +19560,155 @@
     "name": "solc",
     "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
   },
-  "networks": {},
+  "networks": {
+    "1604313229426": {
+      "events": {
+        "0x64d54cdfb96aa1d4dc4bb5f50888f5f0e9d5d38d75a586a3b8de9a19a2ff39c9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "eventDataAccessPaidFailure",
+          "type": "event"
+        },
+        "0xa8f5f505eb5a31734c928f2b90412c7347131a40ec3e91a8582b9b87c0e63419": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "eventDataAccessPaidSuccessfull",
+          "type": "event"
+        },
+        "0x9041ba882825a1e4c00c9111dfd021207430bb9cc83d1146e299d6c24236d4d3": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventGetDataAccess",
+          "type": "event"
+        },
+        "0x25d22a93bd5cc25c1f17cfe0044b8ebcb4c2650036db91ca8f4a9dda54ef8a7a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventRefuseDataAccess",
+          "type": "event"
+        },
+        "0x5509a60277495dcdc76b70c446103629557b7ad207d3e78ca3300f3fa8320ef9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventSetDataAccess",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xB5b83eb807EB6126b99E763282C66179501E51C3",
+      "transactionHash": "0x126f5b5eb6c837ca0689d8120fc95895496289bb70287a2aec2095573613b249"
+    }
+  },
   "schemaVersion": "3.3.1",
-  "updatedAt": "2020-11-02T10:29:11.246Z",
+  "updatedAt": "2020-11-02T10:48:24.339Z",
+  "networkType": "ethereum",
   "devdoc": {
     "author": "Marc-Antoine Lemaire from Company IP Convergence",
     "methods": {
