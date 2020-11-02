@@ -23,9 +23,9 @@ contract ODTAValidator {
     enum accessType {free, paying}
     /// dataAssetObject = structure that containes all required Data Asset Information to manage Trust and access control from SC
     struct dataAssetObject{
-        address dataAssetProducerID;
+        address payable dataAssetProducerID;
         accessType dataAssetAccessType;
-        string dataAssetAccessPrice; // in Ether
+        uint256 dataAssetAccessPrice; // in Ether
         string dataAssetAccessDuration; // in Number of days
         bytes32 proofOfIntegrigyDataAsset;
         bytes32 proofOfSourceAuthenticity;
@@ -50,6 +50,10 @@ contract ODTAValidator {
     event eventSetDataAccess(address _dataAssetProducerID, address _dataAssetConsumerID, bytes32 _dataAssetID);
     /// eventGetDataAccess = event to be generated every time a DataAssetConsumerID getAccess to a Data Asset
     event eventGetDataAccess(address _dataAssetProducerID, address _dataAssetConsumerID, bytes32 _dataAssetID);
+    /// eventDataAccessPaidSuccessfull = event to be generated every time a a Data Consumer paid successfully for the access to a paying Data Asset
+    event eventDataAccessPaidSuccessfull(address _dataAssetProducerID, address _dataAssetConsumerID, bytes32 _dataAssetID, uint256 value);
+    /// eventDataAccessPaidFailure = event to be generated every time a a Data Consumer payment failed for the access to a paying Data Asset
+    event eventDataAccessPaidFailure(address _dataAssetProducerID, address _dataAssetConsumerID, bytes32 _dataAssetID, uint256 value);
 
 // -- Modifier needed to perfom different control on some SC Data Asset --
     /// isOwner modifer: checks if the msg.sender is the owner of the contract
@@ -67,6 +71,11 @@ contract ODTAValidator {
         require(_dataAssetProducerID ==msg.sender);
         _;
     }
+    /// isDataAssetExistInDataAssetIDList: check if a Data Asset is well presend in the DataAssetIDList
+    modifier isDataAssetExistInDataAssetIDList(bytes32 _dataAssetID){
+        require(dataAssetIDList[_dataAssetID]= true);
+        _;
+    }
 
 // ------------ Define functions of the SC ----------------
 
@@ -76,6 +85,9 @@ contract ODTAValidator {
         /* set the owner as the person who instantiated the contract. */
         owner = msg.sender;
     }
+
+    /** @dev Function to enable account to send ether to this SmartContract via send, transfer or call
+     */ 
 
     /** @dev Function in charge of inserting a Data Asset on SC
         @param _dataAssetID Hash of the Data Asset 
@@ -89,9 +101,9 @@ contract ODTAValidator {
      */
      function insertDataAsset(
                                 bytes32 _dataAssetID,
-                                address _dataAssetProducerID,
+                                address payable _dataAssetProducerID,
                                 string memory _dataAssetAccessType,
-                                string memory _dataAssetAccessPrice,
+                                uint256 _dataAssetAccessPrice,
                                 string memory _dataAssetAccessDuration,
                                 bytes32 _proofOfIntegrigyDataAsset,
                                 bytes32 _proofOfSourceAuthenticity,
@@ -127,7 +139,7 @@ contract ODTAValidator {
      */
     function getDataAsset(bytes32 _dataAssetID) public returns (address _dataAssetProducerID,
                                                                 string memory _dataAssetAccessType,
-                                                                string memory _dataAssetAccessPrice,
+                                                                uint256 _dataAssetAccessPrice,
                                                                 string memory _dataAssetAccessDuration,
                                                                 bytes32 _proofOfIntegrigyDataAsset,
                                                                 bytes32 _proofOfSourceAuthenticity,
@@ -152,7 +164,7 @@ contract ODTAValidator {
         @param _dataAssetID Hash of the dataAssetValue a DataConsumer is trying to Access
         @return _dataAssetAccessType the type of access {free, paying} to access the Data Asset
     */
-    function getDataAssetAccessType(bytes32 _dataAssetID) public returns (string memory _dataAssetAccessType){
+    function getDataAssetAccessType(bytes32 _dataAssetID) public view returns (string memory _dataAssetAccessType){
         if(dataAssetIDList[_dataAssetID]==true){
             if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.free){
                 _dataAssetAccessType="free";
@@ -176,8 +188,18 @@ contract ODTAValidator {
     /** @dev Function to be called by the Data Consumer, to pay for accessing the Data Asset if the Data Producer has specify paying access conditions
         @param _dataAssetID Hash of the dataAssetValue for which a user is going to pay for accessing it
     */
-    function payToAccessDataAsset(bytes32 _dataAssetID) payable public{
-        
+    function payToAccessDataAsset(bytes32 _dataAssetID, address payable _toDestination) public payable isDataAssetExistInDataAssetIDList(_dataAssetID){
+        if(dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessStatus!=true && dataAssetStore[_dataAssetID].dataAssetProducerID ==_toDestination){
+            require(msg.value >= dataAssetStore[_dataAssetID].dataAssetAccessPrice, "Insufficient funds");
+            bool sent = _toDestination.send(msg.value);
+            require(sent, "Failed to send Ether");
+            if(sent==true){
+                emit eventDataAccessPaidSuccessfull(dataAssetStore[_dataAssetID].dataAssetProducerID, msg.sender, _dataAssetID, dataAssetStore[_dataAssetID].dataAssetAccessPrice);
+            }
+            if(sent == true){
+                emit eventDataAccessPaidFailure(dataAssetStore[_dataAssetID].dataAssetProducerID, msg.sender, _dataAssetID, dataAssetStore[_dataAssetID].dataAssetAccessPrice);
+            }
+        } /// To be optimized later on because not secure for money transert
     }
 
 }
