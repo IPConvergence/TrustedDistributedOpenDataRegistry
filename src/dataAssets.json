@@ -1,0 +1,76 @@
+[
+  {
+    "id": 0,
+    "name": "Co2 Measure 1",
+    "dataAssetID": "0x1ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "dataAssetValue":{
+      "sensorID":"232939911",
+      "sensorLocation": "BXL",
+      "created": "2020-10-30T19:19:49Z",
+      "co2Value": "100",
+      "unit": "g/km"
+      },
+    "dataAssetProducerID": "0xe91058129CaaBcE0A10113e6b28B949a5A4e8500",
+    "dataAssetAccessType": "paying",
+    "dataAssetAccessPrice": "100000000000000000",
+    "proofOfIntegrigyDataAsset": "0x1abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "proofOfSourceAuthenticity": "0x1abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "proofOfIntegrityUseProcessingConditions": "0x1abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "picture": "images/co2Icon.png"
+  },
+  {
+    "id": 1,
+    "name": "Temperature Measure 2",
+    "dataAssetID": "0x2ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "dataAssetValue":{
+      "sensorID":"232939922",
+      "sensorLocation": "BXL",
+      "created": "2020-10-30T19:19:55Z",
+      "temperatureValue": "30",
+      "unit": "celsius"
+      },
+    "dataAssetProducerID": "0xe91058129CaaBcE0A10113e6b28B949a5A4e8500",
+    "dataAssetAccessType": "paying",
+    "dataAssetAccessPrice": "100000000000000000",
+    "proofOfIntegrigyDataAsset": "0x2abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "proofOfSourceAuthenticity": "0x2abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "proofOfIntegrityUseProcessingConditions": "0x2abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "picture": "images/temperatureIcon.png"
+  },
+  {
+    "id": 2,
+    "name": "Relative Humidity Measure 3",
+    "dataAssetID": "0x3ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "dataAssetValue":{
+      "sensorID":"232939933",
+      "sensorLocation": "BXL",
+      "created": "2020-10-30T19:19:59Z",
+      "humidityValue": "8",
+      "unit": "gram/m3"
+      },
+    "dataAssetProducerID": "0xe91058129CaaBcE0A10113e6b28B949a5A4e8500",
+    "dataAssetAccessType": "free",
+    "proofOfIntegrigyDataAsset": "0x3abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "proofOfSourceAuthenticity": "0x3abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "proofOfIntegrityUseProcessingConditions": "0x3abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "picture": "images/humidityIcon.png"
+  },
+  {
+    "id": 3,
+    "name": "Atmospheric Pressure Measure 4",
+    "dataAssetID": "0x4ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "dataAssetValue":{
+      "sensorID":"232939944",
+      "sensorLocation": "BXL",
+      "created": "2020-10-30T19:20:01Z",
+      "atmosphericPressureValue": "1050",
+      "unit": "hPA"
+      },
+    "dataAssetProducerID": "0xe91058129CaaBcE0A10113e6b28B949a5A4e8500",
+    "dataAssetAccessType": "free",
+    "proofOfIntegrigyDataAsset": "0x4abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "proofOfSourceAuthenticity": "0x4abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "proofOfIntegrityUseProcessingConditions": "0x4abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "picture": "images/pressureIcon.png"
+  }
+]
