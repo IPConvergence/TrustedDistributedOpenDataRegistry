@@ -24,7 +24,7 @@ contract ODTAValidator {
     /// dataAssetObject = structure that containes all required Data Asset Information to manage Trust and access control from SC
     struct dataAssetObject{
         address dataAssetProducerID;
-        accessType dataAssetAccessType;
+        accessType dataAssetAccessType; // Same access type for all, but we could in the future move that parameter to the dataAssetAccessObject
         uint256 dataAssetAccessPrice; // in Ether
         string dataAssetAccessDuration; // in Number of days
         bytes32 proofOfIntegrigyDataAsset;
@@ -46,10 +46,12 @@ contract ODTAValidator {
     mapping (bytes32 => mapping(address => dataAssetAccessObject)) public dataAssetAccessStore;
 
 // -- Events needed to manage notification on operation on DataAsset --
-    /// eventSetDataAccess = event to be generated every time a DataAssetConsumerID give Access to a Data Asset to a Data Consumer
+    /// eventSetDataAccess = event to be generated every time a DataAssetProducerID give Access to a Data Asset to a Data Consumer
     event eventSetDataAccess(address _dataAssetProducerID, address _dataAssetConsumerID, bytes32 _dataAssetID);
+     /// eventDeleteDataAccess = event to be generated every time a DataAssetProducerID removes the Access to a Data Asset to a Data Consumer
+    event eventDeleteDataAccess(address _dataAssetProducerID, address _dataAssetConsumerID, bytes32 _dataAssetID);
     /// eventGetDataAccess = event to be generated every time a DataAssetConsumerID getAccess to a Data Asset
-    event eventGetDataAccess(address _dataAssetProducerID, address _dataAssetConsumerID, bytes32 _dataAssetID);
+    event eventGetDataAccess(address indexed _dataAssetProducerID, address indexed _dataAssetConsumerID, bytes32 indexed _dataAssetID);
     /// eventRefuseDataAccess = event to be generated every time a DataAssetConsumerID has not yet access to a Data Asset because he has not yet paid the fee
     event eventRefuseDataAccess(address _dataAssetProducerID, address _dataAssetConsumerID, bytes32 _dataAssetID);
     /// eventDataAccessPaidSuccessfull = event to be generated every time a a Data Consumer paid successfully for the access to a paying Data Asset
@@ -91,6 +93,7 @@ contract ODTAValidator {
     /** @dev Function to enable account to send ether to this SmartContract via send, transfer or call
      */ 
 
+
     /** @dev Function in charge of inserting a Data Asset on SC
         @param _dataAssetID Hash of the Data Asset 
         @param _dataAssetProducerID Address of the dataAsset
@@ -101,7 +104,7 @@ contract ODTAValidator {
         @param _proofOfSourceAuthenticity Address of the dataAssetProducerID, Etherum address
         @param _proofOfIntegrityUseProcessingConditions Hash of Use and Processing Conditions of the data Asset
      */
-     function insertDataAsset(
+     function insertDataAsset (
                                 bytes32 _dataAssetID,
                                 address _dataAssetProducerID,
                                 string memory _dataAssetAccessType,
@@ -110,7 +113,7 @@ contract ODTAValidator {
                                 bytes32 _proofOfIntegrigyDataAsset,
                                 bytes32 _proofOfSourceAuthenticity,
                                 bytes32 _proofOfIntegrityUseProcessingConditions) public isDataProducer(_dataAssetProducerID){
-        if(dataProducerStore[_dataAssetProducerID][_dataAssetID] != true){
+        if(dataProducerStore[_dataAssetProducerID][_dataAssetID] != true && _dataAssetProducerID == msg.sender){
             dataAssetIDList[_dataAssetID]=true;
             /// !!! could be overlap with dataAssetIDList (see what I choose)
             dataProducerStore[_dataAssetProducerID][_dataAssetID]=true;
@@ -120,6 +123,10 @@ contract ODTAValidator {
             }
             if(keccak256(abi.encodePacked(_dataAssetAccessType)) == keccak256(abi.encodePacked("paying"))){
                 dataAssetStore[_dataAssetID].dataAssetAccessType=accessType.paying;
+                dataAssetAccessStore[_dataAssetID][_dataAssetProducerID].dataAssetAccessStatus=true;
+                dataAssetAccessStore[_dataAssetID][_dataAssetProducerID].dataAssetAccessStartDate="ComingFeature";
+                dataAssetAccessStore[_dataAssetID][_dataAssetProducerID].dataAssetAccessEndDate="ComingFeature";
+                
             }
             dataAssetStore[_dataAssetID].dataAssetAccessPrice=_dataAssetAccessPrice;
             dataAssetStore[_dataAssetID].dataAssetAccessDuration=_dataAssetAccessDuration;
@@ -139,7 +146,7 @@ contract ODTAValidator {
         @return _proofOfSourceAuthenticity :Address of the dataAssetProducerID, Etherum address
         @return _proofOfIntegrityUseProcessingConditions :Hash of Use and Processing Conditions of the data Asset
      */
-    function getDataAsset(bytes32 _dataAssetID) public returns (address _dataAssetProducerID,
+    function getDataAsset(bytes32 _dataAssetID) public view returns (address _dataAssetProducerID,
                                                                 string memory _dataAssetAccessType,
                                                                 uint256 _dataAssetAccessPrice,
                                                                 string memory _dataAssetAccessDuration,
@@ -155,7 +162,7 @@ contract ODTAValidator {
                 _proofOfIntegrigyDataAsset=dataAssetStore[_dataAssetID].proofOfIntegrigyDataAsset;
                 _proofOfSourceAuthenticity=dataAssetStore[_dataAssetID].proofOfSourceAuthenticity;
                 _proofOfIntegrityUseProcessingConditions=dataAssetStore[_dataAssetID].proofOfIntegrityUseProcessingConditions;
-                emit eventGetDataAccess(_dataAssetProducerID,msg.sender,_dataAssetID);
+                //emit eventGetDataAccess(_dataAssetProducerID,msg.sender,_dataAssetID);
             }
             if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.paying && dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessStatus==true){
                 _dataAssetAccessType="paying";
@@ -165,17 +172,17 @@ contract ODTAValidator {
                 _proofOfIntegrigyDataAsset=dataAssetStore[_dataAssetID].proofOfIntegrigyDataAsset;
                 _proofOfSourceAuthenticity=dataAssetStore[_dataAssetID].proofOfSourceAuthenticity;
                 _proofOfIntegrityUseProcessingConditions=dataAssetStore[_dataAssetID].proofOfIntegrityUseProcessingConditions;
-                emit eventGetDataAccess(_dataAssetProducerID,msg.sender,_dataAssetID);
+                //emit eventGetDataAccess(_dataAssetProducerID,msg.sender,_dataAssetID);
             }
             if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.paying && dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessStatus!=true){
-                _dataAssetAccessType="refused";
+                _dataAssetAccessType="paying";
                 _dataAssetProducerID=dataAssetStore[_dataAssetID].dataAssetProducerID;
                 _dataAssetAccessPrice=dataAssetStore[_dataAssetID].dataAssetAccessPrice;
                 _dataAssetAccessDuration=dataAssetStore[_dataAssetID].dataAssetAccessDuration;
                 _proofOfIntegrigyDataAsset="refused";
                 _proofOfSourceAuthenticity="refused";
                 _proofOfIntegrityUseProcessingConditions="refused";
-                emit eventRefuseDataAccess(_dataAssetProducerID,msg.sender,_dataAssetID);
+                //emit eventRefuseDataAccess(_dataAssetProducerID,msg.sender,_dataAssetID);
             }                                                           
         }
     }
@@ -198,12 +205,34 @@ contract ODTAValidator {
         @param _dataAssetConsumerID Address of the Dat Asset Consumer that could have the access (if free no access needed to be setup)
     */
     /// !!! Not sure I need this because it is automatically authorized inside the function payToAccessDataAsset
-    function insertDataAssetAccess(bytes32 _dataAssetID, address _dataAssetConsumerID) public isProducerOfExistingDataAsset(_dataAssetID){
-        dataAssetAccessStore[_dataAssetID][_dataAssetConsumerID].dataAssetAccessStatus=true;
+    function setDataAssetAccess(bytes32 _dataAssetID, address _dataAssetConsumerID,bool _access) public isProducerOfExistingDataAsset(_dataAssetID){
+        dataAssetAccessStore[_dataAssetID][_dataAssetConsumerID].dataAssetAccessStatus=_access;
         dataAssetAccessStore[_dataAssetID][_dataAssetConsumerID].dataAssetAccessStartDate="ComingFeature";
         dataAssetAccessStore[_dataAssetID][_dataAssetConsumerID].dataAssetAccessEndDate="ComingFeature";
         /// event emitted to notify the _dataAssetConsumerID he has well received access to the Data Asset, following his succefull money transaction
-        emit eventSetDataAccess(msg.sender, _dataAssetConsumerID, _dataAssetID);
+        if(_access == true){
+            emit eventSetDataAccess(msg.sender, _dataAssetConsumerID, _dataAssetID);
+        }
+        if(_access==false){
+            emit eventDeleteDataAccess(msg.sender, _dataAssetConsumerID, _dataAssetID);
+        }
+        
+    }
+    /** @dev Function in charge of geting the access type for a dataAssetID, so knowing if {free, paying}
+        @param _dataAssetID Hash of the dataAssetValue a DataConsumer is trying to Access
+        @param _dataAssetConsumerID Address of the consumer we want to know if he has received the access from the Data Producer
+        @return _access Boolean indicating if the dataAssetConsumerID has access to the _dataAssetID
+    */
+    function getDataAssetAccess(bytes32 _dataAssetID, address _dataAssetConsumerID) public view returns (bool _access){
+        if(dataAssetIDList[_dataAssetID]==true){
+           if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.free){
+                return true;
+            }
+            if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.paying){
+                return dataAssetAccessStore[_dataAssetID][_dataAssetConsumerID].dataAssetAccessStatus;
+            } 
+           
+        } /// Add trow error is dataAssetID is not in dataAssetStore
     }
     /** @dev Function to be called by the Data Consumer, to pay for accessing the Data Asset if the Data Producer has specify paying access conditions
         @param _dataAssetID Hash of the dataAssetValue for which a user is going to pay for accessing it
@@ -226,5 +255,34 @@ contract ODTAValidator {
             }
         } /// !!! To be optimized later on because not secure for money transert
     }
+    
+    function getDataAssetProducer(bytes32 _dataAssetID) public view returns (address _dataAssetProducerID, 
+                                                                            string memory _dataAssetAccessType,
+                                                                            uint256 _dataAssetAccessPrice,
+                                                                            string memory _dataAssetAccessDuration,
+                                                                            bytes32 _proofOfIntegrigyDataAsset,
+                                                                            bytes32 _proofOfSourceAuthenticity,
+                                                                            bytes32 _proofOfIntegrityUseProcessingConditions,
+                                                                            bool _dataAssetAccessStatus){
+        _dataAssetProducerID=dataAssetStore[_dataAssetID].dataAssetProducerID;
+         if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.free){
+                _dataAssetAccessType="free";
+            }
+        if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.paying){
+               _dataAssetAccessType="paying";
+            }
+        _dataAssetAccessPrice=dataAssetStore[_dataAssetID].dataAssetAccessPrice;
+        _dataAssetAccessDuration=dataAssetStore[_dataAssetID].dataAssetAccessDuration;
+        _proofOfIntegrigyDataAsset=dataAssetStore[_dataAssetID].proofOfIntegrigyDataAsset;
+        _proofOfSourceAuthenticity=dataAssetStore[_dataAssetID].proofOfSourceAuthenticity;
+        _proofOfIntegrityUseProcessingConditions=dataAssetStore[_dataAssetID].proofOfIntegrityUseProcessingConditions;
+        _dataAssetAccessStatus= dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessStatus;
+        //emit eventGetDataAccess(_dataAssetProducerID,msg.sender,_dataAssetID);
+        
+    }
 
 }
+
+
+
+
