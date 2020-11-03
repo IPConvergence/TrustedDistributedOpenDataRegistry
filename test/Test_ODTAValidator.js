@@ -14,7 +14,7 @@ contract('ODTAValidator', function(accounts) {
     const dataAssetID = "0x7ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
     const dataAssetAccessType1 = "paying"
     const dataAssetAccessType2 = "free"
-    const dataAssetAccessPrice = "1000000000000000000" //in Wei, feature not yet implemented in v0.1 version of ODTAValidator
+    const dataAssetAccessPrice = "100000000000000000" //in Wei unit, here is 0,1 Eth Cost (1eth = 1e18), feature not yet implemented in v0.1 version of ODTAValidator
     const dataAssetAccessDuration = "not yet Available"
     const proofOfIntegrigyDataAsset = "0x9abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
     const proofOfSourceAuthenticity = "0x9abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash

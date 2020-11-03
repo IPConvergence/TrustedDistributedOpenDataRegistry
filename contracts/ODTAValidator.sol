@@ -25,7 +25,7 @@ contract ODTAValidator {
     struct dataAssetObject{
         address dataAssetProducerID;
         accessType dataAssetAccessType; // Same access type for all, but we could in the future move that parameter to the dataAssetAccessObject
-        uint256 dataAssetAccessPrice; // in Ether
+        uint256 dataAssetAccessPrice; // in wei (1 Ether = 1e18)
         string dataAssetAccessDuration; // in Number of days
         bytes32 proofOfIntegrigyDataAsset;
         bytes32 proofOfSourceAuthenticity;
@@ -236,50 +236,22 @@ contract ODTAValidator {
     }
     /** @dev Function to be called by the Data Consumer, to pay for accessing the Data Asset if the Data Producer has specify paying access conditions
         @param _dataAssetID Hash of the dataAssetValue for which a user is going to pay for accessing it
+        @param _toDestination Address of the Data Producer of the Asset that should receive the money paid by the consumer
     */
+    /// ! Not Implemented for the Project Course
     function payToAccessDataAsset(bytes32 _dataAssetID, address payable _toDestination) public payable isDataAssetExistInDataAssetIDList(_dataAssetID){
         if(dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessStatus!=true && dataAssetStore[_dataAssetID].dataAssetProducerID ==_toDestination){
-            require(msg.value >= dataAssetStore[_dataAssetID].dataAssetAccessPrice, "Insufficient funds");
-            bool sent = _toDestination.send(msg.value);
-            require(sent, "Failed to send Ether");
-            if(sent==true){
-                /// Autorization is set ot the msg.sender for the Data Asset
-                dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessStatus=true;
-                dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessStartDate="ComingFeature";
-                dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessEndDate="ComingFeature";
-                emit eventSetDataAccess(_toDestination, msg.sender, _dataAssetID);
-                emit eventDataAccessPaidSuccessfull(dataAssetStore[_dataAssetID].dataAssetProducerID, msg.sender, _dataAssetID, dataAssetStore[_dataAssetID].dataAssetAccessPrice);
-            }
-            if(sent == false){
-                emit eventDataAccessPaidFailure(dataAssetStore[_dataAssetID].dataAssetProducerID, msg.sender, _dataAssetID, dataAssetStore[_dataAssetID].dataAssetAccessPrice);
-            }
-        } /// !!! To be optimized later on because not secure for money transert
+            require(msg.value >= dataAssetStore[_dataAssetID].dataAssetAccessPrice, "Insufficient funds"); // !!! msg.value is in WEI Unit (1 Ether = 1e18 wei)
+            /// Autorization is set to the msg.sender for the Data Asset
+            dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessStatus=true; // Prevent Reentrancy Issue
+            dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessStartDate="ComingFeature";
+            dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessEndDate="ComingFeature";
+            emit eventSetDataAccess(_toDestination, msg.sender, _dataAssetID);
+            emit eventDataAccessPaidSuccessfull(dataAssetStore[_dataAssetID].dataAssetProducerID, msg.sender, _dataAssetID, dataAssetStore[_dataAssetID].dataAssetAccessPrice);
+            _toDestination.transfer(msg.value); // Prevent Reentrancy Issue, by puting the call to extenal function at the end
+        } /// !!! To be optimized later on v2.0 because not secure optimal for money transert
     }
     
-    function getDataAssetProducer(bytes32 _dataAssetID) public view returns (address _dataAssetProducerID, 
-                                                                            string memory _dataAssetAccessType,
-                                                                            uint256 _dataAssetAccessPrice,
-                                                                            string memory _dataAssetAccessDuration,
-                                                                            bytes32 _proofOfIntegrigyDataAsset,
-                                                                            bytes32 _proofOfSourceAuthenticity,
-                                                                            bytes32 _proofOfIntegrityUseProcessingConditions,
-                                                                            bool _dataAssetAccessStatus){
-        _dataAssetProducerID=dataAssetStore[_dataAssetID].dataAssetProducerID;
-         if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.free){
-                _dataAssetAccessType="free";
-            }
-        if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.paying){
-               _dataAssetAccessType="paying";
-            }
-        _dataAssetAccessPrice=dataAssetStore[_dataAssetID].dataAssetAccessPrice;
-        _dataAssetAccessDuration=dataAssetStore[_dataAssetID].dataAssetAccessDuration;
-        _proofOfIntegrigyDataAsset=dataAssetStore[_dataAssetID].proofOfIntegrigyDataAsset;
-        _proofOfSourceAuthenticity=dataAssetStore[_dataAssetID].proofOfSourceAuthenticity;
-        _proofOfIntegrityUseProcessingConditions=dataAssetStore[_dataAssetID].proofOfIntegrityUseProcessingConditions;
-        _dataAssetAccessStatus= dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessStatus;
-        //emit eventGetDataAccess(_dataAssetProducerID,msg.sender,_dataAssetID);
-        
-    }
 
 }
 
