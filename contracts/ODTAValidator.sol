@@ -155,7 +155,7 @@ contract ODTAValidator {
                                                                 bytes32 _proofOfIntegrityUseProcessingConditions){
       if(dataAssetIDList[_dataAssetID]==true){
             if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.free){
-                _dataAssetAccessType="free";
+                _dataAssetAccessType="free"; //
                 _dataAssetProducerID=dataAssetStore[_dataAssetID].dataAssetProducerID;
                 _dataAssetAccessPrice=dataAssetStore[_dataAssetID].dataAssetAccessPrice;
                 _dataAssetAccessDuration=dataAssetStore[_dataAssetID].dataAssetAccessDuration;
