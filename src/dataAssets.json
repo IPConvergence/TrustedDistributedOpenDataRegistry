@@ -1,6 +1,6 @@
 [
   {
-    "id": 0,
+    "id": 1,
     "name": "Co2 Measure 1",
     "dataAssetID": "0x1ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
     "dataAssetValue":{
@@ -19,7 +19,7 @@
     "picture": "images/co2Icon.png"
   },
   {
-    "id": 1,
+    "id": 2,
     "name": "Temperature Measure 2",
     "dataAssetID": "0x2ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
     "dataAssetValue":{
@@ -38,7 +38,7 @@
     "picture": "images/temperatureIcon.png"
   },
   {
-    "id": 2,
+    "id": 3,
     "name": "Relative Humidity Measure 3",
     "dataAssetID": "0x3ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
     "dataAssetValue":{
@@ -56,7 +56,7 @@
     "picture": "images/humidityIcon.png"
   },
   {
-    "id": 3,
+    "id": 4,
     "name": "Atmospheric Pressure Measure 4",
     "dataAssetID": "0x4ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
     "dataAssetValue":{
