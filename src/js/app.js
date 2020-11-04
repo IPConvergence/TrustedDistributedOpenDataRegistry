@@ -1,10 +1,12 @@
 App = {
   web3Provider: null,
   contracts: {},
+  sourceDataAsset:null,
 
   init: async function() {
     // Load dataAssets.
     $.getJSON('../dataAssets.json', function(data) {
+      App.sourceDataAsset=data;
       var dataAssetsRow = $('#dataAssetsRow');
       var dataAssetTemplate = $('#dataAssetTemplate');
 
@@ -60,7 +62,7 @@ App = {
       App.contracts.ODTAValidator.setProvider(App.web3Provider);
     
       // Use our contract to retrieve and mark the published Data Asset
-      //return App.markAccessed();
+     // return App.markAccessed();
     });
 
     return App.bindEvents();
@@ -87,29 +89,40 @@ App = {
         //return ODTAValidatorInstance.adopt(petId, {from: account});
         return ODTAValidatorInstance.getDataAsset("0x1ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",{from: account});
       }).then(function(dataAsset) {
-            $('.panel-dataAsset').eq(0).find('.data-dataAssetAccessType').text(dataAsset[1]);;
+            $('.panel-dataAsset').eq(0).find('.data-dataAssetAccessType').text(dataAsset[0]);;
       }).catch(function(err) {
         console.log(err.message);
       });
     });
-   /**  App.contracts.ODTAValidator.deployed().then(function(instance) {
-      ODTAValidatorInstance = instance;
-      return ODTAValidatorInstance.getDataAsset("0x1ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "0xe91058129CaaBcE0A10113e6b28B949a5A4e8500").call();
+  },
+
+  updateAccessed: function(identifier) {
+    var ODTAValidatorInstance;
+
+    web3.eth.getAccounts(function(error, accounts) {
+      if (error) {
+        console.log(error);
+      }
+
+      var account = accounts[0];
+
+      App.contracts.ODTAValidator.deployed().then(function(instance) {
+        ODTAValidatorInstance = instance;
+
+        // Execute adopt as a transaction by sending account
+        //return ODTAValidatorInstance.adopt(petId, {from: account});
+        return ODTAValidatorInstance.getDataAsset(App.sourceDataAsset[identifier].dataAssetID,{from: account});
       }).then(function(dataAsset) {
-          //for (i = 0; i < dataAsset.length; i++) {
-            console.log(dataAsset[1])
-            if (dataAsset[1] == "paying") {
-              $('.panel-dataAsset').eq(1).find('.data-dataAssetAccessType').text("AccessGranted");;
-            }
-         // }
+            $('.panel-dataAsset').eq(identifier).find('.data-dataAssetAccessType').text(dataAsset[6]);
       }).catch(function(err) {
         console.log(err.message);
-      }); */
+      });
+    });
   },
 
   handlePublish: function(event) {
     event.preventDefault();
-   // var dataAssetId = parseInt($(event.target).data('id'));
+    var dataId = parseInt($(event.target).data('id'));
 
     var ODTAValidatorInstance;
 
@@ -125,9 +138,9 @@ App = {
 
         // Execute adopt as a transaction by sending account
         //return ODTAValidatorInstance.adopt(petId, {from: account});
-        return ODTAValidatorInstance.insertDataAsset("0x1ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "0xe91058129CaaBcE0A10113e6b28B949a5A4e8500","paying","100000000000000000","na","0x1abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","0x1abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc","0x1abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", {from: account});
+        return ODTAValidatorInstance.insertDataAsset(App.sourceDataAsset[dataId].dataAssetID, App.sourceDataAsset[dataId].dataAssetProducerID,App.sourceDataAsset[dataId].dataAssetAccessType,App.sourceDataAsset[dataId].dataAssetAccessPrice,"FeatureNotYetAvailable",App.sourceDataAsset[dataId].proofOfIntegrigyDataAsset,App.sourceDataAsset[dataId].proofOfSourceAuthenticity,App.sourceDataAsset[dataId].proofOfIntegrityUseProcessingConditions, {from: account});
       }).then(function(result) {
-        //return App.markAccessed();
+        return App.updateAccessed(dataId);
       }).catch(function(err) {
         console.log(err.message);
       });

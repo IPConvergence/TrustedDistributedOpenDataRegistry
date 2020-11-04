@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": 0,
     "name": "Co2 Measure 1",
     "dataAssetID": "0x1ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
     "dataAssetValue":{
@@ -10,7 +10,7 @@
       "co2Value": "100",
       "unit": "g/km"
       },
-    "dataAssetProducerID": "0xe91058129CaaBcE0A10113e6b28B949a5A4e8500",
+    "dataAssetProducerID": "0x7A8b6Af32a2f277B7f1333044Ae31E2fCd3efF05",
     "dataAssetAccessType": "paying",
     "dataAssetAccessPrice": "100000000000000000",
     "proofOfIntegrigyDataAsset": "0x1abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
@@ -19,7 +19,7 @@
     "picture": "images/co2Icon.png"
   },
   {
-    "id": 2,
+    "id": 1,
     "name": "Temperature Measure 2",
     "dataAssetID": "0x2ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
     "dataAssetValue":{
@@ -29,7 +29,7 @@
       "temperatureValue": "30",
       "unit": "celsius"
       },
-    "dataAssetProducerID": "0xe91058129CaaBcE0A10113e6b28B949a5A4e8500",
+    "dataAssetProducerID": "0x7A8b6Af32a2f277B7f1333044Ae31E2fCd3efF05",
     "dataAssetAccessType": "paying",
     "dataAssetAccessPrice": "100000000000000000",
     "proofOfIntegrigyDataAsset": "0x2abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
@@ -38,7 +38,7 @@
     "picture": "images/temperatureIcon.png"
   },
   {
-    "id": 3,
+    "id": 2,
     "name": "Relative Humidity Measure 3",
     "dataAssetID": "0x3ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
     "dataAssetValue":{
@@ -48,7 +48,7 @@
       "humidityValue": "8",
       "unit": "gram/m3"
       },
-    "dataAssetProducerID": "0xe91058129CaaBcE0A10113e6b28B949a5A4e8500",
+    "dataAssetProducerID": "0x7A8b6Af32a2f277B7f1333044Ae31E2fCd3efF05",
     "dataAssetAccessType": "free",
     "proofOfIntegrigyDataAsset": "0x3abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
     "proofOfSourceAuthenticity": "0x3abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
@@ -56,7 +56,7 @@
     "picture": "images/humidityIcon.png"
   },
   {
-    "id": 4,
+    "id": 3,
     "name": "Atmospheric Pressure Measure 4",
     "dataAssetID": "0x4ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
     "dataAssetValue":{
@@ -66,7 +66,7 @@
       "atmosphericPressureValue": "1050",
       "unit": "hPA"
       },
-    "dataAssetProducerID": "0xe91058129CaaBcE0A10113e6b28B949a5A4e8500",
+    "dataAssetProducerID": "0x7A8b6Af32a2f277B7f1333044Ae31E2fCd3efF05",
     "dataAssetAccessType": "free",
     "proofOfIntegrigyDataAsset": "0x4abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
     "proofOfSourceAuthenticity": "0x4abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
