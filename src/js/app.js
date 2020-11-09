@@ -140,7 +140,9 @@ App = {
         //return ODTAValidatorInstance.adopt(petId, {from: account});
         return ODTAValidatorInstance.insertDataAsset(App.sourceDataAsset[dataId].dataAssetID, App.sourceDataAsset[dataId].dataAssetProducerID,App.sourceDataAsset[dataId].dataAssetAccessType,App.sourceDataAsset[dataId].dataAssetAccessPrice,"FeatureNotYetAvailable",App.sourceDataAsset[dataId].proofOfIntegrigyDataAsset,App.sourceDataAsset[dataId].proofOfSourceAuthenticity,App.sourceDataAsset[dataId].proofOfIntegrityUseProcessingConditions, {from: account});
       }).then(function(result) {
-        return App.updateAccessed(dataId);
+        // For Test
+        $('.panel-dataAsset').eq(identifier).find('.data-dataAssetAccessType').text(dataId);
+        //return App.updateAccessed(dataId);
       }).catch(function(err) {
         console.log(err.message);
       });
