@@ -21274,10 +21274,855 @@
       "links": {},
       "address": "0xf73e64acf8dc2171f2525edC01fce9049fEcf2c6",
       "transactionHash": "0x38b73f637e1123b81d1781ba6ac26dc9103a3c69bd47a10b66ce85909278b700"
+    },
+    "1604910873508": {
+      "events": {
+        "0x64d54cdfb96aa1d4dc4bb5f50888f5f0e9d5d38d75a586a3b8de9a19a2ff39c9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "eventDataAccessPaidFailure",
+          "type": "event"
+        },
+        "0xa8f5f505eb5a31734c928f2b90412c7347131a40ec3e91a8582b9b87c0e63419": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "eventDataAccessPaidSuccessfull",
+          "type": "event"
+        },
+        "0xb8a6f2771d229dc1d10fe3fd714f1f6fb2d6ef911831f97d7e59b5e006b8b26d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventDeleteDataAccess",
+          "type": "event"
+        },
+        "0x9041ba882825a1e4c00c9111dfd021207430bb9cc83d1146e299d6c24236d4d3": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventGetDataAccess",
+          "type": "event"
+        },
+        "0x25d22a93bd5cc25c1f17cfe0044b8ebcb4c2650036db91ca8f4a9dda54ef8a7a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventRefuseDataAccess",
+          "type": "event"
+        },
+        "0x5509a60277495dcdc76b70c446103629557b7ad207d3e78ca3300f3fa8320ef9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventSetDataAccess",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xb61FaA9b67342E13bEddD769ff7a63438FACB737",
+      "transactionHash": "0x0ac9df2bd9879099219fcfac4dc92aa5b5d884f68512d7277d6beab61dde4eea"
+    },
+    "1604935504492": {
+      "events": {
+        "0x64d54cdfb96aa1d4dc4bb5f50888f5f0e9d5d38d75a586a3b8de9a19a2ff39c9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "eventDataAccessPaidFailure",
+          "type": "event"
+        },
+        "0xa8f5f505eb5a31734c928f2b90412c7347131a40ec3e91a8582b9b87c0e63419": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "eventDataAccessPaidSuccessfull",
+          "type": "event"
+        },
+        "0xb8a6f2771d229dc1d10fe3fd714f1f6fb2d6ef911831f97d7e59b5e006b8b26d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventDeleteDataAccess",
+          "type": "event"
+        },
+        "0x9041ba882825a1e4c00c9111dfd021207430bb9cc83d1146e299d6c24236d4d3": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventGetDataAccess",
+          "type": "event"
+        },
+        "0x25d22a93bd5cc25c1f17cfe0044b8ebcb4c2650036db91ca8f4a9dda54ef8a7a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventRefuseDataAccess",
+          "type": "event"
+        },
+        "0x5509a60277495dcdc76b70c446103629557b7ad207d3e78ca3300f3fa8320ef9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventSetDataAccess",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xfbd9dE7f5ddc73EBE0e79Bb0706C3D440aEeE076",
+      "transactionHash": "0x37df11d6f4972eba8739562f0145074baddfb3bf6b3d52722b56676e88a33998"
+    },
+    "1604939073226": {
+      "events": {
+        "0x64d54cdfb96aa1d4dc4bb5f50888f5f0e9d5d38d75a586a3b8de9a19a2ff39c9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "eventDataAccessPaidFailure",
+          "type": "event"
+        },
+        "0xa8f5f505eb5a31734c928f2b90412c7347131a40ec3e91a8582b9b87c0e63419": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "eventDataAccessPaidSuccessfull",
+          "type": "event"
+        },
+        "0xb8a6f2771d229dc1d10fe3fd714f1f6fb2d6ef911831f97d7e59b5e006b8b26d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventDeleteDataAccess",
+          "type": "event"
+        },
+        "0x9041ba882825a1e4c00c9111dfd021207430bb9cc83d1146e299d6c24236d4d3": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventGetDataAccess",
+          "type": "event"
+        },
+        "0x25d22a93bd5cc25c1f17cfe0044b8ebcb4c2650036db91ca8f4a9dda54ef8a7a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventRefuseDataAccess",
+          "type": "event"
+        },
+        "0x5509a60277495dcdc76b70c446103629557b7ad207d3e78ca3300f3fa8320ef9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventSetDataAccess",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x75084E96FC288C079291FB7B276B49038B08Fa7a",
+      "transactionHash": "0x6af5056fe686dd1297fb50bcfbaac35a83b8e625011c5bfbe4bce0fc1ef5a18e"
+    },
+    "1604943874603": {
+      "events": {
+        "0x64d54cdfb96aa1d4dc4bb5f50888f5f0e9d5d38d75a586a3b8de9a19a2ff39c9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "eventDataAccessPaidFailure",
+          "type": "event"
+        },
+        "0xa8f5f505eb5a31734c928f2b90412c7347131a40ec3e91a8582b9b87c0e63419": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "eventDataAccessPaidSuccessfull",
+          "type": "event"
+        },
+        "0xb8a6f2771d229dc1d10fe3fd714f1f6fb2d6ef911831f97d7e59b5e006b8b26d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventDeleteDataAccess",
+          "type": "event"
+        },
+        "0x9041ba882825a1e4c00c9111dfd021207430bb9cc83d1146e299d6c24236d4d3": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventGetDataAccess",
+          "type": "event"
+        },
+        "0x25d22a93bd5cc25c1f17cfe0044b8ebcb4c2650036db91ca8f4a9dda54ef8a7a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventRefuseDataAccess",
+          "type": "event"
+        },
+        "0x5509a60277495dcdc76b70c446103629557b7ad207d3e78ca3300f3fa8320ef9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventSetDataAccess",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xcAA12E1ad06775665C89fE697d6A66d06ADD3e70",
+      "transactionHash": "0x959aa9eb10ba7d4adbe78305a3252b409b6d51b09165cc1e260a3e652bb55c59"
+    },
+    "1604946980337": {
+      "events": {
+        "0x64d54cdfb96aa1d4dc4bb5f50888f5f0e9d5d38d75a586a3b8de9a19a2ff39c9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "eventDataAccessPaidFailure",
+          "type": "event"
+        },
+        "0xa8f5f505eb5a31734c928f2b90412c7347131a40ec3e91a8582b9b87c0e63419": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            }
+          ],
+          "name": "eventDataAccessPaidSuccessfull",
+          "type": "event"
+        },
+        "0xb8a6f2771d229dc1d10fe3fd714f1f6fb2d6ef911831f97d7e59b5e006b8b26d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventDeleteDataAccess",
+          "type": "event"
+        },
+        "0x9041ba882825a1e4c00c9111dfd021207430bb9cc83d1146e299d6c24236d4d3": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventGetDataAccess",
+          "type": "event"
+        },
+        "0x25d22a93bd5cc25c1f17cfe0044b8ebcb4c2650036db91ca8f4a9dda54ef8a7a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventRefuseDataAccess",
+          "type": "event"
+        },
+        "0x5509a60277495dcdc76b70c446103629557b7ad207d3e78ca3300f3fa8320ef9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetProducerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "_dataAssetConsumerID",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bytes32",
+              "name": "_dataAssetID",
+              "type": "bytes32"
+            }
+          ],
+          "name": "eventSetDataAccess",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xE37f1e60cA4ae38AdF472e371bDF35f1deEa2157",
+      "transactionHash": "0xeb813584b7ff8a974141cc90232888981fe7b3e5e1c2907c7d168e3c14216760"
     }
   },
   "schemaVersion": "3.3.1",
-  "updatedAt": "2020-11-04T10:20:37.548Z",
+  "updatedAt": "2020-11-09T18:36:30.698Z",
   "networkType": "ethereum",
   "devdoc": {
     "author": "Marc-Antoine Lemaire from Company IP Convergence",

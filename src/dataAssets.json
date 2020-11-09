@@ -10,7 +10,7 @@
       "co2Value": "100",
       "unit": "g/km"
       },
-    "dataAssetProducerID": "0x7A8b6Af32a2f277B7f1333044Ae31E2fCd3efF05",
+    "dataAssetProducerID": "0x3F48658e31c0451ACA25A78E8cA48e0219f02a9c",
     "dataAssetAccessType": "paying",
     "dataAssetAccessPrice": "100000000000000000",
     "proofOfIntegrigyDataAsset": "0x1abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
@@ -29,7 +29,7 @@
       "temperatureValue": "30",
       "unit": "celsius"
       },
-    "dataAssetProducerID": "0x7A8b6Af32a2f277B7f1333044Ae31E2fCd3efF05",
+    "dataAssetProducerID": "0xe71890eb0Bbaf7eA0A5F68f1145E378d3b17DC8D",
     "dataAssetAccessType": "paying",
     "dataAssetAccessPrice": "100000000000000000",
     "proofOfIntegrigyDataAsset": "0x2abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
@@ -48,8 +48,9 @@
       "humidityValue": "8",
       "unit": "gram/m3"
       },
-    "dataAssetProducerID": "0x7A8b6Af32a2f277B7f1333044Ae31E2fCd3efF05",
-    "dataAssetAccessType": "free",
+    "dataAssetProducerID": "0x3F48658e31c0451ACA25A78E8cA48e0219f02a9c",
+    "dataAssetAccessType": "paying",
+    "dataAssetAccessPrice": "100000000000000000",
     "proofOfIntegrigyDataAsset": "0x3abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
     "proofOfSourceAuthenticity": "0x3abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
     "proofOfIntegrityUseProcessingConditions": "0x3abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
@@ -66,8 +67,9 @@
       "atmosphericPressureValue": "1050",
       "unit": "hPA"
       },
-    "dataAssetProducerID": "0x7A8b6Af32a2f277B7f1333044Ae31E2fCd3efF05",
+    "dataAssetProducerID": "0x3F48658e31c0451ACA25A78E8cA48e0219f02a9c",
     "dataAssetAccessType": "free",
+    "dataAssetAccessPrice": "0",
     "proofOfIntegrigyDataAsset": "0x4abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
     "proofOfSourceAuthenticity": "0x4abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
     "proofOfIntegrityUseProcessingConditions": "0x4abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
