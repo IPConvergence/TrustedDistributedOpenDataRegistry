@@ -74,5 +74,24 @@
     "proofOfSourceAuthenticity": "0x4abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
     "proofOfIntegrityUseProcessingConditions": "0x4abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
     "picture": "images/pressureIcon.png"
+  },
+  {
+    "id": 4,
+    "name": "Atmospheric Pressure Measure 5",
+    "dataAssetID": "0x5ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "dataAssetValue":{
+      "sensorID":"232939955",
+      "sensorLocation": "BXL",
+      "created": "2020-10-30T19:20:&1Z",
+      "atmosphericPressureValue": "900",
+      "unit": "hPA"
+      },
+    "dataAssetProducerID": "0x3F48658e31c0451ACA25A78E8cA48e0219f02a9c",
+    "dataAssetAccessType": "free",
+    "dataAssetAccessPrice": "0",
+    "proofOfIntegrigyDataAsset": "0x5abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "proofOfSourceAuthenticity": "0x5abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "proofOfIntegrityUseProcessingConditions": "0x5abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "picture": "images/pressureIcon.png"
   }
 ]

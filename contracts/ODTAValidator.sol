@@ -67,7 +67,7 @@ contract ODTAValidator {
     }
     /// isProducerOfExistingDataAsset: check if the msg.send is well the DataProducer of an existing DataAsset well present in dataProducerStore
     modifier isProducerOfExistingDataAsset(bytes32 _dataAssetID){
-        require(dataProducerStore[msg.sender][_dataAssetID] = true);
+        require(dataProducerStore[msg.sender][_dataAssetID] == true);
         _;
     }
     /// isDataProducer: check if the msg.send is the same as Data Asset requested producer
@@ -77,7 +77,7 @@ contract ODTAValidator {
     }
     /// isDataAssetExistInDataAssetIDList: check if a Data Asset is well presend in the DataAssetIDList
     modifier isDataAssetExistInDataAssetIDList(bytes32 _dataAssetID){
-        require(dataAssetIDList[_dataAssetID]= true);
+        require(dataAssetIDList[_dataAssetID]== true);
         _;
     }
 

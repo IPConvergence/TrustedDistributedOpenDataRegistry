@@ -75,6 +75,7 @@ App = {
     //$(document).on('click', '.btn-payAccess', App.handlePayAccess);
   },
 
+  // Read Data Asset from the ODTA Registry on SmartContract and display some Data Asset Input on the Webpage
   markAccessed:  async function() {
     let instance = await App.contracts.ODTAValidator.deployed();
     var address = web3.eth.accounts[0];
@@ -85,16 +86,17 @@ App = {
       // check that the consumer address calling ledger has access to asset and display info from ledger
       if(output == true){
         $('.panel-dataAsset').eq(i).find('.data-dataAssetAccessAuthorization').text(output);
-        $('.panel-dataAsset').eq(i).find('.data-dataAssetDestination').text(address);
+        $('.panel-dataAsset').eq(i).find('.data-dataAssetDestination').text(address.substring(0,15)+"...");
       }
       // if asset is in the ledger, we display the published status and we take the Publisher From the Data Asset anchored on ledger and not from address calling
       if(output3 == "free" || output3 == "paying"){
         $('.panel-dataAsset').eq(i).find('.data-dataAssetPublicationStatus').text("Published");
-        $('.panel-dataAsset').eq(i).find('.data-dataAsset-dataAssetProducerID').text(output2[0]);
+        $('.panel-dataAsset').eq(i).find('.data-dataAsset-dataAssetProducerID').text(output2[0].substring(0,15)+"...");
       }
     }
   },
 
+  // When clicking on the publish button, it will insert on the ODTA Ledger registy the Asset Information needed to garantee trust
   handlePublish: function(event) {
     event.preventDefault();
     var dataId = parseInt($(event.target).data('id'));
@@ -107,8 +109,7 @@ App = {
       var account = accounts[0];
       App.contracts.ODTAValidator.deployed().then(function(instance) {
         ODTAValidatorInstance = instance;
-        // Execute inserDataAsset as a transaction by sending account
-        //return ODTAValidatorInstance.adopt(petId, {from: account});
+        // Execute inserDataAsset as a transaction by sending account !!! To avoid error for demo, we insert the dataAssetProducerID here above from JSON input file and not address of user
         return ODTAValidatorInstance.insertDataAsset(App.sourceDataAsset[dataId].dataAssetID, App.sourceDataAsset[dataId].dataAssetProducerID,App.sourceDataAsset[dataId].dataAssetAccessType,App.sourceDataAsset[dataId].dataAssetAccessPrice,"FeatureNotYetAvailable",App.sourceDataAsset[dataId].proofOfIntegrigyDataAsset,App.sourceDataAsset[dataId].proofOfSourceAuthenticity,App.sourceDataAsset[dataId].proofOfIntegrityUseProcessingConditions, {from: account});
       }).then(function(result) {
         // If operation succeed, then update WebPage that Data has been inserted
@@ -119,10 +120,14 @@ App = {
     });
   },
 
-  //!!! Set here a box where we can put the Address that we give the access to
+  // When you push on the SetAccess Button, it will give the authorization to the paying asset to the Target Authorizatin Address insert at the begin of the page
   handleSetAccess: function(event) {
     event.preventDefault();
     var dataId = parseInt($(event.target).data('id'));
+    var inputTargetAuthorization= document.getElementById("myIntput").value;
+    var inputMyAuthorization= document.getElementById("myAuthorization").value;
+    if(inputMyAuthorization == "true"){authorization=true;}
+    if(inputMyAuthorization == "false"){authorization=false;}
     var ODTAValidatorInstance;
 
     web3.eth.getAccounts(function(error, accounts) {
@@ -132,9 +137,8 @@ App = {
       var account = accounts[0];
       App.contracts.ODTAValidator.deployed().then(function(instance) {
         ODTAValidatorInstance = instance;
-        // Execute inserDataAsset as a transaction by sending account
-        //return ODTAValidatorInstance.adopt(petId, {from: account});
-        return ODTAValidatorInstance.setDataAssetAccess(App.sourceDataAsset[dataId].dataAssetID, "0xe71890eb0Bbaf7eA0A5F68f1145E378d3b17DC8D",true);
+        //!!!! I have issue here, a non producer can set access to all asset, it seems that in SC the "isProducerOfExistingDataAsset" is not working
+        return ODTAValidatorInstance.setDataAssetAccess(App.sourceDataAsset[dataId].dataAssetID, inputTargetAuthorization,authorization,{from: account});
       }).then(function(result) {
         // If operation succeed, then update WebPage that Data has been inserted
         return App.markAccessed();
@@ -144,7 +148,7 @@ App = {
     });
   },
 
-  // Not Yet Opperational for version 1.0
+  // !! Not Yet Opperational for version 1.0
   handlePayAccess: function(event) {
     event.preventDefault();
     var dataId = parseInt($(event.target).data('id'));
@@ -158,8 +162,7 @@ App = {
       App.contracts.ODTAValidator.deployed().then(function(instance) {
         ODTAValidatorInstance = instance;
         // Execute inserDataAsset as a transaction by sending account
-        //return ODTAValidatorInstance.adopt(petId, {from: account});
-        return ODTAValidatorInstance.payToAccessDataAsset(App.sourceDataAsset[dataId].dataAssetID, "0x564CEBc766727DFFBae31356dc78365e9113030A");
+        return ODTAValidatorInstance.payToAccessDataAsset(App.sourceDataAsset[dataId].dataAssetID, App.sourceDataAsset[dataId].dataAssetProducerID);
       }).then(function(result) {
         // If operation succeed, then update WebPage that Data has been inserted
         return App.markAccessed();
@@ -168,7 +171,6 @@ App = {
       });
     });
   }
-  
 
 };
 
