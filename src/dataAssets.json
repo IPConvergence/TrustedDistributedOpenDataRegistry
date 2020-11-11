@@ -10,7 +10,7 @@
       "co2Value": "100",
       "unit": "g/km"
       },
-    "dataAssetProducerID": "0x3F48658e31c0451ACA25A78E8cA48e0219f02a9c",
+    "dataAssetProducerID": "0xAd9E5A92e86d4dF197ca9c3957a253BBdCD641c2",
     "dataAssetAccessType": "paying",
     "dataAssetAccessPrice": "100000000000000000",
     "proofOfIntegrigyDataAsset": "0x1abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
@@ -29,7 +29,7 @@
       "temperatureValue": "30",
       "unit": "celsius"
       },
-    "dataAssetProducerID": "0xe71890eb0Bbaf7eA0A5F68f1145E378d3b17DC8D",
+    "dataAssetProducerID": "0xAFbd3507992DCCF0A446bFaD1024bdDe9E4d9E8a",
     "dataAssetAccessType": "paying",
     "dataAssetAccessPrice": "100000000000000000",
     "proofOfIntegrigyDataAsset": "0x2abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
@@ -48,7 +48,7 @@
       "humidityValue": "8",
       "unit": "gram/m3"
       },
-    "dataAssetProducerID": "0x3F48658e31c0451ACA25A78E8cA48e0219f02a9c",
+    "dataAssetProducerID": "0xAd9E5A92e86d4dF197ca9c3957a253BBdCD641c2",
     "dataAssetAccessType": "paying",
     "dataAssetAccessPrice": "100000000000000000",
     "proofOfIntegrigyDataAsset": "0x3abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
@@ -67,7 +67,7 @@
       "atmosphericPressureValue": "1050",
       "unit": "hPA"
       },
-    "dataAssetProducerID": "0x3F48658e31c0451ACA25A78E8cA48e0219f02a9c",
+    "dataAssetProducerID": "0xAd9E5A92e86d4dF197ca9c3957a253BBdCD641c2",
     "dataAssetAccessType": "free",
     "dataAssetAccessPrice": "0",
     "proofOfIntegrigyDataAsset": "0x4abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
@@ -86,12 +86,31 @@
       "atmosphericPressureValue": "900",
       "unit": "hPA"
       },
-    "dataAssetProducerID": "0x3F48658e31c0451ACA25A78E8cA48e0219f02a9c",
-    "dataAssetAccessType": "free",
-    "dataAssetAccessPrice": "0",
+    "dataAssetProducerID": "0x84aE1FFE6E05285062D2cE61B48c55B709216Bb6",
+    "dataAssetAccessType": "paying",
+    "dataAssetAccessPrice": "100000000000000000",
     "proofOfIntegrigyDataAsset": "0x5abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
     "proofOfSourceAuthenticity": "0x5abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
     "proofOfIntegrityUseProcessingConditions": "0x5abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "picture": "images/pressureIcon.png"
+  },
+  {
+    "id": 5,
+    "name": "Atmospheric Pressure Measure 6",
+    "dataAssetID": "0x6ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "dataAssetValue":{
+      "sensorID":"232939966",
+      "sensorLocation": "BXL",
+      "created": "2020-10-30T19:22:&1Z",
+      "atmosphericPressureValue": "800",
+      "unit": "hPA"
+      },
+    "dataAssetProducerID": "0xAd9E5A92e86d4dF197ca9c3957a253BBdCD641c2",
+    "dataAssetAccessType": "paying",
+    "dataAssetAccessPrice": "100000000000000000",
+    "proofOfIntegrigyDataAsset": "0x6abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "proofOfSourceAuthenticity": "0x6abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "proofOfIntegrityUseProcessingConditions": "0x6abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
     "picture": "images/pressureIcon.png"
   }
 ]

@@ -72,7 +72,7 @@ contract ODTAValidator {
     }
     /// isDataProducer: check if the msg.send is the same as Data Asset requested producer
     modifier isDataProducer(address _dataAssetProducerID){
-        require(_dataAssetProducerID ==msg.sender);
+        require(keccak256(abi.encodePacked(_dataAssetProducerID)) == keccak256(abi.encodePacked(msg.sender)));
         _;
     }
     /// isDataAssetExistInDataAssetIDList: check if a Data Asset is well presend in the DataAssetIDList

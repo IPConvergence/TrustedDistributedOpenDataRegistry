@@ -79,13 +79,14 @@ App = {
   markAccessed:  async function() {
     let instance = await App.contracts.ODTAValidator.deployed();
     var address = web3.eth.accounts[0];
-    for (i =0; i<4; i ++){
+    for (i =0; i<App.sourceDataAsset.length; i ++){
       let output = await instance.getDataAssetAccess(App.sourceDataAsset[i].dataAssetID, address,{from:address});
+      $('.panel-dataAsset').eq(i).find('.data-dataAssetAccessAuthorization').text(output);
       let output2= await instance.getDataAsset(App.sourceDataAsset[i].dataAssetID,{from:address});
       let output3= await instance.getDataAssetAccessType(App.sourceDataAsset[i].dataAssetID,{from:address});
       // check that the consumer address calling ledger has access to asset and display info from ledger
       if(output == true){
-        $('.panel-dataAsset').eq(i).find('.data-dataAssetAccessAuthorization').text(output);
+       // Tempo $('.panel-dataAsset').eq(i).find('.data-dataAssetAccessAuthorization').text(output);
         $('.panel-dataAsset').eq(i).find('.data-dataAssetDestination').text(address.substring(0,15)+"...");
       }
       // if asset is in the ledger, we display the published status and we take the Publisher From the Data Asset anchored on ledger and not from address calling
@@ -94,6 +95,7 @@ App = {
         $('.panel-dataAsset').eq(i).find('.data-dataAsset-dataAssetProducerID').text(output2[0].substring(0,15)+"...");
       }
     }
+    
   },
 
   // When clicking on the publish button, it will insert on the ODTA Ledger registy the Asset Information needed to garantee trust
@@ -101,16 +103,22 @@ App = {
     event.preventDefault();
     var dataId = parseInt($(event.target).data('id'));
     var ODTAValidatorInstance;
+    var AuthorizedProducer;
 
     web3.eth.getAccounts(function(error, accounts) {
       if (error) {
         console.log(error);
       }
+      
       var account = accounts[0];
+      // Check that MetaMask User Address is equal to Authorized user for the Asset, as ProducerID
+     // if(App.sourceDataAsset[dataId].dataAssetProducerID.localeCompare(account)){AuthorizedProducer=account;}
+      //$('.panel-dataAsset').eq(0).find('.data-dataAsset-dataAssetProducerID').text(account);
+      //$('.panel-dataAsset').eq(0).find('.data-dataAssetPublicationStatus').text(App.sourceDataAsset[dataId].dataAssetProducerID);
       App.contracts.ODTAValidator.deployed().then(function(instance) {
         ODTAValidatorInstance = instance;
         // Execute inserDataAsset as a transaction by sending account !!! To avoid error for demo, we insert the dataAssetProducerID here above from JSON input file and not address of user
-        return ODTAValidatorInstance.insertDataAsset(App.sourceDataAsset[dataId].dataAssetID, App.sourceDataAsset[dataId].dataAssetProducerID,App.sourceDataAsset[dataId].dataAssetAccessType,App.sourceDataAsset[dataId].dataAssetAccessPrice,"FeatureNotYetAvailable",App.sourceDataAsset[dataId].proofOfIntegrigyDataAsset,App.sourceDataAsset[dataId].proofOfSourceAuthenticity,App.sourceDataAsset[dataId].proofOfIntegrityUseProcessingConditions, {from: account});
+        return ODTAValidatorInstance.insertDataAsset(App.sourceDataAsset[dataId].dataAssetID,App.sourceDataAsset[dataId].dataAssetProducerID,App.sourceDataAsset[dataId].dataAssetAccessType,App.sourceDataAsset[dataId].dataAssetAccessPrice,"FeatureNotYetAvailable",App.sourceDataAsset[dataId].proofOfIntegrigyDataAsset,App.sourceDataAsset[dataId].proofOfSourceAuthenticity,App.sourceDataAsset[dataId].proofOfIntegrityUseProcessingConditions,{from:account});
       }).then(function(result) {
         // If operation succeed, then update WebPage that Data has been inserted
         return App.markAccessed();
