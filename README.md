@@ -60,3 +60,5 @@ The ODTA Registry will be composed of 3 Smart Contracts:
 - ODTA Access Control Smart Contract
 
 For more information regarding the detail of the Data Model, Smart Contract design, Smart Contract Method signature, please refer to the https://marcantoine-lemaire.gitbook.io/solidity/open-data-trusted-anchors-project 
+
+There is a demo Web Page on: http://blockchainbeta.eu
