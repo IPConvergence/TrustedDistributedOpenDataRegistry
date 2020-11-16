@@ -1,10 +1,9 @@
-// Rename this file to app.js if you use a local blockchain like Ganache to test it.
-// Then rename existing app.js to app-Rinkeby.js, to avoid using Rinkeby Public blockchain
-
 App = {
   web3Provider: null,
   contracts: {},
   sourceDataAsset:null,
+  // Address of the ODTA SmartContract on Rinkeby, you can replace with your instance address
+  ODTADeployedAddressRinkeby:"0xa17b09fDb3fCBEE1C881fDf9479d822F13324339",
 
   init: async function() {
     // Load dataAssets.
@@ -80,9 +79,8 @@ App = {
 
   // Read Data Asset from the ODTA Registry on SmartContract and display some Data Asset Input on the Webpage
   markAccessed:  async function() {
-    // Very important remark; the "deployed()" method catch the local ganache SC address of the object ODTAValidator SC
-    // When you plan to use a public SC address version, you replace deployed() with at("Public_SC-Address")
-    let instance = await App.contracts.ODTAValidator.deployed();
+    //let instance = await App.contracts.ODTAValidator.deployed();
+    let instance= await App.contracts.ODTAValidator.at(App.ODTADeployedAddressRinkeby);
     var address = web3.eth.accounts[0];
     for (i =0; i<App.sourceDataAsset.length; i ++){
       let output = await instance.getDataAssetAccess(App.sourceDataAsset[i].dataAssetID, address,{from:address});
@@ -120,7 +118,7 @@ App = {
      // if(App.sourceDataAsset[dataId].dataAssetProducerID.localeCompare(account)){AuthorizedProducer=account;}
       //$('.panel-dataAsset').eq(0).find('.data-dataAsset-dataAssetProducerID').text(account);
       //$('.panel-dataAsset').eq(0).find('.data-dataAssetPublicationStatus').text(App.sourceDataAsset[dataId].dataAssetProducerID);
-      App.contracts.ODTAValidator.deployed().then(function(instance) {
+      App.contracts.ODTAValidator.at(App.ODTADeployedAddressRinkeby).then(function(instance) {
         ODTAValidatorInstance = instance;
         // Execute inserDataAsset as a transaction by sending account !!! To avoid error for demo, we insert the dataAssetProducerID here above from JSON input file and not address of user
         return ODTAValidatorInstance.insertDataAsset(App.sourceDataAsset[dataId].dataAssetID,App.sourceDataAsset[dataId].dataAssetProducerID,App.sourceDataAsset[dataId].dataAssetAccessType,App.sourceDataAsset[dataId].dataAssetAccessPrice,"FeatureNotYetAvailable",App.sourceDataAsset[dataId].proofOfIntegrigyDataAsset,App.sourceDataAsset[dataId].proofOfSourceAuthenticity,App.sourceDataAsset[dataId].proofOfIntegrityUseProcessingConditions,{from:account});
@@ -148,7 +146,7 @@ App = {
         console.log(error);
       }
       var account = accounts[0];
-      App.contracts.ODTAValidator.deployed().then(function(instance) {
+      App.contracts.ODTAValidator.at(App.ODTADeployedAddressRinkeby).then(function(instance) {
         ODTAValidatorInstance = instance;
         //!!!! I have issue here, a non producer can set access to all asset, it seems that in SC the "isProducerOfExistingDataAsset" is not working
         return ODTAValidatorInstance.setDataAssetAccess(App.sourceDataAsset[dataId].dataAssetID, inputTargetAuthorization,authorization,{from: account});
@@ -172,7 +170,7 @@ App = {
         console.log(error);
       }
       var account = accounts[0];
-      App.contracts.ODTAValidator.deployed().then(function(instance) {
+      App.contracts.ODTAValidator.at(App.ODTADeployedAddressRinkeby).then(function(instance) {
         ODTAValidatorInstance = instance;
         // Execute inserDataAsset as a transaction by sending account
         return ODTAValidatorInstance.payToAccessDataAsset(App.sourceDataAsset[dataId].dataAssetID, App.sourceDataAsset[dataId].dataAssetProducerID);

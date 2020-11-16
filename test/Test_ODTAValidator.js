@@ -12,13 +12,17 @@ contract('ODTAValidator', function(accounts) {
     const dataAssetConsumerID1 = accounts[2]
     const dataAssetConsumerID2 = accounts[3]
     const dataAssetID = "0x7ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    const dataAssetID2 = "0x8ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
     const dataAssetAccessType1 = "paying"
     const dataAssetAccessType2 = "free"
     const dataAssetAccessPrice = "100000000000000000" //in Wei unit, here is 0,1 Eth Cost (1eth = 1e18), feature not yet implemented in v0.1 version of ODTAValidator
     const dataAssetAccessDuration = "not yet Available"
-    const proofOfIntegrigyDataAsset = "0x9abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
-    const proofOfSourceAuthenticity = "0x9abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
-    const proofOfIntegrityUseProcessingConditions = "0x9abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
+    const proofOfIntegrigyDataAsset = "0x7abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
+    const proofOfSourceAuthenticity = "0x7abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
+    const proofOfIntegrityUseProcessingConditions = "0x7abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
+    const proofOfIntegrigyDataAsset2 = "0x8abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
+    const proofOfSourceAuthenticity2 = "0x8abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
+    const proofOfIntegrityUseProcessingConditions2 = "0x8abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
     
     let instance
 
@@ -27,9 +31,11 @@ contract('ODTAValidator', function(accounts) {
     })
        
     it("Step 1: A Data Asset Provider adds a new paying Data Asset into the ODTA Registry and read it", async() => {
+        const result0 = await instance.getDataAssetTotal({from: dataAssetProducerID})
         const tx1 = await instance.insertDataAsset(dataAssetID, dataAssetProducerID,dataAssetAccessType1,dataAssetAccessPrice,dataAssetAccessDuration,proofOfIntegrigyDataAsset,proofOfSourceAuthenticity,proofOfIntegrityUseProcessingConditions, {from: dataAssetProducerID})
         const result = await instance.getDataAsset(dataAssetID, {from: dataAssetProducerID})
         const result2 = await instance.getDataAssetAccess(dataAssetID,dataAssetProducerID, {from: dataAssetProducerID})
+        const result3 = await instance.getDataAssetTotal({from: dataAssetProducerID})
         assert.equal(result[0], dataAssetProducerID, 'The dataProducerID inserted in SC does not match the expected value')
         assert.equal(result[1], dataAssetAccessType1, 'The dataAssetAccessType inserted in SC does not match the expected value')
         assert.equal(result2, true, 'The dataAssetAccess inserted in SC does not match the expected value')
@@ -40,6 +46,7 @@ contract('ODTAValidator', function(accounts) {
         assert.equal(result[6], proofOfIntegrityUseProcessingConditions, 'The proofOfIntegrityUseProcessingConditions inserted in SC does not match the expected value')
         console.log(`
             "Output Step 1: A Data Asset Provider adds a new paying Data Asset into the ODTA Registry and read it" 
+                "Total Number of Asset in the ODTA SC:"     ${result0}
                 "dataAssetID:"                              ${dataAssetID}
                 "dataProducerID:"                           ${result[0]}
                 "dataConsumerID:"                           ${dataAssetProducerID}
@@ -49,7 +56,9 @@ contract('ODTAValidator', function(accounts) {
                 "dataAssetAccessDuration":                  ${result[3]} 
                 "proofOfIntegrigyDataAsset:"                ${result[4]} 
                 "proofOfSourceAuthenticity:"                ${result[5]} 
-                "proofOfIntegrityUseProcessingConditions:"  ${result[6]} `)
+                "proofOfIntegrityUseProcessingConditions:"  ${result[6]}
+                "Total Number of Asset in the ODTA SC:"     ${result3}
+                `)
     })
     
     /// "0x7265667573656400000000000000000000000000000000000000000000000000" means refused in Hexadecimal
@@ -57,6 +66,7 @@ contract('ODTAValidator', function(accounts) {
         const tx2 = await instance.insertDataAsset(dataAssetID, dataAssetProducerID,dataAssetAccessType1,dataAssetAccessPrice,dataAssetAccessDuration,proofOfIntegrigyDataAsset,proofOfSourceAuthenticity,proofOfIntegrityUseProcessingConditions, {from: dataAssetProducerID})
         const result1 = await instance.getDataAsset(dataAssetID, {from: dataAssetConsumerID1})
         const result2 = await instance.getDataAssetAccess(dataAssetID,dataAssetConsumerID1, {from: dataAssetConsumerID1})
+        const result3 = await instance.getDataAssetTotal({from: dataAssetProducerID})
         assert.equal(result1[0], dataAssetProducerID, 'The dataProducerID inserted in SC does not match the expected value')
         assert.equal(result1[1], dataAssetAccessType1, 'The dataAssetAccessType inserted in SC does not match the expected value')
         assert.equal(result2, false, 'The dataAssetAccess inserted in SC does not match the expected value')
@@ -76,13 +86,16 @@ contract('ODTAValidator', function(accounts) {
                 "dataAssetAccessDuration":                  ${result1[3]} 
                 "proofOfIntegrigyDataAsset:"                ${result1[4]} "means refused in Hexadecimal"
                 "proofOfSourceAuthenticity:"                ${result1[5]} "means refused in Hexadecimal"
-                "proofOfIntegrityUseProcessingConditions:"  ${result1[6]} "means refused in Hexadecimal"`)
+                "proofOfIntegrityUseProcessingConditions:"  ${result1[6]} "means refused in Hexadecimal"
+                "Total Number of Asset in the ODTA SC:"     ${result3}
+                `)
     })
     it("Step 3: A Data Asset Producer gives access to a Data Consumer to the paying Data Asset into the ODTA Registry", async() => {
         const tx2 = await instance.insertDataAsset(dataAssetID, dataAssetProducerID,dataAssetAccessType1,dataAssetAccessPrice,dataAssetAccessDuration,proofOfIntegrigyDataAsset,proofOfSourceAuthenticity,proofOfIntegrityUseProcessingConditions, {from: dataAssetProducerID})
         const tx3 = await instance.setDataAssetAccess(dataAssetID, dataAssetConsumerID1,true, {from: dataAssetProducerID})
         const result3 = await instance.getDataAsset(dataAssetID, {from: dataAssetConsumerID1})
         const result4 = await instance.getDataAssetAccess(dataAssetID,dataAssetConsumerID1, {from: dataAssetConsumerID1})
+        const result5 = await instance.getDataAssetTotal({from: dataAssetProducerID})
         assert.equal(result3[0], dataAssetProducerID, 'The dataProducerID inserted in SC does not match the expected value')
         assert.equal(result3[1], dataAssetAccessType1, 'The dataAssetAccessType inserted in SC does not match the expected value')
         assert.equal(result4, true, 'The dataAssetAccess inserted in SC does not match the expected value')
@@ -102,13 +115,16 @@ contract('ODTAValidator', function(accounts) {
                 "dataAssetAccessDuration":                  ${result3[3]} 
                 "proofOfIntegrigyDataAsset:"                ${result3[4]} 
                 "proofOfSourceAuthenticity:"                ${result3[5]} 
-                "proofOfIntegrityUseProcessingConditions:"  ${result3[6]} `)
+                "proofOfIntegrityUseProcessingConditions:"  ${result3[6]} 
+                "Total Number of Asset in the ODTA SC:"     ${result5}
+                `)
     })
     it("Step 4: A Data Asset Producer gives access to a Data Consumer1 to the paying Data Asset into the ODTA Registry, Data Consumer2 tries accessing it", async() => {
         const tx2 = await instance.insertDataAsset(dataAssetID, dataAssetProducerID,dataAssetAccessType1,dataAssetAccessPrice,dataAssetAccessDuration,proofOfIntegrigyDataAsset,proofOfSourceAuthenticity,proofOfIntegrityUseProcessingConditions, {from: dataAssetProducerID})
         const tx3 = await instance.setDataAssetAccess(dataAssetID, dataAssetConsumerID1,true, {from: dataAssetProducerID})
         const result4 = await instance.getDataAsset(dataAssetID, {from: dataAssetConsumerID2})
         const result5 = await instance.getDataAssetAccess(dataAssetID,dataAssetConsumerID2, {from: dataAssetConsumerID1})
+        const result6 = await instance.getDataAssetTotal({from: dataAssetProducerID})
         assert.equal(result4[0], dataAssetProducerID, 'The dataProducerID inserted in SC does not match the expected value')
         assert.equal(result4[1], dataAssetAccessType1, 'The dataAssetAccessType inserted in SC does not match the expected value')
         assert.equal(result5, false, 'The dataAssetAccess inserted in SC does not match the expected value')
@@ -128,7 +144,9 @@ contract('ODTAValidator', function(accounts) {
                 "dataAssetAccessDuration":                  ${result4[3]} 
                 "proofOfIntegrigyDataAsset:"                ${result4[4]} "means refused in Hexadecimal"
                 "proofOfSourceAuthenticity:"                ${result4[5]} "means refused in Hexadecimal"
-                "proofOfIntegrityUseProcessingConditions:"  ${result4[6]} "means refused in Hexadecimal"`)
+                "proofOfIntegrityUseProcessingConditions:"  ${result4[6]} "means refused in Hexadecimal"
+                "Total Number of Asset in the ODTA SC:"     ${result6}
+                `)
     })
     it("Step 5: A Data Asset Producer gives access to a Data Consumer1 to the paying Data Asset into the ODTA Registry, then remove him that access rigth", async() => {
         const tx2 = await instance.insertDataAsset(dataAssetID, dataAssetProducerID,dataAssetAccessType1,dataAssetAccessPrice,dataAssetAccessDuration,proofOfIntegrigyDataAsset,proofOfSourceAuthenticity,proofOfIntegrityUseProcessingConditions, {from: dataAssetProducerID})
@@ -136,6 +154,7 @@ contract('ODTAValidator', function(accounts) {
         const tx4 = await instance.setDataAssetAccess(dataAssetID, dataAssetConsumerID1,false, {from: dataAssetProducerID})
         const result3 = await instance.getDataAsset(dataAssetID, {from: dataAssetConsumerID1})
         const result4 = await instance.getDataAssetAccess(dataAssetID,dataAssetConsumerID1, {from: dataAssetConsumerID1})
+        const result5 = await instance.getDataAssetTotal({from: dataAssetProducerID})
         assert.equal(result3[0], dataAssetProducerID, 'The dataProducerID inserted in SC does not match the expected value')
         assert.equal(result3[1], dataAssetAccessType1, 'The dataAssetAccessType inserted in SC does not match the expected value')
         assert.equal(result4, false, 'The dataAssetAccess inserted in SC does not match the expected value')
@@ -155,12 +174,15 @@ contract('ODTAValidator', function(accounts) {
                 "dataAssetAccessDuration":                  ${result3[3]} 
                 "proofOfIntegrigyDataAsset:"                ${result3[4]} "means refused in Hexadecimal"
                 "proofOfSourceAuthenticity:"                ${result3[5]} "means refused in Hexadecimal"
-                "proofOfIntegrityUseProcessingConditions:"  ${result3[6]} "means refused in Hexadecimal"`)
+                "proofOfIntegrityUseProcessingConditions:"  ${result3[6]} "means refused in Hexadecimal"
+                "Total Number of Asset in the ODTA SC:"     ${result5}
+                `)
     })
     it("Step 6: A Data Asset Provider adds a new free Data Asset into the ODTA Registry. Every user can read it without needing any access", async() => {
         const tx2 = await instance.insertDataAsset(dataAssetID, dataAssetProducerID,dataAssetAccessType2,dataAssetAccessPrice,dataAssetAccessDuration,proofOfIntegrigyDataAsset,proofOfSourceAuthenticity,proofOfIntegrityUseProcessingConditions, {from: dataAssetProducerID})
         const result = await instance.getDataAsset(dataAssetID, {from: dataAssetConsumerID2})
         const result2 = await instance.getDataAssetAccess(dataAssetID,dataAssetConsumerID2, {from: dataAssetConsumerID1})
+        const result3 = await instance.getDataAssetTotal({from: dataAssetProducerID})
         assert.equal(result[0], dataAssetProducerID, 'The dataProducerID inserted in SC does not match the expected value')
         assert.equal(result[1], dataAssetAccessType2, 'The dataAssetAccessType inserted in SC does not match the expected value')
         assert.equal(result2, true, 'The dataAssetAccess inserted in SC does not match the expected value')
@@ -180,6 +202,47 @@ contract('ODTAValidator', function(accounts) {
                 "dataAssetAccessDuration":                  ${result[3]} 
                 "proofOfIntegrigyDataAsset:"                ${result[4]} 
                 "proofOfSourceAuthenticity:"                ${result[5]} 
-                "proofOfIntegrityUseProcessingConditions:"  ${result[6]} `)
+                "proofOfIntegrityUseProcessingConditions:"  ${result[6]} 
+                "Total Number of Asset in the ODTA SC:"     ${result3}
+                `)
+    })
+    it("Step 7: A Data Asset Provider adds a second new paying Data Asset into the ODTA Registry and read it", async() => {
+        const tx0 = await instance.insertDataAsset(dataAssetID, dataAssetProducerID,dataAssetAccessType1,dataAssetAccessPrice,dataAssetAccessDuration,proofOfIntegrigyDataAsset,proofOfSourceAuthenticity,proofOfIntegrityUseProcessingConditions, {from: dataAssetProducerID})
+        const tx1 = await instance.insertDataAsset(dataAssetID2, dataAssetProducerID,dataAssetAccessType1,dataAssetAccessPrice,dataAssetAccessDuration,proofOfIntegrigyDataAsset2,proofOfSourceAuthenticity2,proofOfIntegrityUseProcessingConditions2, {from: dataAssetProducerID})
+        const result = await instance.getDataAsset(dataAssetID2, {from: dataAssetProducerID})
+        const result2 = await instance.getDataAssetAccess(dataAssetID2,dataAssetProducerID, {from: dataAssetProducerID})
+        const result7 = await instance.getDataAssetTotal({from: dataAssetProducerID})
+        assert.equal(result[0], dataAssetProducerID, 'The dataProducerID inserted in SC does not match the expected value')
+        assert.equal(result[1], dataAssetAccessType1, 'The dataAssetAccessType inserted in SC does not match the expected value')
+        assert.equal(result2, true, 'The dataAssetAccess inserted in SC does not match the expected value')
+        assert.equal(result[2].toString(10),dataAssetAccessPrice , 'The dataAssetAccessPrice inserted in SC does not match the expected value')
+        assert.equal(result[3], dataAssetAccessDuration, 'The dataAssetAccessDuration inserted in SC does not match the expected value')
+        assert.equal(result[4], proofOfIntegrigyDataAsset2, 'The proofOfIntegrigyDataAsset inserted in SC does not match the expected value')
+        assert.equal(result[5], proofOfSourceAuthenticity2, 'The proofOfSourceAuthenticity inserted in SC does not match the expected value')
+        assert.equal(result[6], proofOfIntegrityUseProcessingConditions2, 'The proofOfIntegrityUseProcessingConditions inserted in SC does not match the expected value')
+        console.log(`
+            "Output Step 7: A Data Asset Provider adds a second new paying Data Asset into the ODTA Registry and read it" 
+                "dataAssetID:"                              ${dataAssetID2}
+                "dataProducerID:"                           ${result[0]}
+                "dataConsumerID:"                           ${dataAssetProducerID}
+                "dataAssetAccessType:"                      ${result[1]}
+                "dataAssetAccess:"                          ${result2}
+                "dataAssetAccessPrice:"                     ${result[2]} 
+                "dataAssetAccessDuration":                  ${result[3]} 
+                "proofOfIntegrigyDataAsset:"                ${result[4]} 
+                "proofOfSourceAuthenticity:"                ${result[5]} 
+                "proofOfIntegrityUseProcessingConditions:"  ${result[6]}
+                "Total Number of Asset in the ODTA SC:"     ${result7}
+                `)
+    })
+    it("Step 8: Test the Circuit Breaking Procedure by Owner of SC", async() => {
+        const result10 = await instance.toggleContractActive({from: owner})
+        const tx0 = await instance.insertDataAsset(dataAssetID, dataAssetProducerID,dataAssetAccessType1,dataAssetAccessPrice,dataAssetAccessDuration,proofOfIntegrigyDataAsset,proofOfSourceAuthenticity,proofOfIntegrityUseProcessingConditions, {from: dataAssetProducerID})
+        const result7 = await instance.getDataAssetTotal({from: dataAssetProducerID})
+        console.log(`
+            "Output Step 8: Test the Circuit Breaking Procedure by Owner of SC" 
+                "Call the insertDataAsset First, then look if Data Asset Inserted"
+                "Total Number of Asset in the ODTA SC:"     ${result7}
+                `)
     })
 })

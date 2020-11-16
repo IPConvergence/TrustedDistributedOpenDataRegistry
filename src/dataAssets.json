@@ -10,7 +10,7 @@
       "co2Value": "100",
       "unit": "g/km"
       },
-    "dataAssetProducerID": "0xAd9E5A92e86d4dF197ca9c3957a253BBdCD641c2",
+    "dataAssetProducerID": "0x7C584e710fE6afA5369A8Bffee47Fc98D76535a5",
     "dataAssetAccessType": "paying",
     "dataAssetAccessPrice": "100000000000000000",
     "proofOfIntegrigyDataAsset": "0x1abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
@@ -29,7 +29,7 @@
       "temperatureValue": "30",
       "unit": "celsius"
       },
-    "dataAssetProducerID": "0xAFbd3507992DCCF0A446bFaD1024bdDe9E4d9E8a",
+    "dataAssetProducerID": "0xf5ce976c4688A822Ed891e4F6332AC20e485C90a",
     "dataAssetAccessType": "paying",
     "dataAssetAccessPrice": "100000000000000000",
     "proofOfIntegrigyDataAsset": "0x2abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
@@ -48,7 +48,7 @@
       "humidityValue": "8",
       "unit": "gram/m3"
       },
-    "dataAssetProducerID": "0xAd9E5A92e86d4dF197ca9c3957a253BBdCD641c2",
+    "dataAssetProducerID": "0x7C584e710fE6afA5369A8Bffee47Fc98D76535a5",
     "dataAssetAccessType": "paying",
     "dataAssetAccessPrice": "100000000000000000",
     "proofOfIntegrigyDataAsset": "0x3abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
@@ -67,7 +67,7 @@
       "atmosphericPressureValue": "1050",
       "unit": "hPA"
       },
-    "dataAssetProducerID": "0xAd9E5A92e86d4dF197ca9c3957a253BBdCD641c2",
+    "dataAssetProducerID": "0x7C584e710fE6afA5369A8Bffee47Fc98D76535a5",
     "dataAssetAccessType": "free",
     "dataAssetAccessPrice": "0",
     "proofOfIntegrigyDataAsset": "0x4abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
@@ -86,7 +86,7 @@
       "atmosphericPressureValue": "900",
       "unit": "hPA"
       },
-    "dataAssetProducerID": "0x84aE1FFE6E05285062D2cE61B48c55B709216Bb6",
+    "dataAssetProducerID": "0x7C584e710fE6afA5369A8Bffee47Fc98D76535a5",
     "dataAssetAccessType": "paying",
     "dataAssetAccessPrice": "100000000000000000",
     "proofOfIntegrigyDataAsset": "0x5abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
@@ -105,7 +105,7 @@
       "atmosphericPressureValue": "800",
       "unit": "hPA"
       },
-    "dataAssetProducerID": "0xAd9E5A92e86d4dF197ca9c3957a253BBdCD641c2",
+    "dataAssetProducerID": "0x7C584e710fE6afA5369A8Bffee47Fc98D76535a5",
     "dataAssetAccessType": "paying",
     "dataAssetAccessPrice": "100000000000000000",
     "proofOfIntegrigyDataAsset": "0x6abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",

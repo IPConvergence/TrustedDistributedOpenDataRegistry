@@ -1,5 +1,10 @@
 {
-"scripts": {
-    "dev": "lite-server"
-  }
+    "scripts": {
+        "dev": "lite-server"
+    },
+    "dependencies": {
+        "@truffle/hdwallet-provider": "^1.2.0",
+        "lite-server": "^2.6.1",
+        "truffle-security": "^1.7.3"
+    }
 }

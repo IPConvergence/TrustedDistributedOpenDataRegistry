@@ -1,15 +1,22 @@
 // SPDX-License-Identifier: EUPL V1.2
-pragma solidity <=0.8.0;
+//pragma solidity <=0.8.0;
+pragma solidity ^0.5.16;
+
+// Import a lib managing overflow on add/sub
+import "./utils/SafeMath.sol";
 
 /** @title ODTAValidator SC is in charge of managing DataAsset Trust Anchors
     @author Marc-Antoine Lemaire from Company IP Convergence
     @notice version 0.1, on 1 november 2020
  */
 contract ODTAValidator { 
+    using SafeMath for uint256;
 // ------------ Define the States Variables of the SC ----------------
+// -- Objects used by SmartContract Administrator --
+    bool private stopped;
 
 // -- Objects used by Data Producer --
-    address owner;
+    address internal owner;
     /// dataProducerStore = mapping of dataProducerID Address to mapping of Hash Data Asset produced by him set to true to indicate produced
     mapping (address => mapping(bytes32 => bool)) public dataProducerStore;
     /// dataProdudcerDataAssetList = An array of dataAssetID produced by a dataProducerID
@@ -31,8 +38,10 @@ contract ODTAValidator {
         bytes32 proofOfSourceAuthenticity;
         bytes32 proofOfIntegrityUseProcessingConditions;
     }
-    /// dataAssetStore = mapping of all the dataAssetID (Hash of DataAsset) and their linked dataAssetObject
+    /// dataAssetStore = mapping of all the dataAssetID (Hash of DataAsset) and their linked dataAssetObject 
     mapping (bytes32 => dataAssetObject) public dataAssetStore;
+    /// dataAssetTotal = Total number of Asset Anchored on the ODTA Registry
+    uint256 dataAssetTotal;
 
 // -- Objects used for managing Access to the Data Asset (only records for dataAssetAccessType = paying) --
     /// dataAssetAccessObject = structure that contains the access parameter for a Data Asset, only if paying resource
@@ -65,6 +74,9 @@ contract ODTAValidator {
         require(msg.sender == owner);
         _;
     }
+    /// stopInEmergency: when there is a bug and the SC is put in pause by Owner, the stopped = true, meaning that the condition here under is not valid
+    /// and the function having that modifier can not execute anymore
+    modifier stopInEmergency() { if (!stopped) _; }
     /// isProducerOfExistingDataAsset: check if the msg.send is well the DataProducer of an existing DataAsset well present in dataProducerStore
     modifier isProducerOfExistingDataAsset(bytes32 _dataAssetID){
         require(dataProducerStore[msg.sender][_dataAssetID] == true);
@@ -88,11 +100,14 @@ contract ODTAValidator {
     constructor() public{
         /* set the owner as the person who instantiated the contract. */
         owner = msg.sender;
+        dataAssetTotal = 0;
+        stopped = false; // Used by Circuit Breakers, pause functionality
     }
-
-    /** @dev Function to enable account to send ether to this SmartContract via send, transfer or call
-     */ 
-
+    /** @dev Function in charge of inserting a Data Asset on SC
+     */
+    function toggleContractActive() isOwner() public {
+        stopped = !stopped;
+    }
 
     /** @dev Function in charge of inserting a Data Asset on SC
         @param _dataAssetID Hash of the Data Asset 
@@ -112,7 +127,7 @@ contract ODTAValidator {
                                 string memory _dataAssetAccessDuration,
                                 bytes32 _proofOfIntegrigyDataAsset,
                                 bytes32 _proofOfSourceAuthenticity,
-                                bytes32 _proofOfIntegrityUseProcessingConditions) public isDataProducer(_dataAssetProducerID){
+                                bytes32 _proofOfIntegrityUseProcessingConditions) public isDataProducer(_dataAssetProducerID) stopInEmergency(){
         if(dataProducerStore[_dataAssetProducerID][_dataAssetID] != true && _dataAssetProducerID == msg.sender){
             dataAssetIDList[_dataAssetID]=true;
             /// !!! could be overlap with dataAssetIDList (see what I choose)
@@ -133,6 +148,7 @@ contract ODTAValidator {
             dataAssetStore[_dataAssetID].proofOfIntegrigyDataAsset=_proofOfIntegrigyDataAsset;
             dataAssetStore[_dataAssetID].proofOfSourceAuthenticity=_proofOfSourceAuthenticity;
             dataAssetStore[_dataAssetID].proofOfIntegrityUseProcessingConditions=_proofOfIntegrityUseProcessingConditions;
+            dataAssetTotal=dataAssetTotal.add(1);
         } /// !!! Add later on a try catch to give message is already in SC data
     }
 
@@ -146,13 +162,13 @@ contract ODTAValidator {
         @return _proofOfSourceAuthenticity :Address of the dataAssetProducerID, Etherum address
         @return _proofOfIntegrityUseProcessingConditions :Hash of Use and Processing Conditions of the data Asset
      */
-    function getDataAsset(bytes32 _dataAssetID) public view returns (address _dataAssetProducerID,
+    function getDataAsset(bytes32 _dataAssetID) public stopInEmergency() view returns (address _dataAssetProducerID,
                                                                 string memory _dataAssetAccessType,
                                                                 uint256 _dataAssetAccessPrice,
                                                                 string memory _dataAssetAccessDuration,
                                                                 bytes32 _proofOfIntegrigyDataAsset,
                                                                 bytes32 _proofOfSourceAuthenticity,
-                                                                bytes32 _proofOfIntegrityUseProcessingConditions){
+                                                                bytes32 _proofOfIntegrityUseProcessingConditions) {
       if(dataAssetIDList[_dataAssetID]==true){
             if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.free){
                 _dataAssetAccessType="free"; //
@@ -190,7 +206,7 @@ contract ODTAValidator {
         @param _dataAssetID Hash of the dataAssetValue a DataConsumer is trying to Access
         @return _dataAssetAccessType the type of access {free, paying} to access the Data Asset
     */
-    function getDataAssetAccessType(bytes32 _dataAssetID) public view returns (string memory _dataAssetAccessType){
+    function getDataAssetAccessType(bytes32 _dataAssetID) public stopInEmergency() view returns (string memory _dataAssetAccessType){
         if(dataAssetIDList[_dataAssetID]==true){
             if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.free){
                 _dataAssetAccessType="free";
@@ -205,7 +221,7 @@ contract ODTAValidator {
         @param _dataAssetConsumerID Address of the Dat Asset Consumer that could have the access (if free no access needed to be setup)
     */
     /// !!! Not sure I need this because it is automatically authorized inside the function payToAccessDataAsset
-    function setDataAssetAccess(bytes32 _dataAssetID, address _dataAssetConsumerID,bool _access) public isProducerOfExistingDataAsset(_dataAssetID){
+    function setDataAssetAccess(bytes32 _dataAssetID, address _dataAssetConsumerID,bool _access) public isProducerOfExistingDataAsset(_dataAssetID) stopInEmergency(){
         dataAssetAccessStore[_dataAssetID][_dataAssetConsumerID].dataAssetAccessStatus=_access;
         dataAssetAccessStore[_dataAssetID][_dataAssetConsumerID].dataAssetAccessStartDate="ComingFeature";
         dataAssetAccessStore[_dataAssetID][_dataAssetConsumerID].dataAssetAccessEndDate="ComingFeature";
@@ -223,7 +239,7 @@ contract ODTAValidator {
         @param _dataAssetConsumerID Address of the consumer we want to know if he has received the access from the Data Producer
         @return _access Boolean indicating if the dataAssetConsumerID has access to the _dataAssetID
     */
-    function getDataAssetAccess(bytes32 _dataAssetID, address _dataAssetConsumerID) public view returns (bool _access){
+    function getDataAssetAccess(bytes32 _dataAssetID, address _dataAssetConsumerID) public stopInEmergency() view returns (bool _access){
         if(dataAssetIDList[_dataAssetID]==true){
            if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.free){
                 return true;
@@ -234,23 +250,32 @@ contract ODTAValidator {
            
         } /// Add trow error is dataAssetID is not in dataAssetStore
     }
+    
+    /** @dev Function in charge of getting the number of Data Asset currently manage by the ODTA Registry
+        @return _dataAssetTotal uint256 indicating the total number of Data Asset anchored on the ODTA Registy
+    */
+    function getDataAssetTotal() public stopInEmergency() view returns (uint256 _dataAssetTotal){
+        return dataAssetTotal;
+    }
+    
+    
     /** @dev Function to be called by the Data Consumer, to pay for accessing the Data Asset if the Data Producer has specify paying access conditions
         @param _dataAssetID Hash of the dataAssetValue for which a user is going to pay for accessing it
         @param _toDestination Address of the Data Producer of the Asset that should receive the money paid by the consumer
     */
     /// ! Not Implemented for the Project Course
-    function payToAccessDataAsset(bytes32 _dataAssetID, address payable _toDestination) public payable isDataAssetExistInDataAssetIDList(_dataAssetID){
-        if(dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessStatus!=true && dataAssetStore[_dataAssetID].dataAssetProducerID ==_toDestination){
-            require(msg.value >= dataAssetStore[_dataAssetID].dataAssetAccessPrice, "Insufficient funds"); // !!! msg.value is in WEI Unit (1 Ether = 1e18 wei)
+    //function payToAccessDataAsset(bytes32 _dataAssetID, address payable _toDestination) public payable isDataAssetExistInDataAssetIDList(_dataAssetID){
+    //    if(dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessStatus!=true && dataAssetStore[_dataAssetID].dataAssetProducerID ==_toDestination){
+    //        require(msg.value >= dataAssetStore[_dataAssetID].dataAssetAccessPrice, "Insufficient funds"); // !!! msg.value is in WEI Unit (1 Ether = 1e18 wei)
             /// Autorization is set to the msg.sender for the Data Asset
-            dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessStatus=true; // Prevent Reentrancy Issue
-            dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessStartDate="ComingFeature";
-            dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessEndDate="ComingFeature";
-            emit eventSetDataAccess(_toDestination, msg.sender, _dataAssetID);
-            emit eventDataAccessPaidSuccessfull(dataAssetStore[_dataAssetID].dataAssetProducerID, msg.sender, _dataAssetID, dataAssetStore[_dataAssetID].dataAssetAccessPrice);
-            _toDestination.transfer(msg.value); // Prevent Reentrancy Issue, by puting the call to extenal function at the end
-        } /// !!! To be optimized later on v2.0 because not secure optimal for money transert
-    }
+    //        dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessStatus=true; // Prevent Reentrancy Issue
+    //        dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessStartDate="ComingFeature";
+    //        dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessEndDate="ComingFeature";
+    //        emit eventSetDataAccess(_toDestination, msg.sender, _dataAssetID);
+    //        emit eventDataAccessPaidSuccessfull(dataAssetStore[_dataAssetID].dataAssetProducerID, msg.sender, _dataAssetID, dataAssetStore[_dataAssetID].dataAssetAccessPrice);
+    //        _toDestination.transfer(msg.value); // Prevent Reentrancy Issue, by puting the call to extenal function at the end
+    //    } /// !!! To be optimized later on v2.0 because not secure optimal for money transert
+    //}
     
 
 }
