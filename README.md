@@ -55,9 +55,10 @@ Key Concept Definition:
 - Data Access Conditions: mechanisms put in place to protect special access to Data Asset, like paid-access.
 
 The ODTA Registry version 0.1 will be composed of 3 Smart Contracts:
-- ODTA Proxy Smart Contract
-- ODTA Validator Smart Contract
-- ODTA Access Control Smart Contract
+- ODTA Validator Smart Contract -> Main SC logic
+- ODTA Storage Smart Contract -> Diamond Storage Illustration
+- ODTA Proxy Smart Contract -> recommand to use Open Zepplin SC (out of scope of this first version of the project)
+- Gnosis Multi-Sig Smart Contract -> reuse Gnosis Multi-Sig Wallet for operator of SC
 
 In order to have better readability a special githbook has been done for this project to illustrate the following:
 - Design of the Data Model
@@ -66,5 +67,5 @@ In order to have better readability a special githbook has been done for this pr
 - How to install and use this Gith project
 - -->> Please refer to https://marcantoine-lemaire.gitbook.io/solidity/open-data-trusted-anchors-project 
 
-There is a Public demo Web Page of the Front-End on: http://blockchainbeta.eu
+There is a Public demo Web Page of the Front-End on: http://blockchainbeta.eu (Only in test Lab mode, no SLA UP Guarantee)
 The Video of the Application Test is on: https://www.youtube.com/channel/UCxGIOXS5a1n85SvUGTPrFrw

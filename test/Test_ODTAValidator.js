@@ -11,18 +11,18 @@ contract('ODTAValidator', function(accounts) {
     const dataAssetProducerID = accounts[1]
     const dataAssetConsumerID1 = accounts[2]
     const dataAssetConsumerID2 = accounts[3]
-    const dataAssetID = "0x7ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
-    const dataAssetID2 = "0x8ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    const dataAssetID = "0x1ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    const dataAssetID2 = "0x2ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
     const dataAssetAccessType1 = "paying"
     const dataAssetAccessType2 = "free"
     const dataAssetAccessPrice = "100000000000000000" //in Wei unit, here is 0,1 Eth Cost (1eth = 1e18), feature not yet implemented in v0.1 version of ODTAValidator
     const dataAssetAccessDuration = "not yet Available"
-    const proofOfIntegrigyDataAsset = "0x7abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
-    const proofOfSourceAuthenticity = "0x7abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
-    const proofOfIntegrityUseProcessingConditions = "0x7abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
-    const proofOfIntegrigyDataAsset2 = "0x8abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
-    const proofOfSourceAuthenticity2 = "0x8abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
-    const proofOfIntegrityUseProcessingConditions2 = "0x8abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
+    const proofOfIntegrigyDataAsset = "0x1abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
+    const proofOfSourceAuthenticity = "0x1abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
+    const proofOfIntegrityUseProcessingConditions = "0x1abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
+    const proofOfIntegrigyDataAsset2 = "0x2abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
+    const proofOfSourceAuthenticity2 = "0x2abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
+    const proofOfIntegrityUseProcessingConditions2 = "0x2abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" // Bytes 32 format of hash
     
     let instance
 
@@ -243,6 +243,47 @@ contract('ODTAValidator', function(accounts) {
             "Output Step 8: Test the Circuit Breaking Procedure by Owner of SC" 
                 "Call the insertDataAsset First, then look if Data Asset Inserted"
                 "Total Number of Asset in the ODTA SC:"     ${result7}
+                `)
+    })
+    it("Step 9: Test Toggle of the Contract Status - Put it in pause", async() => {
+        const result0 = await instance.getSCVersion({from: owner})
+        const result1 = await instance.getOperator({from: owner})
+        const result2 = await instance.setOperator(dataAssetProducerID,{from: owner})
+        const result3 = await instance.getOperator({from: owner})
+        const result4 = await instance.toggleContractActive({from: owner})
+        const result5 = await instance.getStatusPauseContract({from: owner})
+        const result6 = await instance.setOperator("0x71C78822B2C7fBc5FaB801a167dB930399C9d586",{from: owner})
+        const result7 = await instance.getOperator({from: owner})
+        const result8 = await instance.toggleContractActive({from: dataAssetProducerID})
+        const result9 = await instance.getStatusPauseContract({from: dataAssetProducerID})
+        console.log(`
+            "Output Step 9: Test Toggle of the Contract Status - Put it in pause" 
+                "Version of the SC:"                    ${result0}
+                "Address of the Previous Operator:"     ${result1}
+                "Address of the new Operator:"          ${result3}
+                "Pause Status of the SC:"               ${result5}
+                "Trying to change the Address of new operator when SC is in pause Status - should not change:" ${result7}
+                "Toggle the Pause with the operator account, see if Pause Status of SC has changed:": ${result9}
+                `)
+    })
+
+    it("Step 10: Owner set operator (can be the multisig SC address), trying change SC version with operator", async() => {
+        //let instance2 = await ODTAValidator.at("0x45c6028Ae0d9cF045f52c96c1a84727c6c114Cc6") // insert here the address of your deployed SC
+        const result6 = await instance.getStatusPauseContract({from: dataAssetProducerID})
+        const result0 = await instance.getSCVersion({from: owner})
+        const result1 = await instance.getOperator({from: owner})  
+        const result2 = await instance.setOperator(dataAssetProducerID,{from: owner}) // insert in place of dataAssetProduceID the address of the multisig 
+        const result3 = await instance.getOperator({from: dataAssetProducerID}) // insert in place of dataAssetProduceID the address of the multisig
+        const result4 = await instance.setSCVersion(2,{from: owner})
+        const result5 = await instance.getSCVersion({from: owner})
+
+        console.log(`
+            "Output Step 10: Owner set operator (can be the multisig SC address), trying change SC version with operator" 
+                "Pause Status of the SC:"                               ${result6}
+                "Current Version of the SC:"                            ${result0}
+                "Address of the Previous Operator:"                     ${result1}
+                "Address of the new Operator - (can be MultiSig SC):"   ${result3}
+                "New Version of the SC set by the new operator:"        ${result5}
                 `)
     })
 })

@@ -29,7 +29,7 @@
       "temperatureValue": "30",
       "unit": "celsius"
       },
-    "dataAssetProducerID": "0xf5ce976c4688A822Ed891e4F6332AC20e485C90a",
+    "dataAssetProducerID": "0x7C584e710fE6afA5369A8Bffee47Fc98D76535a5",
     "dataAssetAccessType": "paying",
     "dataAssetAccessPrice": "100000000000000000",
     "proofOfIntegrigyDataAsset": "0x2abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
@@ -105,7 +105,7 @@
       "atmosphericPressureValue": "800",
       "unit": "hPA"
       },
-    "dataAssetProducerID": "0x7C584e710fE6afA5369A8Bffee47Fc98D76535a5",
+    "dataAssetProducerID": "0xf5ce976c4688A822Ed891e4F6332AC20e485C90a",
     "dataAssetAccessType": "paying",
     "dataAssetAccessPrice": "100000000000000000",
     "proofOfIntegrigyDataAsset": "0x6abccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",

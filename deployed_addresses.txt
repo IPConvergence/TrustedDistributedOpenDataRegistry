@@ -1,3 +1,3 @@
 Ethereum Address on Rinkebey Network where are the ODTA SmartContracts
 
-0xa17b09fDb3fCBEE1C881fDf9479d822F13324339
+0x45b9d883aB05b081015E67e031516379f2C148D8

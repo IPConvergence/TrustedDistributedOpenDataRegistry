@@ -1,0 +1,716 @@
+{
+  "contractName": "ODTAStorage",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "ODTAStorage_DIAMOND_STORAGE_POSITION",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.7.0+commit.9e61f92b\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"ODTAStorage_DIAMOND_STORAGE_POSITION\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Marc-Antoine Lemaire from Company IP Convergence\",\"kind\":\"dev\",\"methods\":{},\"title\":\"ODTAStorage SC is in charge of managing Diamond Storage Capability for the Trust Anchors\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"version 0.1, on 17 november 2020\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/lemaima/Documents/devTest/TrustedDistributedOpenDataRegistry/contracts/ODTAStorage.sol\":\"ODTAStorage\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/lemaima/Documents/devTest/TrustedDistributedOpenDataRegistry/contracts/ODTAStorage.sol\":{\"keccak256\":\"0xc0a15dd01b3df8aba918977dab754dbd4c5547b660d4e8db710e883eadd35069\",\"license\":\"EUPL V1.2\",\"urls\":[\"bzz-raw://a9eee3441d5ec423d117b89951c1ad2aed648b3e25be6d878909c56c951dd35a\",\"dweb:/ipfs/QmPn5u61McYuHyZXjN2iK2Nqb3DkaiRcqCf3wFzcPe686F\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b5060a38061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c806347c0f16a14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b7f2d92e48e8c28bb87829b51224aebace634878300f0c592fa86dd273fdc07b61b8156fea26469706673582212207144255c4f030fab0ff88689e888b1797802538ba1356b40b71e213ff4ec042f64736f6c63430007000033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c806347c0f16a14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b7f2d92e48e8c28bb87829b51224aebace634878300f0c592fa86dd273fdc07b61b8156fea26469706673582212207144255c4f030fab0ff88689e888b1797802538ba1356b40b71e213ff4ec042f64736f6c63430007000033",
+  "immutableReferences": {},
+  "sourceMap": "300:616:1:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "300:616:1:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;405:119;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;468:56;405:119;:::o",
+  "source": "// SPDX-License-Identifier: EUPL V1.2\n//pragma solidity ^0.5.16;\npragma solidity ^0.7.0;\n\n/** @title ODTAStorage SC is in charge of managing Diamond Storage Capability for the Trust Anchors\n    @author Marc-Antoine Lemaire from Company IP Convergence\n    @notice version 0.1, on 17 november 2020\n */\ncontract ODTAStorage {\n    // State variable to have a unique position on memory to store the struct\n    bytes32 public constant ODTAStorage_DIAMOND_STORAGE_POSITION = keccak256(\n        \"diamond.standard.ODTA.storage\"\n    );\n\n    struct ODTA {\n        uint256 _version;\n    }\n\n     /** @dev Funtion that creates a Diamond Storage to store the ODTA struct and returns the storage pointer to the ODTA Struct\n    */\n    function odtaStorage() internal pure returns (ODTA storage ms) {\n        bytes32 position = ODTAStorage_DIAMOND_STORAGE_POSITION;\n        assembly {\n            ms.slot := position\n        }\n    }\n}",
+  "sourcePath": "/Users/lemaima/Documents/devTest/TrustedDistributedOpenDataRegistry/contracts/ODTAStorage.sol",
+  "ast": {
+    "absolutePath": "/Users/lemaima/Documents/devTest/TrustedDistributedOpenDataRegistry/contracts/ODTAStorage.sol",
+    "exportedSymbols": {
+      "ODTAStorage": [
+        56
+      ]
+    },
+    "id": 57,
+    "license": "EUPL V1.2",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 34,
+        "literals": [
+          "solidity",
+          "^",
+          "0.7",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "65:23:1"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 35,
+          "nodeType": "StructuredDocumentation",
+          "src": "90:209:1",
+          "text": "@title ODTAStorage SC is in charge of managing Diamond Storage Capability for the Trust Anchors\n@author Marc-Antoine Lemaire from Company IP Convergence\n@notice version 0.1, on 17 november 2020"
+        },
+        "fullyImplemented": true,
+        "id": 56,
+        "linearizedBaseContracts": [
+          56
+        ],
+        "name": "ODTAStorage",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "functionSelector": "47c0f16a",
+            "id": 40,
+            "mutability": "constant",
+            "name": "ODTAStorage_DIAMOND_STORAGE_POSITION",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 56,
+            "src": "405:119:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 36,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "405:7:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "arguments": [
+                {
+                  "argumentTypes": null,
+                  "hexValue": "6469616d6f6e642e7374616e646172642e4f4454412e73746f72616765",
+                  "id": 38,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "kind": "string",
+                  "lValueRequested": false,
+                  "nodeType": "Literal",
+                  "src": "487:31:1",
+                  "subdenomination": null,
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_stringliteral_2d92e48e8c28bb87829b51224aebace634878300f0c592fa86dd273fdc07b61b",
+                    "typeString": "literal_string \"diamond.standard.ODTA.storage\""
+                  },
+                  "value": "diamond.standard.ODTA.storage"
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_stringliteral_2d92e48e8c28bb87829b51224aebace634878300f0c592fa86dd273fdc07b61b",
+                    "typeString": "literal_string \"diamond.standard.ODTA.storage\""
+                  }
+                ],
+                "id": 37,
+                "name": "keccak256",
+                "nodeType": "Identifier",
+                "overloadedDeclarations": [],
+                "referencedDeclaration": -8,
+                "src": "468:9:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                  "typeString": "function (bytes memory) pure returns (bytes32)"
+                }
+              },
+              "id": 39,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "functionCall",
+              "lValueRequested": false,
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "468:56:1",
+              "tryCall": false,
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "ODTAStorage.ODTA",
+            "id": 43,
+            "members": [
+              {
+                "constant": false,
+                "id": 42,
+                "mutability": "mutable",
+                "name": "_version",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 43,
+                "src": "553:16:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 41,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "553:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "ODTA",
+            "nodeType": "StructDefinition",
+            "scope": 56,
+            "src": "531:45:1",
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 54,
+              "nodeType": "Block",
+              "src": "781:133:1",
+              "statements": [
+                {
+                  "assignments": [
+                    50
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 50,
+                      "mutability": "mutable",
+                      "name": "position",
+                      "nodeType": "VariableDeclaration",
+                      "overrides": null,
+                      "scope": 54,
+                      "src": "791:16:1",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 49,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "791:7:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 52,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "id": 51,
+                    "name": "ODTAStorage_DIAMOND_STORAGE_POSITION",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 40,
+                    "src": "810:36:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "791:55:1"
+                },
+                {
+                  "AST": {
+                    "nodeType": "YulBlock",
+                    "src": "865:43:1",
+                    "statements": [
+                      {
+                        "nodeType": "YulAssignment",
+                        "src": "879:19:1",
+                        "value": {
+                          "name": "position",
+                          "nodeType": "YulIdentifier",
+                          "src": "890:8:1"
+                        },
+                        "variableNames": [
+                          {
+                            "name": "ms.slot",
+                            "nodeType": "YulIdentifier",
+                            "src": "879:7:1"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "evmVersion": "istanbul",
+                  "externalReferences": [
+                    {
+                      "declaration": 47,
+                      "isOffset": false,
+                      "isSlot": true,
+                      "src": "879:7:1",
+                      "valueSize": 1
+                    },
+                    {
+                      "declaration": 50,
+                      "isOffset": false,
+                      "isSlot": false,
+                      "src": "890:8:1",
+                      "valueSize": 1
+                    }
+                  ],
+                  "id": 53,
+                  "nodeType": "InlineAssembly",
+                  "src": "856:52:1"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 44,
+              "nodeType": "StructuredDocumentation",
+              "src": "583:130:1",
+              "text": "@dev Funtion that creates a Diamond Storage to store the ODTA struct and returns the storage pointer to the ODTA Struct"
+            },
+            "id": 55,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "odtaStorage",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 45,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "738:2:1"
+            },
+            "returnParameters": {
+              "id": 48,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 47,
+                  "mutability": "mutable",
+                  "name": "ms",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 55,
+                  "src": "764:15:1",
+                  "stateVariable": false,
+                  "storageLocation": "storage",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_ODTA_$43_storage_ptr",
+                    "typeString": "struct ODTAStorage.ODTA"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 46,
+                    "name": "ODTA",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 43,
+                    "src": "764:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_ODTA_$43_storage_ptr",
+                      "typeString": "struct ODTAStorage.ODTA"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "763:17:1"
+            },
+            "scope": 56,
+            "src": "718:196:1",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 57,
+        "src": "300:616:1"
+      }
+    ],
+    "src": "65:851:1"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/lemaima/Documents/devTest/TrustedDistributedOpenDataRegistry/contracts/ODTAStorage.sol",
+    "exportedSymbols": {
+      "ODTAStorage": [
+        56
+      ]
+    },
+    "id": 57,
+    "license": "EUPL V1.2",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 34,
+        "literals": [
+          "solidity",
+          "^",
+          "0.7",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "65:23:1"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 35,
+          "nodeType": "StructuredDocumentation",
+          "src": "90:209:1",
+          "text": "@title ODTAStorage SC is in charge of managing Diamond Storage Capability for the Trust Anchors\n@author Marc-Antoine Lemaire from Company IP Convergence\n@notice version 0.1, on 17 november 2020"
+        },
+        "fullyImplemented": true,
+        "id": 56,
+        "linearizedBaseContracts": [
+          56
+        ],
+        "name": "ODTAStorage",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": true,
+            "functionSelector": "47c0f16a",
+            "id": 40,
+            "mutability": "constant",
+            "name": "ODTAStorage_DIAMOND_STORAGE_POSITION",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 56,
+            "src": "405:119:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_bytes32",
+              "typeString": "bytes32"
+            },
+            "typeName": {
+              "id": 36,
+              "name": "bytes32",
+              "nodeType": "ElementaryTypeName",
+              "src": "405:7:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "arguments": [
+                {
+                  "argumentTypes": null,
+                  "hexValue": "6469616d6f6e642e7374616e646172642e4f4454412e73746f72616765",
+                  "id": 38,
+                  "isConstant": false,
+                  "isLValue": false,
+                  "isPure": true,
+                  "kind": "string",
+                  "lValueRequested": false,
+                  "nodeType": "Literal",
+                  "src": "487:31:1",
+                  "subdenomination": null,
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_stringliteral_2d92e48e8c28bb87829b51224aebace634878300f0c592fa86dd273fdc07b61b",
+                    "typeString": "literal_string \"diamond.standard.ODTA.storage\""
+                  },
+                  "value": "diamond.standard.ODTA.storage"
+                }
+              ],
+              "expression": {
+                "argumentTypes": [
+                  {
+                    "typeIdentifier": "t_stringliteral_2d92e48e8c28bb87829b51224aebace634878300f0c592fa86dd273fdc07b61b",
+                    "typeString": "literal_string \"diamond.standard.ODTA.storage\""
+                  }
+                ],
+                "id": 37,
+                "name": "keccak256",
+                "nodeType": "Identifier",
+                "overloadedDeclarations": [],
+                "referencedDeclaration": -8,
+                "src": "468:9:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_function_keccak256_pure$_t_bytes_memory_ptr_$returns$_t_bytes32_$",
+                  "typeString": "function (bytes memory) pure returns (bytes32)"
+                }
+              },
+              "id": 39,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "functionCall",
+              "lValueRequested": false,
+              "names": [],
+              "nodeType": "FunctionCall",
+              "src": "468:56:1",
+              "tryCall": false,
+              "typeDescriptions": {
+                "typeIdentifier": "t_bytes32",
+                "typeString": "bytes32"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "ODTAStorage.ODTA",
+            "id": 43,
+            "members": [
+              {
+                "constant": false,
+                "id": 42,
+                "mutability": "mutable",
+                "name": "_version",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 43,
+                "src": "553:16:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 41,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "553:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "ODTA",
+            "nodeType": "StructDefinition",
+            "scope": 56,
+            "src": "531:45:1",
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 54,
+              "nodeType": "Block",
+              "src": "781:133:1",
+              "statements": [
+                {
+                  "assignments": [
+                    50
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 50,
+                      "mutability": "mutable",
+                      "name": "position",
+                      "nodeType": "VariableDeclaration",
+                      "overrides": null,
+                      "scope": 54,
+                      "src": "791:16:1",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 49,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "791:7:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 52,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "id": 51,
+                    "name": "ODTAStorage_DIAMOND_STORAGE_POSITION",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 40,
+                    "src": "810:36:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "791:55:1"
+                },
+                {
+                  "AST": {
+                    "nodeType": "YulBlock",
+                    "src": "865:43:1",
+                    "statements": [
+                      {
+                        "nodeType": "YulAssignment",
+                        "src": "879:19:1",
+                        "value": {
+                          "name": "position",
+                          "nodeType": "YulIdentifier",
+                          "src": "890:8:1"
+                        },
+                        "variableNames": [
+                          {
+                            "name": "ms.slot",
+                            "nodeType": "YulIdentifier",
+                            "src": "879:7:1"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "evmVersion": "istanbul",
+                  "externalReferences": [
+                    {
+                      "declaration": 47,
+                      "isOffset": false,
+                      "isSlot": true,
+                      "src": "879:7:1",
+                      "valueSize": 1
+                    },
+                    {
+                      "declaration": 50,
+                      "isOffset": false,
+                      "isSlot": false,
+                      "src": "890:8:1",
+                      "valueSize": 1
+                    }
+                  ],
+                  "id": 53,
+                  "nodeType": "InlineAssembly",
+                  "src": "856:52:1"
+                }
+              ]
+            },
+            "documentation": {
+              "id": 44,
+              "nodeType": "StructuredDocumentation",
+              "src": "583:130:1",
+              "text": "@dev Funtion that creates a Diamond Storage to store the ODTA struct and returns the storage pointer to the ODTA Struct"
+            },
+            "id": 55,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "odtaStorage",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 45,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "738:2:1"
+            },
+            "returnParameters": {
+              "id": 48,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 47,
+                  "mutability": "mutable",
+                  "name": "ms",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 55,
+                  "src": "764:15:1",
+                  "stateVariable": false,
+                  "storageLocation": "storage",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_ODTA_$43_storage_ptr",
+                    "typeString": "struct ODTAStorage.ODTA"
+                  },
+                  "typeName": {
+                    "contractScope": null,
+                    "id": 46,
+                    "name": "ODTA",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 43,
+                    "src": "764:4:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_ODTA_$43_storage_ptr",
+                      "typeString": "struct ODTAStorage.ODTA"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "763:17:1"
+            },
+            "scope": 56,
+            "src": "718:196:1",
+            "stateMutability": "pure",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 57,
+        "src": "300:616:1"
+      }
+    ],
+    "src": "65:851:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.7.0+commit.9e61f92b.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.2",
+  "updatedAt": "2020-11-17T20:09:39.548Z",
+  "devdoc": {
+    "author": "Marc-Antoine Lemaire from Company IP Convergence",
+    "kind": "dev",
+    "methods": {},
+    "title": "ODTAStorage SC is in charge of managing Diamond Storage Capability for the Trust Anchors",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "notice": "version 0.1, on 17 november 2020",
+    "version": 1
+  }
+}

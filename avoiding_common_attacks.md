@@ -12,7 +12,9 @@ The following SmartContract Weakness Classitication has been identified with Myt
 - SWC-108: State Variable Default Visibility
     -> "address owner;" change to "address internal owner;"
 
-- SWC-131: Presence of unused variables
-    -> owner variable is not used
-    -> Implement a circuit breaker with it !!! tbd
+
+Please refer to https://app.gitbook.com/@marcantoine-lemaire/s/solidity/open-data-trusted-anchors-project#smartcontract-design for the description of the mecanims put in place
+Circuit breaker has been put also in place
+Math lib has been use to avoid overflow attack by re-entrancy -> https://app.gitbook.com/@marcantoine-lemaire/s/solidity/open-data-trusted-anchors-project#smartcontract-design
+Plus quality testing done with MythX, explanation here: https://app.gitbook.com/@marcantoine-lemaire/s/solidity/open-data-trusted-anchors-project#testing-code-security-quality
 

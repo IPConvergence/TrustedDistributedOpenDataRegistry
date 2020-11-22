@@ -1,22 +1,25 @@
 // SPDX-License-Identifier: EUPL V1.2
 //pragma solidity <=0.8.0;
-pragma solidity ^0.5.16;
+//pragma solidity ^0.5.16;
+pragma solidity ^0.7.0;
 
 // Import a lib managing overflow on add/sub
 import "./utils/SafeMath.sol";
+import "./ODTAStorage.sol";
 
 /** @title ODTAValidator SC is in charge of managing DataAsset Trust Anchors
     @author Marc-Antoine Lemaire from Company IP Convergence
     @notice version 0.1, on 1 november 2020
  */
-contract ODTAValidator { 
+contract ODTAValidator is ODTAStorage { 
     using SafeMath for uint256;
 // ------------ Define the States Variables of the SC ----------------
 // -- Objects used by SmartContract Administrator --
     bool private stopped;
-
-// -- Objects used by Data Producer --
     address internal owner;
+    address internal operatorSC; // We recommand to set the operator to a multisig wallet address, group of operators
+// -- Objects used by Data Producer --
+
     /// dataProducerStore = mapping of dataProducerID Address to mapping of Hash Data Asset produced by him set to true to indicate produced
     mapping (address => mapping(bytes32 => bool)) public dataProducerStore;
     /// dataProdudcerDataAssetList = An array of dataAssetID produced by a dataProducerID
@@ -41,7 +44,7 @@ contract ODTAValidator {
     /// dataAssetStore = mapping of all the dataAssetID (Hash of DataAsset) and their linked dataAssetObject 
     mapping (bytes32 => dataAssetObject) public dataAssetStore;
     /// dataAssetTotal = Total number of Asset Anchored on the ODTA Registry
-    uint256 dataAssetTotal;
+    uint256 public dataAssetTotal;
 
 // -- Objects used for managing Access to the Data Asset (only records for dataAssetAccessType = paying) --
     /// dataAssetAccessObject = structure that contains the access parameter for a Data Asset, only if paying resource
@@ -74,6 +77,11 @@ contract ODTAValidator {
         require(msg.sender == owner);
         _;
     }
+    /// isOperator modifer: checks if the msg.sender is the Operator of the contract. It can be only the owner or the operator
+    modifier isOperator() {
+        require(msg.sender == operatorSC || msg.sender == owner);
+        _;
+    }
     /// stopInEmergency: when there is a bug and the SC is put in pause by Owner, the stopped = true, meaning that the condition here under is not valid
     /// and the function having that modifier can not execute anymore
     modifier stopInEmergency() { if (!stopped) _; }
@@ -101,12 +109,37 @@ contract ODTAValidator {
         /* set the owner as the person who instantiated the contract. */
         owner = msg.sender;
         dataAssetTotal = 0;
-        stopped = false; // Used by Circuit Breakers, pause functionality
+        stopped = false; // Used by Circuit Breakers, pause functionality. When true it is in pause
+        ODTA storage ds = ODTAStorage.odtaStorage();
+        ds._version = 1;
+        operatorSC = owner;
     }
-    /** @dev Function in charge of inserting a Data Asset on SC
+    /** @dev Function to set the SC version on a Diamond Storage
+        @param version version number of the SC
+    */
+    function setSCVersion(uint256 version) isOperator() public {
+        ODTA storage ds = ODTAStorage.odtaStorage();
+        ds._version = version;
+    }
+     /** @dev Function to return the SC version stored on Diamond Storage
+         @return unit256 version of the SC
+    */
+    function getSCVersion() public view returns (uint256) {
+        ODTA storage ds = odtaStorage();
+        return ds._version;
+    }
+
+    /** @dev Function in charge or puting in pause the SC, only operator can do it (in includes the owner also)
      */
-    function toggleContractActive() isOwner() public {
+    function toggleContractActive() isOperator() public {
         stopped = !stopped;
+    }
+    /** @dev Function in charge of getting the status of the pause status of the SC
+        @return _status Return the status. If the SC is in pause, it returns true
+     */
+    
+    function getStatusPauseContract() public view returns (bool _status) {
+        return stopped;
     }
 
     /** @dev Function in charge of inserting a Data Asset on SC
@@ -162,7 +195,7 @@ contract ODTAValidator {
         @return _proofOfSourceAuthenticity :Address of the dataAssetProducerID, Etherum address
         @return _proofOfIntegrityUseProcessingConditions :Hash of Use and Processing Conditions of the data Asset
      */
-    function getDataAsset(bytes32 _dataAssetID) public stopInEmergency() view returns (address _dataAssetProducerID,
+    function getDataAsset(bytes32 _dataAssetID) public view returns (address _dataAssetProducerID,
                                                                 string memory _dataAssetAccessType,
                                                                 uint256 _dataAssetAccessPrice,
                                                                 string memory _dataAssetAccessDuration,
@@ -206,7 +239,7 @@ contract ODTAValidator {
         @param _dataAssetID Hash of the dataAssetValue a DataConsumer is trying to Access
         @return _dataAssetAccessType the type of access {free, paying} to access the Data Asset
     */
-    function getDataAssetAccessType(bytes32 _dataAssetID) public stopInEmergency() view returns (string memory _dataAssetAccessType){
+    function getDataAssetAccessType(bytes32 _dataAssetID) public view returns (string memory _dataAssetAccessType){
         if(dataAssetIDList[_dataAssetID]==true){
             if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.free){
                 _dataAssetAccessType="free";
@@ -239,7 +272,7 @@ contract ODTAValidator {
         @param _dataAssetConsumerID Address of the consumer we want to know if he has received the access from the Data Producer
         @return _access Boolean indicating if the dataAssetConsumerID has access to the _dataAssetID
     */
-    function getDataAssetAccess(bytes32 _dataAssetID, address _dataAssetConsumerID) public stopInEmergency() view returns (bool _access){
+    function getDataAssetAccess(bytes32 _dataAssetID, address _dataAssetConsumerID) public view returns (bool _access){
         if(dataAssetIDList[_dataAssetID]==true){
            if(dataAssetStore[_dataAssetID].dataAssetAccessType == accessType.free){
                 return true;
@@ -254,15 +287,26 @@ contract ODTAValidator {
     /** @dev Function in charge of getting the number of Data Asset currently manage by the ODTA Registry
         @return _dataAssetTotal uint256 indicating the total number of Data Asset anchored on the ODTA Registy
     */
-    function getDataAssetTotal() public stopInEmergency() view returns (uint256 _dataAssetTotal){
+    function getDataAssetTotal() public view returns (uint256 _dataAssetTotal){
         return dataAssetTotal;
     }
     
-    
-    /** @dev Function to be called by the Data Consumer, to pay for accessing the Data Asset if the Data Producer has specify paying access conditions
-        @param _dataAssetID Hash of the dataAssetValue for which a user is going to pay for accessing it
-        @param _toDestination Address of the Data Producer of the Asset that should receive the money paid by the consumer
+    /** @dev Function to set the address of the Operator of the SC, only the owner can change it. We recommand to put the address of a multisig wallet
+        @param _operatorSC address of SC operator to be setup
     */
+    function setOperator(address _operatorSC) public isOwner() stopInEmergency(){
+        operatorSC=_operatorSC;
+    }
+    /** @dev Function to get the address of the Operator of the SC, only the owner can change it. We recommand to put the address of a multisig wallet
+        @return _operatorSC address of SC operator configured on the SC
+    */
+    function getOperator() public view returns (address _operatorSC){
+        return operatorSC;
+    }
+    
+    // @dev Function to be called by the Data Consumer, to pay for accessing the Data Asset if the Data Producer has specify paying access conditions
+    //    @param _dataAssetID Hash of the dataAssetValue for which a user is going to pay for accessing it
+    //    @param _toDestination Address of the Data Producer of the Asset that should receive the money paid by the consumer
     /// ! Not Implemented for the Project Course
     //function payToAccessDataAsset(bytes32 _dataAssetID, address payable _toDestination) public payable isDataAssetExistInDataAssetIDList(_dataAssetID){
     //    if(dataAssetAccessStore[_dataAssetID][msg.sender].dataAssetAccessStatus!=true && dataAssetStore[_dataAssetID].dataAssetProducerID ==_toDestination){
