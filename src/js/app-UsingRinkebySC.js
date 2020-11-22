@@ -3,7 +3,7 @@ App = {
   contracts: {},
   sourceDataAsset:null,
   // Address of the ODTA SmartContract on Rinkeby, you can replace with your instance address
-  ODTADeployedAddressRinkeby:"0xa17b09fDb3fCBEE1C881fDf9479d822F13324339",
+  ODTADeployedAddressRinkeby:"0x45b9d883aB05b081015E67e031516379f2C148D8",
 
   init: async function() {
     // Load dataAssets.

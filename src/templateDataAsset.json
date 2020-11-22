@@ -1,0 +1,14 @@
+{
+    "name": "Co2 Measure 1",
+    "dataAssetID": "0x9ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "dataAssetValue":{
+      "sensorID":"245939811",
+      "sensorLocation": "BXL",
+      "created": "2020-11-10T19:19:49Z",
+      "co2Value": "75",
+      "unit": "g/km"
+      },
+    "dataAssetProducerID": "0x7C584e710fE6afA5369A8Bffee47Fc98D76535a5",
+    "dataAssetAccessType": "paying",
+    "dataAssetAccessPrice": "100000000000000000"
+  }

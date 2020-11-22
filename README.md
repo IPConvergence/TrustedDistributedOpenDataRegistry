@@ -64,8 +64,8 @@ In order to have better readability a special githbook has been done for this pr
 - Design of the Data Model
 - Design explanation of the SmartContract
 - Smart Contract Method Signature
-- How to install and use this Gith project
+- How to install and use this Gith project and how to setup the demonstrator + illustrative youtube video of ODTA
 - -->> Please refer to https://marcantoine-lemaire.gitbook.io/solidity/open-data-trusted-anchors-project 
 
 There is a Public demo Web Page of the Front-End on: http://blockchainbeta.eu (Only in test Lab mode, no SLA UP Guarantee)
-The Video of the Application Test is on: https://www.youtube.com/channel/UCxGIOXS5a1n85SvUGTPrFrw
+The Videos of the Application Tests are on: https://www.youtube.com/channel/UCxGIOXS5a1n85SvUGTPrFrw
